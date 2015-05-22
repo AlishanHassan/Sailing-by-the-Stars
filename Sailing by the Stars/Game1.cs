@@ -6,7 +6,7 @@ namespace Sailing_by_the_Stars
 {
     /// <summary>
     /// This is the main type for your game.
-    /// Test
+    /// Test2
     /// </summary>
     public class Game1 : Game
     {
