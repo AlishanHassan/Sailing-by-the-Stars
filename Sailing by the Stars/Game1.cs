@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Sailing_by_the_Stars
 {
@@ -12,6 +13,8 @@ namespace Sailing_by_the_Stars
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Planet[] planets;
+        //float gConst = 6.67384E-11F;
 
         public Game1()
         {
@@ -28,7 +31,8 @@ namespace Sailing_by_the_Stars
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            this.IsMouseVisible = true;
+            this.Window.Title = "Sailing by the Stars";
             base.Initialize();
         }
 
@@ -42,6 +46,14 @@ namespace Sailing_by_the_Stars
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            planets = new Planet[2];
+            planets[0] = new Planet(650, 112, 20, 112);
+            planets[1] = new Planet(100, 300, 20, 85);
+            for (int i = 0; i < 2; i++)
+            {
+                planets[i].Sprite = Content.Load<Texture2D>("planet-" + (i + 1));
+            }
+
         }
 
         /// <summary>
@@ -64,7 +76,28 @@ namespace Sailing_by_the_Stars
                 Exit();
 
             // TODO: Add your update logic here
+            foreach (Planet p in planets)
+            {
+                Vector2 force = new Vector2(0, 0);
+                foreach (Planet p2 in planets)
+                {
+                    if (!p2.Equals(p))
+                    {
+                        Vector2 r = Vector2.Subtract(p2.Position, p.Position);
+                        if (r.Length() > p.Radius+p2.Radius)
+                        {
+                            force += 100000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared();
+                        }
+                        else
+                        {
+                            p.Collide(p2);
+                        }
 
+                    }
+                }
+
+                p.Update(force, gameTime.ElapsedGameTime);
+            }
             base.Update(gameTime);
         }
 
@@ -77,6 +110,13 @@ namespace Sailing_by_the_Stars
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            foreach (Planet p in planets)
+            {
+                spriteBatch.Draw(p.Sprite, p.TopLeftCorner, Color.White);
+            }
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
