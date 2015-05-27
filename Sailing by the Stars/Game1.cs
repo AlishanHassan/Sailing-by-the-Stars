@@ -14,6 +14,7 @@ namespace Sailing_by_the_Stars
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Planet[] planets;
+        Ship[] ships;
         //float gConst = 6.67384E-11F;
 
         public Game1()
@@ -46,12 +47,20 @@ namespace Sailing_by_the_Stars
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            
             planets = new Planet[2];
             planets[0] = new Planet(650, 112, 20, 112);
             planets[1] = new Planet(100, 300, 20, 85);
             for (int i = 0; i < 2; i++)
             {
                 planets[i].Sprite = Content.Load<Texture2D>("planet-" + (i + 1));
+            }
+             
+            ships = new Ship[1];
+            ships[0] = new Ship(-1000, 100, 5, 50);
+            for (int i = 0; i < 1; i++)
+            {
+                ships[i].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
         }
@@ -76,6 +85,7 @@ namespace Sailing_by_the_Stars
                 Exit();
 
             // TODO: Add your update logic here
+            
             foreach (Planet p in planets)
             {
                 Vector2 force = new Vector2(0, 0);
@@ -98,6 +108,9 @@ namespace Sailing_by_the_Stars
 
                 p.Update(force, gameTime.ElapsedGameTime);
             }
+            Ship s = ships[0];
+            Vector2 right = new Vector2(5000, 0);
+            s.Update(right,gameTime.ElapsedGameTime);
             base.Update(gameTime);
         }
 
@@ -114,6 +127,11 @@ namespace Sailing_by_the_Stars
             foreach (Planet p in planets)
             {
                 spriteBatch.Draw(p.Sprite, p.TopLeftCorner, Color.White);
+            }
+
+            foreach (Ship s in ships)
+            {
+                spriteBatch.Draw(s.Sprite, s.TopLeftCorner, Color.White);
             }
 
             spriteBatch.End();
