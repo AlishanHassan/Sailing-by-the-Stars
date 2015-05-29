@@ -9,7 +9,7 @@ namespace Sailing_by_the_Stars.Game
 {
     class Object
     {
-         public float Radius;
+        public float Radius;
         public float Mass;
         public Vector2 Position;
         public Vector2 Velocity;
@@ -43,6 +43,11 @@ namespace Sailing_by_the_Stars.Game
         {
             this.Velocity = new Vector2(0, 0);
             p2.Velocity = new Vector2(0, 0);
+        }
+
+        internal void changeDesnity()
+        {
+
         }
     }
 }

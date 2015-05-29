@@ -5,16 +5,23 @@ using System.Text;
 
 namespace Sailing_by_the_Stars.Game
 {
-    class Menu
+    class MainGame
     {
-        public Menu(){
-
+        int currentMouseState;
+        int inMenu;
+        public MainGame(){
 
         }
         public void Draw(){
 
         }
         public void Update(){
+
+        }
+        public void Initialize(){
+
+        }
+        public void LoadContent(){
 
         }
     }

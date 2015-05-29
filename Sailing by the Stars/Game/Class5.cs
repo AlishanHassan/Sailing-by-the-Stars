@@ -5,9 +5,11 @@ using System.Text;
 
 namespace Sailing_by_the_Stars.Game
 {
-    class MainGame
+    class Menu
     {
-        public MainGame()
+        int brightness;
+        int difficulty;
+        public Menu()
         {
 
         }
@@ -16,6 +18,18 @@ namespace Sailing_by_the_Stars.Game
 
         }
         public void Update()
+        {
+
+        }
+        public void Exit()
+        {
+
+        }
+        public void LoadGame()
+        {
+
+        }
+        public void NewGame()
         {
 
         }
