@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sailing by the Stars", "Sailing by the Stars\Sailing by the Stars.csproj", "{2C130C68-B265-412E-A08A-CDC643008744}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farseer Physics MonoGame", "Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5\Farseer Physics MonoGame.csproj", "{0AAD36E3-51A5-4A07-AB60-5C8A66BD38B7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -17,10 +15,6 @@ Global
 		{2C130C68-B265-412E-A08A-CDC643008744}.Debug|x86.Build.0 = Debug|x86
 		{2C130C68-B265-412E-A08A-CDC643008744}.Release|x86.ActiveCfg = Release|x86
 		{2C130C68-B265-412E-A08A-CDC643008744}.Release|x86.Build.0 = Release|x86
-		{0AAD36E3-51A5-4A07-AB60-5C8A66BD38B7}.Debug|x86.ActiveCfg = Debug|x86
-		{0AAD36E3-51A5-4A07-AB60-5C8A66BD38B7}.Debug|x86.Build.0 = Debug|x86
-		{0AAD36E3-51A5-4A07-AB60-5C8A66BD38B7}.Release|x86.ActiveCfg = Release|x86
-		{0AAD36E3-51A5-4A07-AB60-5C8A66BD38B7}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,16 +39,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
-    <Compile Include="Game\Class1.cs" />
-    <Compile Include="Game\Class10.cs" />
-    <Compile Include="Game\Class2.cs" />
-    <Compile Include="Game\Class3.cs" />
-    <Compile Include="Game\Class4.cs" />
-    <Compile Include="Game\Class5.cs" />
-    <Compile Include="Game\Class6.cs" />
-    <Compile Include="Game\Class7.cs" />
-    <Compile Include="Game\Class8.cs" />
-    <Compile Include="Game\Class9.cs" />
+    <Compile Include="Game\NetForce.cs" />
+    <Compile Include="Game\CommunicationsWindow.cs" />
+    <Compile Include="Game\EnemyShip.cs" />
+    <Compile Include="Game\HUD.cs" />
+    <Compile Include="Game\Intro.cs" />
+    <Compile Include="Game\MainGame.cs" />
+    <Compile Include="Game\Menu.cs" />
+    <Compile Include="Game\Object.cs" />
+    <Compile Include="Game\Planet.cs" />
+    <Compile Include="Game\Settings.cs" />
+    <Compile Include="Game\Ship.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\planet-2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -76,15 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5\Farseer Physics MonoGame.csproj">
-      <Project>{0aad36e3-51a5-4a07-ab60-5c8a66bd38b7}</Project>
-      <Name>Farseer Physics MonoGame</Name>
-    </ProjectReference>
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">

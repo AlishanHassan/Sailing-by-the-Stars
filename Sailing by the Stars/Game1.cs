@@ -15,6 +15,7 @@ namespace Sailing_by_the_Stars
         SpriteBatch spriteBatch;
         Planet[] planets;
         Ship[] ships;
+        Texture2D arrow;
         //float gConst = 6.67384E-11F;
 
         public Game1()
@@ -63,6 +64,8 @@ namespace Sailing_by_the_Stars
                 ships[i].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
+            arrow = Content.Load<Texture2D>("arrow");
+
         }
 
         /// <summary>
@@ -96,7 +99,7 @@ namespace Sailing_by_the_Stars
                         Vector2 r = Vector2.Subtract(p2.Position, p.Position);
                         if (r.Length() > p.Radius+p2.Radius)
                         {
-                            force += 100000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared();
+                            force += 10000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared();
                         }
                         else
                         {
@@ -127,6 +130,7 @@ namespace Sailing_by_the_Stars
             foreach (Planet p in planets)
             {
                 spriteBatch.Draw(p.Sprite, p.TopLeftCorner, Color.White);
+                p.drawNetForce(spriteBatch, arrow);
             }
 
             foreach (Ship s in ships)

@@ -13,7 +13,17 @@ namespace Sailing_by_the_Stars
         public float Mass;
         public Vector2 Position;
         public Vector2 Velocity;
+        public Vector2 Acceleration;
         public Texture2D Sprite;
+        private float angle
+        {
+            get
+            {
+                float radians = (float)(Math.Atan2(Acceleration.Y, Acceleration.X) + Math.PI / 2);
+                return radians;
+            }
+        }
+
         public Vector2 TopLeftCorner
         {
             get
@@ -32,7 +42,7 @@ namespace Sailing_by_the_Stars
 
         internal void Update(Vector2 force, TimeSpan deltaTime)
         {
-            Vector2 Acceleration = force / this.Mass;
+            Acceleration = force / this.Mass;
             Velocity += Acceleration * (float)deltaTime.TotalSeconds;
             //Velocity.X += Acceleration.X * (float)deltaTime.TotalSeconds;
             //Velocity.Y += Acceleration.Y * (float)deltaTime.TotalSeconds;
@@ -49,5 +59,18 @@ namespace Sailing_by_the_Stars
         {
 
         }
+
+        internal void drawNetForce(SpriteBatch spriteBatch, Texture2D arrow)
+        {
+
+            Vector2 location = this.Position;
+            Rectangle sourceRectangle = new Rectangle(0, 0, arrow.Width, arrow.Height);
+            Vector2 origin = new Vector2(arrow.Width / 2, arrow.Height);
+
+            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, this.angle, origin, 1.0f, SpriteEffects.None, 1);
+
+        }
+
+
     }
 }
