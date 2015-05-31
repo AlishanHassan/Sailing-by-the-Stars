@@ -67,7 +67,7 @@ namespace Sailing_by_the_Stars
             Rectangle sourceRectangle = new Rectangle(0, 0, arrow.Width, arrow.Height);
             Vector2 origin = new Vector2(arrow.Width / 2, arrow.Height);
 
-            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, this.angle, origin, 1.0f, SpriteEffects.None, 1);
+            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, this.angle, origin, (float)Acceleration.Length(), SpriteEffects.None, 1);
 
         }
 
