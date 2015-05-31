@@ -49,7 +49,7 @@ namespace Sailing_by_the_Stars
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }
 
-        internal void Collide(Planet p2)
+        internal void Collide(Object p2)
         {
             this.Velocity = new Vector2(0, 0);
             p2.Velocity = new Vector2(0, 0);

@@ -15,12 +15,15 @@ namespace Sailing_by_the_Stars
         SpriteBatch spriteBatch;
         Planet[] planets;
         Ship[] ships;
+        Object[] allGravObjects;
         Texture2D arrow;
         //float gConst = 6.67384E-11F;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1280;
             Content.RootDirectory = "Content";
         }
 
@@ -48,20 +51,22 @@ namespace Sailing_by_the_Stars
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            
-            planets = new Planet[2];
-            planets[0] = new Planet(650, 112, 20, 112);
-            planets[1] = new Planet(100, 300, 20, 85);
-            for (int i = 0; i < 2; i++)
+
+            allGravObjects = new Object[5];
+            allGravObjects[0] = new Planet(100, 100, 20, 112);
+            allGravObjects[1] = new Planet(1100, 200, 20, 85);
+            allGravObjects[2] = new Planet(500, 502, 20, 112);
+            allGravObjects[3] = new Planet(900, 400, 20, 85);
+            for (int i = 0; i < 4; i++)
             {
-                planets[i].Sprite = Content.Load<Texture2D>("planet-" + (i + 1));
+                int val = (i % 2)+1;
+                allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
-             
-            ships = new Ship[1];
-            ships[0] = new Ship(-1000, 100, 5, 50);
+
+            allGravObjects[4] = new Ship(600, 100, 5, 50);
             for (int i = 0; i < 1; i++)
             {
-                ships[i].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
+                allGravObjects[4].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
             arrow = Content.Load<Texture2D>("arrow");
@@ -88,11 +93,11 @@ namespace Sailing_by_the_Stars
                 Exit();
 
             // TODO: Add your update logic here
-            
-            foreach (Planet p in planets)
+
+            foreach (Object p in allGravObjects)
             {
                 Vector2 force = new Vector2(0, 0);
-                foreach (Planet p2 in planets)
+                foreach (Object p2 in allGravObjects)
                 {
                     if (!p2.Equals(p))
                     {
@@ -111,9 +116,7 @@ namespace Sailing_by_the_Stars
 
                 p.Update(force, gameTime.ElapsedGameTime);
             }
-            Ship s = ships[0];
-            Vector2 right = new Vector2(5000, 0);
-            s.Update(right,gameTime.ElapsedGameTime);
+            
             base.Update(gameTime);
         }
 
@@ -127,15 +130,10 @@ namespace Sailing_by_the_Stars
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            foreach (Planet p in planets)
+            foreach (Object p in allGravObjects)
             {
                 spriteBatch.Draw(p.Sprite, p.TopLeftCorner, Color.White);
                 p.drawNetForce(spriteBatch, arrow);
-            }
-
-            foreach (Ship s in ships)
-            {
-                spriteBatch.Draw(s.Sprite, s.TopLeftCorner, Color.White);
             }
 
             spriteBatch.End();
