@@ -8,7 +8,7 @@ namespace Sailing_by_the_Stars
     class EnemyShip : Object
     {
         public String difficulty;
-        void EnemyShip(String difficulty)
+        public EnemyShip(String difficulty)
         {
 
         }
