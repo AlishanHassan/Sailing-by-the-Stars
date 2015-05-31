@@ -40,7 +40,15 @@
   <ItemGroup>
     <Compile Include="Game1.cs" />
     <Compile Include="Game\Class1.cs" />
+    <Compile Include="Game\Class10.cs" />
     <Compile Include="Game\Class2.cs" />
+    <Compile Include="Game\Class3.cs" />
+    <Compile Include="Game\Class4.cs" />
+    <Compile Include="Game\Class5.cs" />
+    <Compile Include="Game\Class6.cs" />
+    <Compile Include="Game\Class7.cs" />
+    <Compile Include="Game\Class8.cs" />
+    <Compile Include="Game\Class9.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +76,15 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Farseer Physics Engine 3.5 Samples\Farseer Physics Engine 3.5\Farseer Physics MonoGame.csproj">
+      <Project>{0aad36e3-51a5-4a07-ab60-5c8a66bd38b7}</Project>
+      <Name>Farseer Physics MonoGame</Name>
+    </ProjectReference>
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">

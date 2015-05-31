@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Sailing_by_the_Stars.Game
 {
-    class Class10
+    class Settings
     {
+        int b
     }
 }
