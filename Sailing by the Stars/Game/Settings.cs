@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sailing_by_the_Stars.Game
+namespace Sailing_by_the_Stars
 {
     class Settings
     {
-        int b
+        //int b
     }
 }
