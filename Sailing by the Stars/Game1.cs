@@ -9,7 +9,7 @@ namespace Sailing_by_the_Stars
     /// This is the main type for your game.
     /// Test2
     /// </summary>
-    public class Game1 : Game
+    public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;

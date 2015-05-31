@@ -38,20 +38,19 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CommunicationsWindow.cs" />
+    <Compile Include="EnemyShip.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Game\NetForce.cs" />
-    <Compile Include="Game\CommunicationsWindow.cs" />
-    <Compile Include="Game\EnemyShip.cs" />
-    <Compile Include="Game\HUD.cs" />
-    <Compile Include="Game\Intro.cs" />
-    <Compile Include="Game\MainGame.cs" />
-    <Compile Include="Game\Menu.cs" />
-    <Compile Include="Game\Object.cs" />
-    <Compile Include="Game\Planet.cs" />
-    <Compile Include="Game\Settings.cs" />
-    <Compile Include="Game\Ship.cs" />
+    <Compile Include="HUD.cs" />
+    <Compile Include="Intro.cs" />
+    <Compile Include="MainGame.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="Object.cs" />
+    <Compile Include="Planet.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Ship.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -64,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\WindowsGL\Debug\Sailing by the Stars.vshost.exe" />
     <Content Include="Content\arrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -81,6 +81,10 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\WindowsGL\Debug\Sailing by the Stars.vshost.exe.manifest" />
+  </ItemGroup>
+  <ItemGroup />
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
     <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows;$(AssemblySearchPaths)">
