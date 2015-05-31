@@ -7,10 +7,12 @@ namespace Sailing_by_the_Stars
 {
     class EnemyShip : Object
     {
-        public String difficulty;
-        void EnemyShip(String difficulty)
-        {
+        public int difficulty;
 
+        public EnemyShip(int x = 0, int y = 0, float m = 100, float r = 100, int difficulty = 1)
+            : base(x, y, m, r)
+        {
+            this.difficulty = difficulty;
         }
         void thrust()
         {
