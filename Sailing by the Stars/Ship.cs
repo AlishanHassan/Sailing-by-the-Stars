@@ -9,15 +9,12 @@ namespace Sailing_by_the_Stars
 {
     class Ship : Object
     {
-     
-        public Ship(int x = 0, int y = 0, float m = 100, float r = 100)
-        {
-            Radius = r;
-            Mass = m;
-            Position = new Vector2(x, y);
-            Velocity = new Vector2(5, 5);
-        }
 
+        public Ship(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null)
+            : base(m, r, pos, vel)
+        {
+
+        }
     }
 
 }

@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Sailing_by_the_Stars
 {
-    class EnemyShip : Object
+    class EnemyShip : Ship
     {
         public int difficulty;
 
-        public EnemyShip(int x = 0, int y = 0, float m = 100, float r = 100, int difficulty = 1)
-            : base(x, y, m, r)
+        public EnemyShip(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null, int difficulty = 1)
+            : base(m, r, pos, vel)
         {
             this.difficulty = difficulty;
         }

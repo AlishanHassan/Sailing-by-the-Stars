@@ -52,15 +52,15 @@ namespace Sailing_by_the_Stars
             // TODO: use this.Content to load your game content here
 
             allGravObjects = new Object[2];
-            allGravObjects[0] = new Object(200, 100, 650, 112);
+            allGravObjects[0] = new Planet(650, 112, new Vector2(200, 100));
             //allGravObjects[1] = new Object(1000, 200, 350, 85);
             for (int i = 0; i < 1; i++)
             {
-                int val = (i % 2)+1;
+                int val = (i % 2) + 1;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
 
-            allGravObjects[1] = new Object(600, 700, 20, 5);
+            allGravObjects[1] = new Ship(20, 5, new Vector2(600, 700));
             allGravObjects[1].Velocity = new Vector2(0, -40);
             for (int i = 0; i < 1; i++)
             {
@@ -87,21 +87,21 @@ namespace Sailing_by_the_Stars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
+
 
             // TODO: Add your update logic here
             var mouseState = Mouse.GetState();
             var mousePosition = new Point(mouseState.X, mouseState.Y);
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
-               foreach(Object o in allGravObjects)
-               {
-                   if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
-                   {
-                       o.Mass = o.Mass + 10;
-                       Debug.WriteLine(o.Mass);
-                   }
-               }
+                foreach (Object o in allGravObjects)
+                {
+                    if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
+                    {
+                        o.Mass = o.Mass + 10;
+                        Debug.WriteLine(o.Mass);
+                    }
+                }
             }
             if (mouseState.RightButton == ButtonState.Pressed)
             {
@@ -113,7 +113,7 @@ namespace Sailing_by_the_Stars
                         {
                             o.Mass = o.Mass - 10;
                         }
-                        
+
                         Debug.WriteLine(o.Mass);
                     }
                 }
@@ -126,7 +126,7 @@ namespace Sailing_by_the_Stars
                     if (!p2.Equals(p))
                     {
                         Vector2 r = Vector2.Subtract(p2.Position, p.Position);
-                        if (r.Length() > p.Radius+p2.Radius)
+                        if (r.Length() > p.Radius + p2.Radius)
                         {
                             force += 10000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared();
                         }
@@ -140,7 +140,7 @@ namespace Sailing_by_the_Stars
 
                 p.Update(force, gameTime.ElapsedGameTime);
             }
-            
+
             base.Update(gameTime);
         }
 

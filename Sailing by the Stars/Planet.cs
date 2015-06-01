@@ -9,17 +9,15 @@ namespace Sailing_by_the_Stars
 {
     class Planet : Object
     {
-       
 
-        public Planet(int x = 0, int y = 0, float m = 100, float r = 100)
+
+        public Planet(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null)
+            : base(m, r, pos, vel)
         {
-            Radius = r;
-            Mass = m;
-            Position = new Vector2(x, y);
-            Velocity = new Vector2(0, 0);
+
         }
 
-      
+
     }
 
 }

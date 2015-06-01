@@ -32,12 +32,14 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        public Object(int x = 0, int y = 0, float m = 100, float r = 100)
+        public Object(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null)
         {
             Radius = r;
             Mass = m;
-            Position = new Vector2(x, y);
-            Velocity = new Vector2(0, 0);
+            if (pos == null) { pos = new Vector2(0, 0); }
+            Position = pos.Value;
+            if (vel == null) { vel = new Vector2(0, 0); }
+            Velocity = vel.Value;
         }
 
         internal void Update(Vector2 force, TimeSpan deltaTime)
@@ -67,7 +69,7 @@ namespace Sailing_by_the_Stars
             Rectangle sourceRectangle = new Rectangle(0, 0, arrow.Width, arrow.Height);
             Vector2 origin = new Vector2(arrow.Width / 2, arrow.Height);
 
-            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, this.angle, origin, (float)Acceleration.Length()/10, SpriteEffects.None, 1);
+            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, this.angle, origin, (float)Acceleration.Length() / 10, SpriteEffects.None, 1);
 
         }
 
