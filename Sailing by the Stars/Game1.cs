@@ -51,19 +51,20 @@ namespace Sailing_by_the_Stars
 
             // TODO: use this.Content to load your game content here
 
-            allGravObjects = new Object[3];
-            allGravObjects[0] = new Object(100, 100, 25, 112);
-            allGravObjects[1] = new Object(1100, 200, 24, 85);
-            for (int i = 0; i < 2; i++)
+            allGravObjects = new Object[2];
+            allGravObjects[0] = new Object(200, 100, 650, 112);
+            //allGravObjects[1] = new Object(1000, 200, 350, 85);
+            for (int i = 0; i < 1; i++)
             {
                 int val = (i % 2)+1;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
 
-            allGravObjects[2] = new Object(600, 700, 50, 50);
+            allGravObjects[1] = new Object(600, 700, 20, 5);
+            allGravObjects[1].Velocity = new Vector2(0, -40);
             for (int i = 0; i < 1; i++)
             {
-                allGravObjects[2].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
+                allGravObjects[1].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
             arrow = Content.Load<Texture2D>("arrow");
@@ -97,7 +98,7 @@ namespace Sailing_by_the_Stars
                {
                    if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
                    {
-                       o.Mass = o.Mass + 100;
+                       o.Mass = o.Mass + 10;
                        Debug.WriteLine(o.Mass);
                    }
                }
@@ -108,7 +109,11 @@ namespace Sailing_by_the_Stars
                 {
                     if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
                     {
-                        o.Mass = o.Mass - 100;
+                        if (o.Mass != 10)
+                        {
+                            o.Mass = o.Mass - 10;
+                        }
+                        
                         Debug.WriteLine(o.Mass);
                     }
                 }
