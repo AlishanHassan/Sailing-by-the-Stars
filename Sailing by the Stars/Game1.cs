@@ -16,6 +16,7 @@ namespace Sailing_by_the_Stars
         SpriteBatch spriteBatch;
         Object[] allGravObjects;
         Texture2D arrow;
+        DensityControl densityControl;
         //float gConst = 6.67384E-11F;
 
         public Game1()
@@ -38,6 +39,8 @@ namespace Sailing_by_the_Stars
             this.IsMouseVisible = true;
             this.Window.Title = "Sailing by the Stars";
             base.Initialize();
+
+            
         }
 
         /// <summary>
@@ -52,6 +55,9 @@ namespace Sailing_by_the_Stars
             // TODO: use this.Content to load your game content here
 
             allGravObjects = new Object[2];
+            densityControl = new DensityControl(allGravObjects);
+
+
             allGravObjects[0] = new Planet(650, 112, new Vector2(200, 100));
             //allGravObjects[1] = new Object(1000, 200, 350, 85);
             for (int i = 0; i < 1; i++)
@@ -68,6 +74,8 @@ namespace Sailing_by_the_Stars
             }
 
             arrow = Content.Load<Texture2D>("arrow");
+
+            
 
         }
 
@@ -90,34 +98,8 @@ namespace Sailing_by_the_Stars
 
 
             // TODO: Add your update logic here
-            var mouseState = Mouse.GetState();
-            var mousePosition = new Point(mouseState.X, mouseState.Y);
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-                foreach (Object o in allGravObjects)
-                {
-                    if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
-                    {
-                        o.Mass = o.Mass + 10;
-                        Debug.WriteLine(o.Mass);
-                    }
-                }
-            }
-            if (mouseState.RightButton == ButtonState.Pressed)
-            {
-                foreach (Object o in allGravObjects)
-                {
-                    if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
-                    {
-                        if (o.Mass != 10)
-                        {
-                            o.Mass = o.Mass - 10;
-                        }
+            densityControl.update();
 
-                        Debug.WriteLine(o.Mass);
-                    }
-                }
-            }
             foreach (Object p in allGravObjects)
             {
                 Vector2 force = new Vector2(0, 0);
