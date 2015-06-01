@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 
 namespace Sailing_by_the_Stars
 {
@@ -13,8 +14,6 @@ namespace Sailing_by_the_Stars
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Planet[] planets;
-        Ship[] ships;
         Object[] allGravObjects;
         Texture2D arrow;
         //float gConst = 6.67384E-11F;
@@ -52,21 +51,19 @@ namespace Sailing_by_the_Stars
 
             // TODO: use this.Content to load your game content here
 
-            allGravObjects = new Object[5];
-            allGravObjects[0] = new Planet(100, 100, 20, 112);
-            allGravObjects[1] = new Planet(1100, 200, 20, 85);
-            allGravObjects[2] = new Planet(500, 502, 20, 112);
-            allGravObjects[3] = new Planet(900, 400, 20, 85);
-            for (int i = 0; i < 4; i++)
+            allGravObjects = new Object[3];
+            allGravObjects[0] = new Object(100, 100, 25, 112);
+            allGravObjects[1] = new Object(1100, 200, 24, 85);
+            for (int i = 0; i < 2; i++)
             {
                 int val = (i % 2)+1;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
 
-            allGravObjects[4] = new Ship(600, 100, 5, 50);
+            allGravObjects[2] = new Object(600, 700, 50, 50);
             for (int i = 0; i < 1; i++)
             {
-                allGravObjects[4].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
+                allGravObjects[2].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
             arrow = Content.Load<Texture2D>("arrow");
@@ -89,11 +86,33 @@ namespace Sailing_by_the_Stars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            
 
             // TODO: Add your update logic here
-
+            var mouseState = Mouse.GetState();
+            var mousePosition = new Point(mouseState.X, mouseState.Y);
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+               foreach(Object o in allGravObjects)
+               {
+                   if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
+                   {
+                       o.Mass = o.Mass + 100;
+                       Debug.WriteLine(o.Mass);
+                   }
+               }
+            }
+            if (mouseState.RightButton == ButtonState.Pressed)
+            {
+                foreach (Object o in allGravObjects)
+                {
+                    if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
+                    {
+                        o.Mass = o.Mass - 100;
+                        Debug.WriteLine(o.Mass);
+                    }
+                }
+            }
             foreach (Object p in allGravObjects)
             {
                 Vector2 force = new Vector2(0, 0);
