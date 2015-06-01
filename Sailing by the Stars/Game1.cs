@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 
+
 namespace Sailing_by_the_Stars
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace Sailing_by_the_Stars
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
+
             Content.RootDirectory = "Content";
         }
 
@@ -39,8 +41,6 @@ namespace Sailing_by_the_Stars
             this.IsMouseVisible = true;
             this.Window.Title = "Sailing by the Stars";
             base.Initialize();
-
-            
         }
 
         /// <summary>
@@ -59,7 +59,6 @@ namespace Sailing_by_the_Stars
 
 
             allGravObjects[0] = new Planet(650, 112, new Vector2(200, 100));
-            //allGravObjects[1] = new Object(1000, 200, 350, 85);
             for (int i = 0; i < 1; i++)
             {
                 int val = (i % 2) + 1;
@@ -67,7 +66,6 @@ namespace Sailing_by_the_Stars
             }
 
             allGravObjects[1] = new Ship(20, 5, new Vector2(600, 700));
-            allGravObjects[1].Velocity = new Vector2(0, -40);
             for (int i = 0; i < 1; i++)
             {
                 allGravObjects[1].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
@@ -75,7 +73,7 @@ namespace Sailing_by_the_Stars
 
             arrow = Content.Load<Texture2D>("arrow");
 
-            
+
 
         }
 
@@ -99,6 +97,34 @@ namespace Sailing_by_the_Stars
 
             // TODO: Add your update logic here
             densityControl.update();
+
+            /* a second version for calculation the acceleration - using center of mass
+             * altough the runtime for acceleration calculation is only 2n, the collision detection still takes n^2.
+             * so I'm not sure which one we use
+            Vector2 centerOfMass = new Vector2(0, 0);
+            float totalMass = 0;
+            foreach (Object obj in allGravObjects)
+            {
+                centerOfMass += obj.Mass * obj.Position;
+                totalMass += obj.Mass;
+            }
+            centerOfMass /= totalMass;
+
+            foreach (Object obj in allGravObjects)
+            {
+                obj.Update(centerOfMass, totalMass, gameTime.ElapsedGameTime);
+            }
+
+            for (int i = 0; i < allGravObjects.Length; i++)
+            {
+                for (int j = 0; j < allGravObjects.Length; j++)
+                {
+                    Vector2 r = Vector2.Subtract(allGravObjects[j].Position, allGravObjects[i].Position);
+                    if (r.Length() < allGravObjects[i].Radius + allGravObjects[j].Radius)
+                    { allGravObjects[i].Collide(allGravObjects[j]); }
+                }
+            }
+            */
 
             foreach (Object p in allGravObjects)
             {
@@ -138,7 +164,7 @@ namespace Sailing_by_the_Stars
             spriteBatch.Begin();
             foreach (Object p in allGravObjects)
             {
-                spriteBatch.Draw(p.Sprite, p.TopLeftCorner, Color.White);
+                p.draw(spriteBatch);
                 p.drawNetForce(spriteBatch, arrow);
             }
 

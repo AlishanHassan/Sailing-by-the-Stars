@@ -46,8 +46,6 @@ namespace Sailing_by_the_Stars
         {
             Acceleration = force / this.Mass;
             Velocity += Acceleration * (float)deltaTime.TotalSeconds;
-            //Velocity.X += Acceleration.X * (float)deltaTime.TotalSeconds;
-            //Velocity.Y += Acceleration.Y * (float)deltaTime.TotalSeconds;
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }
 
@@ -62,6 +60,11 @@ namespace Sailing_by_the_Stars
 
         }
 
+        internal void draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.Sprite, this.TopLeftCorner, Color.White);
+        }
+
         internal void drawNetForce(SpriteBatch spriteBatch, Texture2D arrow)
         {
 
@@ -73,6 +76,13 @@ namespace Sailing_by_the_Stars
 
         }
 
+        internal void Update(Vector2 centerOfMass, float M, TimeSpan deltaTime)
+        {
+            Vector2 centerOfMassOfOtherObj = (centerOfMass * M - this.Mass * this.Position) / (M - this.Mass);
+            Vector2 r = Vector2.Subtract(centerOfMassOfOtherObj, this.Position);
+            Vector2 force = 10000F * M * this.Mass * Vector2.Normalize(r) / r.LengthSquared();
 
+            this.Update(force, deltaTime);
+        }
     }
 }
