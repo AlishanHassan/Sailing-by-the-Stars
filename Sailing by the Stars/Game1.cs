@@ -65,7 +65,8 @@ namespace Sailing_by_the_Stars
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
 
-            allGravObjects[1] = new Ship(20, 5, new Vector2(600, 700));
+            allGravObjects[1] = new Ship(20, 38, new Vector2(600, 700)); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+
             for (int i = 0; i < 1; i++)
             {
                 allGravObjects[1].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));

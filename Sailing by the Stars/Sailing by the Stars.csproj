@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DensityControl.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="CommunicationsWindow.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
