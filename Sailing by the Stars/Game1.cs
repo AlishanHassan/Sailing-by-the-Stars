@@ -109,13 +109,13 @@ namespace Sailing_by_the_Stars
             if (state.IsKeyDown(Keys.Left))
             {
                 Debug.WriteLine("Ding dong left");
-                Vector2 pan = new Vector2(-50, 0);
+                Vector2 pan = new Vector2(50, 0);
                 Camera.Move(pan);
             }
             if (state.IsKeyDown(Keys.Right))
             {
                 Debug.WriteLine("Ding dong right");
-                Vector2 pan = new Vector2(50, 0);
+                Vector2 pan = new Vector2(-50, 0);
                 Camera.Move(pan);
             }
             if (state.IsKeyDown(Keys.Up))
