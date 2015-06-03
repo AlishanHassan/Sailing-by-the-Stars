@@ -19,6 +19,10 @@ namespace Sailing_by_the_Stars
         Texture2D arrow;
         DensityControl densityControl;
         //float gConst = 6.67384E-11F;
+        Camera Camera = new Camera();
+
+
+
 
         public Game1()
         {
@@ -99,6 +103,14 @@ namespace Sailing_by_the_Stars
             // TODO: Add your update logic here
             densityControl.update();
 
+            KeyboardState state = Keyboard.GetState();
+            if (state.IsKeyDown(Keys.Left))
+            {
+                Debug.WriteLine("Ding dong");
+                Vector2 pan = new Vector2(50, 50);
+                Camera.Move(pan);
+            }
+
             /* a second version for calculation the acceleration - using center of mass
              * altough the runtime for acceleration calculation is only 2n, the collision detection still takes n^2.
              * so I'm not sure which one we use
@@ -159,10 +171,18 @@ namespace Sailing_by_the_Stars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+     
+            
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+           
+            var screenScale = GetScreenScale();
+            var viewMatrix = Camera.GetTransform();
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+                                       null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
             foreach (Object p in allGravObjects)
             {
                 p.draw(spriteBatch);
@@ -173,5 +193,15 @@ namespace Sailing_by_the_Stars
 
             base.Draw(gameTime);
         }
+
+        public Vector3 GetScreenScale()
+        {
+            var scaleX = 1.0f; //loat)graphics.width / (float)_width;
+            var scaleY = 1.0f; // (float)graphics.Viewport.Height / (float)_height;
+            return new Vector3(scaleX, scaleY, 1.0f);
+        }
+      
+
+
     }
 }
