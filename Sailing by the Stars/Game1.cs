@@ -103,13 +103,39 @@ namespace Sailing_by_the_Stars
             // TODO: Add your update logic here
             densityControl.update();
 
+
+            //basic camera control
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Left))
             {
-                Debug.WriteLine("Ding dong");
-                Vector2 pan = new Vector2(50, 50);
+                Debug.WriteLine("Ding dong left");
+                Vector2 pan = new Vector2(-50, 0);
                 Camera.Move(pan);
             }
+            if (state.IsKeyDown(Keys.Right))
+            {
+                Debug.WriteLine("Ding dong right");
+                Vector2 pan = new Vector2(50, 0);
+                Camera.Move(pan);
+            }
+            if (state.IsKeyDown(Keys.Up))
+            {
+                Debug.WriteLine("Ding dong up");
+                Vector2 pan = new Vector2(0, 50);
+                Camera.Move(pan);
+            }
+
+            if (state.IsKeyDown(Keys.Down))
+            {
+                Debug.WriteLine("Ding dong down");
+                Vector2 pan = new Vector2(0, -50);
+                Camera.Move(pan);
+            }
+
+       
+       
+       
+
 
             /* a second version for calculation the acceleration - using center of mass
              * altough the runtime for acceleration calculation is only 2n, the collision detection still takes n^2.
