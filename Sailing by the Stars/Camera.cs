@@ -29,6 +29,11 @@ namespace Sailing_by_the_Stars
             Position += direction;
         }
 
+        public void SetZoom(float zoomChange)
+        {
+            Zoom += zoomChange;
+        }
+
         public Matrix GetTransform()
         {
             var translationMatrix = Matrix.CreateTranslation(new Vector3(Position.X, Position.Y, 0));

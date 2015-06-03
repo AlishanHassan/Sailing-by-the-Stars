@@ -124,7 +124,6 @@ namespace Sailing_by_the_Stars
                 Vector2 pan = new Vector2(0, 50);
                 Camera.Move(pan);
             }
-
             if (state.IsKeyDown(Keys.Down))
             {
                 Debug.WriteLine("Ding dong down");
@@ -132,7 +131,16 @@ namespace Sailing_by_the_Stars
                 Camera.Move(pan);
             }
 
-       
+            if (state.IsKeyDown(Keys.O))
+            {
+                Debug.WriteLine("Zoom out");
+                Camera.SetZoom(-.1f);
+            }
+            if (state.IsKeyDown(Keys.P))
+            {
+                Debug.WriteLine("Zoom in");
+                Camera.SetZoom(.1f);
+            }
        
        
 
