@@ -105,6 +105,7 @@ namespace Sailing_by_the_Stars
             // TODO: Add your update logic here
             densityControl.update();
 
+            
 
             //basic camera control
             KeyboardState state = Keyboard.GetState();
@@ -222,12 +223,16 @@ namespace Sailing_by_the_Stars
 
             // TODO: Add your drawing code here
 
-            spriteBatch.Begin();   
+            spriteBatch.Begin();
+
+            
 
             //TODO: draw the HUD here
 
             //spriteBatch.DrawString(font, "Health", new Vector2(100, 700), Color.Yellow);  //this will ultimately be in the draw method in HUD
-            
+
+            //hud.Draw();
+
             spriteBatch.End();
 
 
