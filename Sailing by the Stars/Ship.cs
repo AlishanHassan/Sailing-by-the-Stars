@@ -15,6 +15,16 @@ namespace Sailing_by_the_Stars
         {
 
         }
+
+        internal override void draw(SpriteBatch spriteBatch)
+        {
+            Vector2 location = this.Position;
+            Rectangle sourceRectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
+            Vector2 origin = new Vector2(Sprite.Width / 2, Sprite.Height/2); //rotate with respect to the center point
+
+            spriteBatch.Draw(Sprite, location, sourceRectangle, Color.White, this.VelAngle, origin, 1, SpriteEffects.None, 1);
+
+        }
     }
 
 }

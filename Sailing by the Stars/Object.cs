@@ -15,11 +15,19 @@ namespace Sailing_by_the_Stars
         public Vector2 Velocity;
         public Vector2 Acceleration;
         public Texture2D Sprite;
-        private float angle
+        protected float AccAngle
         {
             get
             {
                 float radians = (float)(Math.Atan2(Acceleration.Y, Acceleration.X) + Math.PI / 2);
+                return radians;
+            }
+        }
+        protected float VelAngle
+        {
+            get
+            {
+                float radians = (float)(Math.Atan2(Velocity.Y, Velocity.X) + Math.PI / 2);
                 return radians;
             }
         }
@@ -60,7 +68,7 @@ namespace Sailing_by_the_Stars
 
         }
 
-        internal void draw(SpriteBatch spriteBatch)
+        internal virtual void draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Sprite, this.TopLeftCorner, Color.White);
         }
@@ -70,9 +78,9 @@ namespace Sailing_by_the_Stars
 
             Vector2 location = this.Position;
             Rectangle sourceRectangle = new Rectangle(0, 0, arrow.Width, arrow.Height);
-            Vector2 origin = new Vector2(arrow.Width / 2, arrow.Height);
+            Vector2 origin = new Vector2(arrow.Width / 2, arrow.Height); //rotate with respect to the bottom-middle point
 
-            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, this.angle, origin, (float)Acceleration.Length() / 10, SpriteEffects.None, 1);
+            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, this.AccAngle, origin, (float)Acceleration.Length() / 10, SpriteEffects.None, 1);
 
         }
 
