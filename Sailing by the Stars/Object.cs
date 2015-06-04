@@ -50,17 +50,39 @@ namespace Sailing_by_the_Stars
             Velocity = vel.Value;
         }
 
-        internal void Update(Vector2 force, TimeSpan deltaTime)
+        internal void Move(Vector2 force, TimeSpan deltaTime)
         {
             Acceleration = force / this.Mass;
             Velocity += Acceleration * (float)deltaTime.TotalSeconds;
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }
 
-        internal void Collide(Object p2)
+        internal static void CheckCollision(Object o1, Object o2, TimeSpan elapsedTime)
         {
-            this.Velocity = new Vector2(0, 0);
-            p2.Velocity = new Vector2(0, 0);
+            Vector2 r = Vector2.Subtract(o2.Position, o1.Position);
+            if (r.Length() < o1.Radius + o2.Radius)
+            {
+                // go back one step
+                o1.Position -= o1.Velocity * (float)elapsedTime.TotalSeconds;
+                o2.Position -= o2.Velocity * (float)elapsedTime.TotalSeconds;
+                // bounce
+                Bounce(o1, o2);
+            }
+
+        }
+
+        internal static void Bounce(Object o1, Object o2)
+        {
+            var m1 = o1.Mass;
+            var m2 = o2.Mass;
+            var x1 = o1.Position;
+            var x2 = o2.Position;
+            var v1 = o1.Velocity;
+            var v2 = o2.Velocity;
+            Vector2 v1f = v1 - 2 * m2 / (m1 + m2) * Vector2.Dot(v1 - v2, x1 - x2) / (x1 - x2).LengthSquared() * (x1 - x2);
+            Vector2 v2f = v2 - 2 * m1 / (m1 + m2) * Vector2.Dot(v2 - v1, x2 - x1) / (x2 - x1).LengthSquared() * (x2 - x1);
+            o1.Velocity = v1f;
+            o2.Velocity = v2f;
         }
 
         internal void changeDesnity()
@@ -88,9 +110,9 @@ namespace Sailing_by_the_Stars
         {
             Vector2 centerOfMassOfOtherObj = (centerOfMass * M - this.Mass * this.Position) / (M - this.Mass);
             Vector2 r = Vector2.Subtract(centerOfMassOfOtherObj, this.Position);
-            Vector2 force = 10000F * M * this.Mass * Vector2.Normalize(r) / r.LengthSquared();
+            Vector2 force = 5000F * (M - this.Mass) * this.Mass * Vector2.Normalize(r) / r.LengthSquared();
 
-            this.Update(force, deltaTime);
+            this.Move(force, deltaTime);
         }
     }
 }

@@ -72,7 +72,7 @@ namespace Sailing_by_the_Stars
             }
 
 
-            Vector2 initialVelocity = new Vector2(50, 0);//ship initial velocity
+            Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
             allGravObjects[2] = new Ship(20, 38, new Vector2(600, 700), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
 
             for (int i = 0; i < 1; i++)
@@ -150,9 +150,9 @@ namespace Sailing_by_the_Stars
 
 
 
-            /* a second version for calculation the acceleration - using center of mass
-             * altough the runtime for acceleration calculation is only 2n, the collision detection still takes n^2.
-             * so I'm not sure which one we use
+            // a second version for calculation the acceleration - using center of mass
+            // altough the runtime for acceleration calculation is only 2n, the collision detection still takes n^2.
+            // so I'm not sure which one we use
             Vector2 centerOfMass = new Vector2(0, 0);
             float totalMass = 0;
             foreach (Object obj in allGravObjects)
@@ -169,38 +169,39 @@ namespace Sailing_by_the_Stars
 
             for (int i = 0; i < allGravObjects.Length; i++)
             {
-                for (int j = 0; j < allGravObjects.Length; j++)
+                var o1 = allGravObjects[i];
+                for (int j = i + 1; j < allGravObjects.Length; j++)
                 {
-                    Vector2 r = Vector2.Subtract(allGravObjects[j].Position, allGravObjects[i].Position);
-                    if (r.Length() < allGravObjects[i].Radius + allGravObjects[j].Radius)
-                    { allGravObjects[i].Collide(allGravObjects[j]); }
+                    var o2 = allGravObjects[j];
+                    Object.CheckCollision(o1, o2,gameTime.ElapsedGameTime);
                 }
             }
-            */
 
 
-            foreach (Object p in allGravObjects)
-            {
-                Vector2 force = new Vector2(0, 0);
-                foreach (Object p2 in allGravObjects)
-                {
-                    if (!p2.Equals(p))
-                    {
-                        Vector2 r = Vector2.Subtract(p2.Position, p.Position);
-                        if (r.Length() > p.Radius + p2.Radius)
-                        {
-                            force += 5000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared(); //decreased this to 5000 from 10000 to slow it down for analysis
-                        }
-                        else
-                        {
-                            p.Collide(p2);
-                        }
 
-                    }
-                }
+            //foreach (Object p in allGravObjects)
+            //{
+            //    Vector2 force = new Vector2(0, 0);
+            //    foreach (Object p2 in allGravObjects)
+            //    {
+            //        if (!p2.Equals(p))
+            //        {
+            //            Vector2 r = Vector2.Subtract(p2.Position, p.Position);
+            //            if (r.Length() > p.Radius + p2.Radius)
+            //            {
+            //                force += 5000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared(); //decreased this to 5000 from 10000 to slow it down for analysis
+            //            }
+            //            else
+            //            {
+            //                p.Collide(p2);
+            //            }
 
-                p.Update(force, gameTime.ElapsedGameTime);
-            }
+            //        }
+            //    }
+
+            //    p.Move(force, gameTime.ElapsedGameTime);
+            //}
+
 
             base.Update(gameTime);
         }
