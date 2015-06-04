@@ -71,7 +71,9 @@ namespace Sailing_by_the_Stars
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
 
-            allGravObjects[2] = new Ship(20, 38, new Vector2(600, 700)); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+
+            Vector2 initialVelocity = new Vector2(50, 0);//ship initial velocity
+            allGravObjects[2] = new Ship(20, 38, new Vector2(600, 700), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
 
             for (int i = 0; i < 1; i++)
             {
@@ -105,7 +107,7 @@ namespace Sailing_by_the_Stars
             // TODO: Add your update logic here
             densityControl.update();
 
-            
+
 
             //basic camera control
             KeyboardState state = Keyboard.GetState();
@@ -144,8 +146,8 @@ namespace Sailing_by_the_Stars
                 Debug.WriteLine("Zoom in");
                 Camera.SetZoom(.1f);
             }
-       
-       
+
+
 
 
             /* a second version for calculation the acceleration - using center of mass
@@ -177,13 +179,6 @@ namespace Sailing_by_the_Stars
             */
 
 
-            //ship initial velocity 
-            Object s = allGravObjects[2]; 
-            Vector2 initialVelocity = new Vector2(400, 0);
-            s.Update(initialVelocity, gameTime.ElapsedGameTime);
-
-            
-            
             foreach (Object p in allGravObjects)
             {
                 Vector2 force = new Vector2(0, 0);
@@ -217,15 +212,15 @@ namespace Sailing_by_the_Stars
         protected override void Draw(GameTime gameTime)
         {
 
-     
-            
+
+
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
             spriteBatch.Begin();
 
-            
+
 
             //TODO: draw the HUD here
 
@@ -258,7 +253,7 @@ namespace Sailing_by_the_Stars
             var scaleY = 1.0f; // (float)graphics.Viewport.Height / (float)_height;
             return new Vector3(scaleX, scaleY, 1.0f);
         }
-      
+
 
 
     }
