@@ -50,7 +50,7 @@ namespace Sailing_by_the_Stars
             Velocity = vel.Value;
         }
 
-        internal void Move(Vector2 force, TimeSpan deltaTime)
+        internal virtual void Move(Vector2 force, TimeSpan deltaTime)
         {
             Acceleration = force / this.Mass;
             Velocity += Acceleration * (float)deltaTime.TotalSeconds;

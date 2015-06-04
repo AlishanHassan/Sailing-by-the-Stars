@@ -26,7 +26,7 @@ namespace Sailing_by_the_Stars
                 {
                     if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
                     {
-                        o.Mass = o.Mass + 10;
+                        o.Mass = o.Mass + 20;
                         Debug.WriteLine(o.Mass);
                     }
                 }
@@ -37,9 +37,9 @@ namespace Sailing_by_the_Stars
                 {
                     if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
                     {
-                        if (o.Mass != 10)
+                        if (o.Mass > 20)
                         {
-                            o.Mass = o.Mass - 10;
+                            o.Mass = o.Mass - 20;
                         }
 
                         Debug.WriteLine(o.Mass);

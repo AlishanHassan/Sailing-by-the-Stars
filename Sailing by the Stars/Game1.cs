@@ -63,8 +63,8 @@ namespace Sailing_by_the_Stars
             densityControl = new DensityControl(allGravObjects);
 
 
-            allGravObjects[0] = new Planet(650, 125, new Vector2(200, 100));
-            allGravObjects[1] = new Planet(220, 85, new Vector2(1000, 450));
+            allGravObjects[0] = new Planet(150, 125, new Vector2(750, 50));
+            allGravObjects[1] = new Planet(60, 85, new Vector2(1000, 650));
             for (int i = 0; i < 2; i++)
             {
                 int val = (i % 2) + 1;
@@ -73,7 +73,7 @@ namespace Sailing_by_the_Stars
 
 
             Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
-            allGravObjects[2] = new Ship(20, 38, new Vector2(600, 700), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+            allGravObjects[2] = new Ship(100, 38, new Vector2(0, 360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
 
             for (int i = 0; i < 1; i++)
             {
@@ -139,12 +139,12 @@ namespace Sailing_by_the_Stars
             if (state.IsKeyDown(Keys.O))
             {
                 Debug.WriteLine("Zoom out");
-                Camera.SetZoom(-.1f);
+                Camera.SetZoom(-.01f);
             }
             if (state.IsKeyDown(Keys.P))
             {
                 Debug.WriteLine("Zoom in");
-                Camera.SetZoom(.1f);
+                Camera.SetZoom(.01f);
             }
 
 

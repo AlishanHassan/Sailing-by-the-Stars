@@ -16,6 +16,12 @@ namespace Sailing_by_the_Stars
         {
 
         }
+        internal override void Move(Vector2 force, TimeSpan deltaTime)
+        {
+            Acceleration = force / this.Mass;
+            Velocity += Acceleration * (float)deltaTime.TotalSeconds * (float).2;
+            Position += Velocity * (float)deltaTime.TotalSeconds;
+        }
 
 
     }
