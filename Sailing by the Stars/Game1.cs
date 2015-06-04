@@ -20,6 +20,7 @@ namespace Sailing_by_the_Stars
         DensityControl densityControl;
         //float gConst = 6.67384E-11F;
         Camera Camera = new Camera();
+        HUD hud = new HUD();
 
 
 
@@ -58,22 +59,23 @@ namespace Sailing_by_the_Stars
 
             // TODO: use this.Content to load your game content here
 
-            allGravObjects = new Object[2];
+            allGravObjects = new Object[3];
             densityControl = new DensityControl(allGravObjects);
 
 
-            allGravObjects[0] = new Planet(650, 112, new Vector2(200, 100));
-            for (int i = 0; i < 1; i++)
+            allGravObjects[0] = new Planet(650, 125, new Vector2(200, 100));
+            allGravObjects[1] = new Planet(220, 85, new Vector2(1000, 450));
+            for (int i = 0; i < 2; i++)
             {
                 int val = (i % 2) + 1;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
 
-            allGravObjects[1] = new Ship(20, 38, new Vector2(600, 700)); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+            allGravObjects[2] = new Ship(20, 38, new Vector2(600, 700)); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
 
             for (int i = 0; i < 1; i++)
             {
-                allGravObjects[1].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
+                allGravObjects[2].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
             arrow = Content.Load<Texture2D>("arrow");
@@ -173,6 +175,14 @@ namespace Sailing_by_the_Stars
             }
             */
 
+
+            //ship initial velocity 
+            Object s = allGravObjects[2]; 
+            Vector2 initialVelocity = new Vector2(400, 0);
+            s.Update(initialVelocity, gameTime.ElapsedGameTime);
+
+            
+            
             foreach (Object p in allGravObjects)
             {
                 Vector2 force = new Vector2(0, 0);
@@ -183,7 +193,7 @@ namespace Sailing_by_the_Stars
                         Vector2 r = Vector2.Subtract(p2.Position, p.Position);
                         if (r.Length() > p.Radius + p2.Radius)
                         {
-                            force += 10000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared();
+                            force += 5000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared(); //decreased this to 5000 from 10000 to slow it down for analysis
                         }
                         else
                         {
@@ -211,7 +221,16 @@ namespace Sailing_by_the_Stars
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-           
+
+            spriteBatch.Begin();   
+
+            //TODO: draw the HUD here
+
+            //spriteBatch.DrawString(font, "Health", new Vector2(100, 700), Color.Yellow);  //this will ultimately be in the draw method in HUD
+            
+            spriteBatch.End();
+
+
             var screenScale = GetScreenScale();
             var viewMatrix = Camera.GetTransform();
 
