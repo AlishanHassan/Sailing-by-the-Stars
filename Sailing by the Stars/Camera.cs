@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace Sailing_by_the_Stars
 {
@@ -32,6 +33,10 @@ namespace Sailing_by_the_Stars
         public void SetZoom(float zoomChange)
         {
             Zoom += zoomChange;
+            if (Zoom < .01)
+            {
+                Zoom -= zoomChange;
+            }
         }
 
         public Matrix GetTransform()
