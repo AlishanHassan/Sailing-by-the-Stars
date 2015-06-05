@@ -21,8 +21,8 @@ namespace Sailing_by_the_Stars
         //float gConst = 6.67384E-11F;
         Camera Camera = new Camera();
         HUD hud = new HUD();
-
-
+        public enum GameState { MainMenu, InGame };
+        GameState gameState;
 
 
         public Game1()
@@ -43,6 +43,7 @@ namespace Sailing_by_the_Stars
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            gameState = GameState.MainMenu;
             this.IsMouseVisible = true;
             this.Window.Title = "Sailing by the Stars";
             base.Initialize();
@@ -59,14 +60,15 @@ namespace Sailing_by_the_Stars
 
             // TODO: use this.Content to load your game content here
 
-            allGravObjects = new Object[3];
+
+            allGravObjects = new Object[5];
             densityControl = new DensityControl(allGravObjects, Camera);
 
-            allGravObjects[0] = new Planet(150, 125, new Vector2(750, 50));
+            allGravObjects[0] = new Planet(150, 125, new Vector2(-300, 50));
             allGravObjects[1] = new Planet(60, 1250, new Vector2(2000, 1650));
-            //allGravObjects[2] = new Planet(150, 228, new Vector2(2100, -150));
-            //allGravObjects[3] = new Planet(60, 1250, new Vector2(4000, 1650)); 
-            for (int i = 0; i < 2; i++)
+            allGravObjects[2] = new Planet(150, 228, new Vector2(2100, -150));
+            allGravObjects[3] = new Planet(60, 1250, new Vector2(6000, 2800));
+            for (int i = 0; i < 4; i++)
             {
                 int val = i + 1;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
@@ -74,11 +76,11 @@ namespace Sailing_by_the_Stars
 
 
             Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
-            allGravObjects[2] = new Ship(100, 75, new Vector2(0, 360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+            allGravObjects[4] = new Ship(100, 75, new Vector2(-640, -360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
 
             for (int i = 0; i < 1; i++)
             {
-                allGravObjects[2].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
+                allGravObjects[4].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
             arrow = Content.Load<Texture2D>("arrow");
@@ -111,38 +113,65 @@ namespace Sailing_by_the_Stars
 
 
             //basic camera control
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.Left))
+
+
+
+            var mainMouseState = Mouse.GetState();
+            //var mousePosition = new Point(mouseState.X, mouseState.Y);
+            if (mainMouseState.X > 1152 && mainMouseState.X < 1280)
+            {
+                Vector2 pan = new Vector2(-50, 0);
+                Camera.Move(pan);
+            }
+            if (mainMouseState.X < 128 && mainMouseState.X > 0)
+            {
+                Vector2 pan = new Vector2(50, 0);
+                Camera.Move(pan);
+            }
+            if (mainMouseState.Y > 648 && mainMouseState.Y < 720)
+            {
+                Vector2 pan = new Vector2(0, -50);
+                Camera.Move(pan);
+            }
+            if (mainMouseState.Y < 72 && mainMouseState.Y > 0)
+            {
+                Vector2 pan = new Vector2(0, 50);
+                Camera.Move(pan);
+            }
+
+            
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Left))
             {
                 //Debug.WriteLine("Ding dong left");
                 Vector2 pan = new Vector2(50, 0);
                 Camera.Move(pan);
             }
-            if (state.IsKeyDown(Keys.Right))
+            if (keyboardState.IsKeyDown(Keys.Right))
             {
                 //Debug.WriteLine("Ding dong right");
                 Vector2 pan = new Vector2(-50, 0);
                 Camera.Move(pan);
             }
-            if (state.IsKeyDown(Keys.Up))
+            if (keyboardState.IsKeyDown(Keys.Up))
             {
                 //Debug.WriteLine("Ding dong up");
                 Vector2 pan = new Vector2(0, 50);
                 Camera.Move(pan);
             }
-            if (state.IsKeyDown(Keys.Down))
+            if (keyboardState.IsKeyDown(Keys.Down))
             {
                 //Debug.WriteLine("Ding dong down");
                 Vector2 pan = new Vector2(0, -50);
                 Camera.Move(pan);
             }
 
-            if (state.IsKeyDown(Keys.O))
+            if (keyboardState.IsKeyDown(Keys.O))
             {
                 //Debug.WriteLine("Zoom out");
                 Camera.SetZoom(-.01f);
             }
-            if (state.IsKeyDown(Keys.P))
+            if (keyboardState.IsKeyDown(Keys.P))
             {
                 //Debug.WriteLine("Zoom in");
                 Camera.SetZoom(.01f);
@@ -202,8 +231,8 @@ namespace Sailing_by_the_Stars
 
             //    p.Move(force, gameTime.ElapsedGameTime);
             //}
-
-
+            var mouseState = Mouse.GetState();
+            Console.WriteLine(mouseState.X);
             base.Update(gameTime);
         }
 
