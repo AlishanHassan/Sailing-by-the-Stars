@@ -30,7 +30,7 @@ namespace Sailing_by_the_Stars
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
-
+            Camera.ScreenSize = new Vector2(1280, 720);
             Content.RootDirectory = "Content";
         }
 
@@ -115,37 +115,37 @@ namespace Sailing_by_the_Stars
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Left))
             {
-                Debug.WriteLine("Ding dong left");
+                //Debug.WriteLine("Ding dong left");
                 Vector2 pan = new Vector2(50, 0);
                 Camera.Move(pan);
             }
             if (state.IsKeyDown(Keys.Right))
             {
-                Debug.WriteLine("Ding dong right");
+                //Debug.WriteLine("Ding dong right");
                 Vector2 pan = new Vector2(-50, 0);
                 Camera.Move(pan);
             }
             if (state.IsKeyDown(Keys.Up))
             {
-                Debug.WriteLine("Ding dong up");
+                //Debug.WriteLine("Ding dong up");
                 Vector2 pan = new Vector2(0, 50);
                 Camera.Move(pan);
             }
             if (state.IsKeyDown(Keys.Down))
             {
-                Debug.WriteLine("Ding dong down");
+                //Debug.WriteLine("Ding dong down");
                 Vector2 pan = new Vector2(0, -50);
                 Camera.Move(pan);
             }
 
             if (state.IsKeyDown(Keys.O))
             {
-                Debug.WriteLine("Zoom out");
+                //Debug.WriteLine("Zoom out");
                 Camera.SetZoom(-.01f);
             }
             if (state.IsKeyDown(Keys.P))
             {
-                Debug.WriteLine("Zoom in");
+                //Debug.WriteLine("Zoom in");
                 Camera.SetZoom(.01f);
             }
 
