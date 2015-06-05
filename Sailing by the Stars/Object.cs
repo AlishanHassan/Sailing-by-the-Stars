@@ -44,9 +44,9 @@ namespace Sailing_by_the_Stars
         {
             Radius = r;
             Mass = m;
-            if (pos == null) { pos = new Vector2(0, 0); }
+            if (pos == null) { pos = Vector2.Zero; }
             Position = pos.Value;
-            if (vel == null) { vel = new Vector2(0, 0); }
+            if (vel == null) { vel = Vector2.Zero; }
             Velocity = vel.Value;
         }
 

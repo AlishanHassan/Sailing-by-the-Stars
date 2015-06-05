@@ -60,8 +60,7 @@ namespace Sailing_by_the_Stars
             // TODO: use this.Content to load your game content here
 
             allGravObjects = new Object[3];
-            densityControl = new DensityControl(allGravObjects);
-
+            densityControl = new DensityControl(allGravObjects, Camera);
 
             allGravObjects[0] = new Planet(150, 125, new Vector2(750, 50));
             allGravObjects[1] = new Planet(60, 1250, new Vector2(2000, 1650));
@@ -175,7 +174,7 @@ namespace Sailing_by_the_Stars
                 for (int j = i + 1; j < allGravObjects.Length; j++)
                 {
                     var o2 = allGravObjects[j];
-                    Object.CheckCollision(o1, o2,gameTime.ElapsedGameTime);
+                    Object.CheckCollision(o1, o2, gameTime.ElapsedGameTime);
                 }
             }
 

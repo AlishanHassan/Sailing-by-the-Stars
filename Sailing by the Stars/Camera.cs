@@ -43,6 +43,7 @@ namespace Sailing_by_the_Stars
 
             return translationMatrix * rotationMatrix * scaleMatrix * originMatrix;
         }
+
     }
 }
 

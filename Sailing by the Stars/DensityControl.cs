@@ -11,31 +11,40 @@ namespace Sailing_by_the_Stars
     class DensityControl
     {
         private object[] objects;
-        public DensityControl(object[] allGravObjects)
+        private Camera camera;
+        public DensityControl(object[] allGravObjects, Camera camera)
         {
             this.objects = allGravObjects;
+            this.camera = camera;
         }
 
         public void update()
         {
             var mouseState = Mouse.GetState();
-            var mousePosition = new Point(mouseState.X, mouseState.Y);
+            Vector2 mousePosition = new Vector2(mouseState.Position.X, mouseState.Position.Y);
+            mousePosition = Vector2.Transform(mousePosition, Matrix.Invert(camera.GetTransform()));
+            //mousePosition -= new Vector2(640, 360);
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
+                //Debug.WriteLine("\nMouse pos: ");
+                //Debug.WriteLine(mousePosition);
+                //Debug.WriteLine("Obj position:");
                 foreach (Object o in objects)
                 {
-                    if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
+                    //Debug.WriteLine(o.Position);
+                    if ((mousePosition.X - o.Position.X) * (mousePosition.X - o.Position.X) + (mousePosition.Y - o.Position.Y) * (mousePosition.Y - o.Position.Y) <= o.Radius * o.Radius)
                     {
                         o.Mass = o.Mass + 20;
                         Debug.WriteLine(o.Mass);
                     }
+
                 }
             }
             if (mouseState.RightButton == ButtonState.Pressed)
             {
                 foreach (Object o in objects)
                 {
-                    if ((mouseState.X >= (o.Position.X - o.Radius)) && (mouseState.X <= (o.Position.X + o.Radius)) && (mouseState.Y >= (o.Position.Y - o.Radius)) && (mouseState.Y <= (o.Position.Y + o.Radius)))
+                    if ((mousePosition.X - o.Position.X) * (mousePosition.X - o.Position.X) + (mousePosition.Y - o.Position.Y) * (mousePosition.Y - o.Position.Y) <= o.Radius * o.Radius)
                     {
                         if (o.Mass > 20)
                         {
