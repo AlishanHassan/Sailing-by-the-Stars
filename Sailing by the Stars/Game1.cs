@@ -69,7 +69,7 @@ namespace Sailing_by_the_Stars
             allGravObjects[2] = new Planet(150, 125, new Vector2(1550, 350));
             for (int i = 0; i < 3; i++)
             {
-                int val = (i % 2) + 1;
+                int val = i + 1;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
 
