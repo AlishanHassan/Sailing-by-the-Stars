@@ -59,15 +59,15 @@ namespace Sailing_by_the_Stars
 
             // TODO: use this.Content to load your game content here
 
-            allGravObjects = new Object[3];
+            allGravObjects = new Object[5];
             densityControl = new DensityControl(allGravObjects);
 
 
             allGravObjects[0] = new Planet(150, 125, new Vector2(750, 50));
             allGravObjects[1] = new Planet(60, 1250, new Vector2(2000, 1650));
-            //allGravObjects[2] = new Planet(150, 228, new Vector2(2100, -150));
-            //allGravObjects[3] = new Planet(60, 1250, new Vector2(4000, 1650)); 
-            for (int i = 0; i < 2; i++)
+            allGravObjects[2] = new Planet(150, 228, new Vector2(2100, -150));
+            allGravObjects[3] = new Planet(60, 1250, new Vector2(6000, 2800)); 
+            for (int i = 0; i < 4; i++)
             {
                 int val = i + 1;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
@@ -75,11 +75,11 @@ namespace Sailing_by_the_Stars
 
 
             Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
-            allGravObjects[2] = new Ship(100, 75, new Vector2(0, 360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+            allGravObjects[4] = new Ship(100, 75, new Vector2(0, 360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
 
             for (int i = 0; i < 1; i++)
             {
-                allGravObjects[2].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
+                allGravObjects[4].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
             arrow = Content.Load<Texture2D>("arrow");
