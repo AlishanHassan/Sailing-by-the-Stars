@@ -16,13 +16,13 @@ namespace Sailing_by_the_Stars
             Position = Vector2.Zero;
             Rotation = 0;
             Origin = Vector2.Zero;
-            Position = Vector2.Zero;
         }
 
         public float Zoom { get; set; }
         public Vector2 Position { get; set; }
         public float Rotation { get; set; }
         public Vector2 Origin { get; set; }
+        public Vector2 ScreenSize { get; set; }
 
         public void Move(Vector2 direction)
         {
@@ -36,56 +36,56 @@ namespace Sailing_by_the_Stars
 
         public Matrix GetTransform()
         {
-            var translationMatrix = Matrix.CreateTranslation(new Vector3(Position.X, Position.Y, 0));
+            var translationMatrix = Matrix.CreateTranslation(new Vector3(Position.X + ScreenSize.X / 2, Position.Y + ScreenSize.Y / 2, 0));
             var rotationMatrix = Matrix.CreateRotationZ(Rotation);
             var scaleMatrix = Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
-            var originMatrix = Matrix.CreateTranslation(new Vector3(Origin.X, Origin.Y, 0));
+            var originMatrix = Matrix.CreateTranslation(new Vector3(Origin.X + ScreenSize.X / 2, Origin.Y + ScreenSize.Y / 2, 0));
 
             return translationMatrix * rotationMatrix * scaleMatrix * originMatrix;
         }
     }
 }
 
-    /*
-    class Camera
+/*
+class Camera
+{
+    public Vector2 Position;
+    public float Zoom;
+    public float Rotation;
+    public Rectangle Bounds;
+
+    public Camera(int x = 0, int y = 0, float z = 1.0f)
     {
-        public Vector2 Position;
-        public float Zoom;
-        public float Rotation;
-        public Rectangle Bounds;
-
-        public Camera(int x = 0, int y = 0, float z = 1.0f)
-        {
-            float Zoom = z;
-            Position = new Vector2(x, y);
-        }
-
-
-
-        private Matrix TransformMatrix //http://gamedev.stackexchange.com/questions/59301/xna-2d-camera-scrolling-why-use-matrix-transform
-        {
-            get
-            {
-                return
-                    Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) *
-                    Matrix.CreateRotationZ(Rotation) *
-                    Matrix.CreateScale(Zoom) *
-                    Matrix.CreateTranslation(new Vector3(Bounds.Width * 0.5f, Bounds.Height * 0.5f, 0));
-            }
-        }
-
-
-        public void PanCamera(Vector2 cameraMovement)
-        {
-            Position = Position + cameraMovement; //may need to do something at the bounds
-        }
-
-        public void ZoomCamera(float factor)
-        {
-            Zoom = Zoom + factor;
-        }
-
-
-
+        float Zoom = z;
+        Position = new Vector2(x, y);
     }
+
+
+
+    private Matrix TransformMatrix //http://gamedev.stackexchange.com/questions/59301/xna-2d-camera-scrolling-why-use-matrix-transform
+    {
+        get
+        {
+            return
+                Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) *
+                Matrix.CreateRotationZ(Rotation) *
+                Matrix.CreateScale(Zoom) *
+                Matrix.CreateTranslation(new Vector3(Bounds.Width * 0.5f, Bounds.Height * 0.5f, 0));
+        }
+    }
+
+
+    public void PanCamera(Vector2 cameraMovement)
+    {
+        Position = Position + cameraMovement; //may need to do something at the bounds
+    }
+
+    public void ZoomCamera(float factor)
+    {
+        Zoom = Zoom + factor;
+    }
+
+
+
+}
 }*/
