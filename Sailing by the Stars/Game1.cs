@@ -64,10 +64,10 @@ namespace Sailing_by_the_Stars
             allGravObjects = new Object[5];
             densityControl = new DensityControl(allGravObjects, Camera);
 
-            allGravObjects[0] = new Planet(150, 125, new Vector2(-300, 50));
-            allGravObjects[1] = new Planet(60, 1250, new Vector2(2000, 1650));
-            allGravObjects[2] = new Planet(150, 228, new Vector2(2100, -150));
-            allGravObjects[3] = new Planet(60, 1250, new Vector2(6000, 2800));
+            allGravObjects[0] = new Planet(150, new Vector2(-300, 50));
+            allGravObjects[1] = new Planet(60, new Vector2(2000, 1650));
+            allGravObjects[2] = new Planet(150, new Vector2(2100, -150));
+            allGravObjects[3] = new Planet(60, new Vector2(6000, 2800));
             for (int i = 0; i < 4; i++)
             {
                 int val = i + 1;
@@ -76,7 +76,7 @@ namespace Sailing_by_the_Stars
 
 
             Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
-            allGravObjects[4] = new Ship(100, 75, new Vector2(-640, -360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+            allGravObjects[4] = new Ship(100, new Vector2(-640, -360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
 
             for (int i = 0; i < 1; i++)
             {
