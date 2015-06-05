@@ -21,8 +21,8 @@ namespace Sailing_by_the_Stars
         //float gConst = 6.67384E-11F;
         Camera Camera = new Camera();
         HUD hud = new HUD();
-
-
+        public enum GameState { MainMenu, InGame };
+        GameState gameState;
 
 
         public Game1()
@@ -43,6 +43,7 @@ namespace Sailing_by_the_Stars
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            gameState = GameState.MainMenu;
             this.IsMouseVisible = true;
             this.Window.Title = "Sailing by the Stars";
             base.Initialize();
@@ -59,13 +60,14 @@ namespace Sailing_by_the_Stars
 
             // TODO: use this.Content to load your game content here
 
-            allGravObjects = new Object[3];
+            allGravObjects = new Object[4];
             densityControl = new DensityControl(allGravObjects);
 
 
             allGravObjects[0] = new Planet(150, 125, new Vector2(750, 50));
             allGravObjects[1] = new Planet(60, 85, new Vector2(1000, 650));
-            for (int i = 0; i < 2; i++)
+            allGravObjects[2] = new Planet(150, 125, new Vector2(1550, 350));
+            for (int i = 0; i < 3; i++)
             {
                 int val = (i % 2) + 1;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
@@ -73,11 +75,11 @@ namespace Sailing_by_the_Stars
 
 
             Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
-            allGravObjects[2] = new Ship(100, 38, new Vector2(0, 360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+            allGravObjects[allGravObjects.Length-1] = new Ship(100, 38, new Vector2(0, 360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
 
             for (int i = 0; i < 1; i++)
             {
-                allGravObjects[2].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
+                allGravObjects[allGravObjects.Length-1].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
             arrow = Content.Load<Texture2D>("arrow");
