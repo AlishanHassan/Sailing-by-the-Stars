@@ -113,33 +113,40 @@ namespace Sailing_by_the_Stars
 
 
             //basic camera control
-
-
+            //might want to clean this up with its own class for the final build
 
             var mainMouseState = Mouse.GetState();
             //var mousePosition = new Point(mouseState.X, mouseState.Y);
-            if (mainMouseState.X > 1152 && mainMouseState.X < 1280)
+            if (mainMouseState.X > 1152 && mainMouseState.X < 1280 && mainMouseState.Y > 0 && mainMouseState.Y < 720)
             {
                 Vector2 pan = new Vector2(-50, 0);
                 Camera.Move(pan);
             }
-            if (mainMouseState.X < 128 && mainMouseState.X > 0)
+            if (mainMouseState.X < 128 && mainMouseState.X > 0 && mainMouseState.Y > 0 && mainMouseState.Y < 720)
             {
                 Vector2 pan = new Vector2(50, 0);
                 Camera.Move(pan);
             }
-            if (mainMouseState.Y > 648 && mainMouseState.Y < 720)
+            if (mainMouseState.Y > 648 && mainMouseState.Y < 720 && mainMouseState.X > 0 && mainMouseState.X < 1280)
             {
                 Vector2 pan = new Vector2(0, -50);
                 Camera.Move(pan);
             }
-            if (mainMouseState.Y < 72 && mainMouseState.Y > 0)
+            if (mainMouseState.Y < 72 && mainMouseState.Y > 0 && mainMouseState.X > 0 && mainMouseState.X < 1280)
             {
                 Vector2 pan = new Vector2(0, 50);
                 Camera.Move(pan);
             }
 
-            
+            /*
+            if (mainMouseState.ScrollWheelValue > 0)
+            {
+                Camera.SetZoom(.01f);
+            }
+             */
+
+            Debug.WriteLine(mainMouseState.ScrollWheelValue);
+
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Left))
             {
