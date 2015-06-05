@@ -11,8 +11,8 @@ namespace Sailing_by_the_Stars
     {
 
 
-        public Planet(float m = 100, Vector2? pos = null, Vector2? vel = null)
-            : base(m, pos, vel)
+        public Planet(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null)
+            : base(m, r, pos, vel)
         {
 
         }

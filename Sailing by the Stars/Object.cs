@@ -14,19 +14,7 @@ namespace Sailing_by_the_Stars
         public Vector2 Position;
         public Vector2 Velocity;
         public Vector2 Acceleration;
-        private Texture2D sprite;
-        public Texture2D Sprite
-        {
-            get
-            {
-                return sprite;
-            }
-            set
-            {
-                Radius = (value.Width + value.Height) / 4;
-                this.sprite = value;
-            }
-        }
+        public Texture2D Sprite;
         protected float AccAngle
         {
             get
@@ -52,9 +40,9 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        public Object(float m = 100, Vector2? pos = null, Vector2? vel = null)
+        public Object(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null)
         {
-            Radius = 100;
+            Radius = r;
             Mass = m;
             if (pos == null) { pos = Vector2.Zero; }
             Position = pos.Value;
