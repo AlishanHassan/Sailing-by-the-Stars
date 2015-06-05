@@ -113,38 +113,65 @@ namespace Sailing_by_the_Stars
 
 
             //basic camera control
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.Left))
+
+
+
+            var mainMouseState = Mouse.GetState();
+            //var mousePosition = new Point(mouseState.X, mouseState.Y);
+            if (mainMouseState.X > 1152 && mainMouseState.X < 1280)
+            {
+                Vector2 pan = new Vector2(-50, 0);
+                Camera.Move(pan);
+            }
+            if (mainMouseState.X < 128 && mainMouseState.X > 0)
+            {
+                Vector2 pan = new Vector2(50, 0);
+                Camera.Move(pan);
+            }
+            if (mainMouseState.Y > 648 && mainMouseState.Y < 720)
+            {
+                Vector2 pan = new Vector2(0, -50);
+                Camera.Move(pan);
+            }
+            if (mainMouseState.Y < 72 && mainMouseState.Y > 0)
+            {
+                Vector2 pan = new Vector2(0, 50);
+                Camera.Move(pan);
+            }
+
+            
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Left))
             {
                 //Debug.WriteLine("Ding dong left");
                 Vector2 pan = new Vector2(50, 0);
                 Camera.Move(pan);
             }
-            if (state.IsKeyDown(Keys.Right))
+            if (keyboardState.IsKeyDown(Keys.Right))
             {
                 //Debug.WriteLine("Ding dong right");
                 Vector2 pan = new Vector2(-50, 0);
                 Camera.Move(pan);
             }
-            if (state.IsKeyDown(Keys.Up))
+            if (keyboardState.IsKeyDown(Keys.Up))
             {
                 //Debug.WriteLine("Ding dong up");
                 Vector2 pan = new Vector2(0, 50);
                 Camera.Move(pan);
             }
-            if (state.IsKeyDown(Keys.Down))
+            if (keyboardState.IsKeyDown(Keys.Down))
             {
                 //Debug.WriteLine("Ding dong down");
                 Vector2 pan = new Vector2(0, -50);
                 Camera.Move(pan);
             }
 
-            if (state.IsKeyDown(Keys.O))
+            if (keyboardState.IsKeyDown(Keys.O))
             {
                 //Debug.WriteLine("Zoom out");
                 Camera.SetZoom(-.01f);
             }
-            if (state.IsKeyDown(Keys.P))
+            if (keyboardState.IsKeyDown(Keys.P))
             {
                 //Debug.WriteLine("Zoom in");
                 Camera.SetZoom(.01f);
