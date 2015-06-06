@@ -19,19 +19,17 @@ namespace Sailing_by_the_Stars
         Texture2D arrow;
         UserInput userInput;
         Physics physics;
-        //float gConst = 6.67384E-11F;
-        internal Camera Camera = new Camera();
-        HUD hud = new HUD();
-        public enum GameState { MainMenu, InGame };
-        GameState gameState;
-        internal bool pause = false;
+        internal Camera Camera;
+        HUD hud;
+        public enum GameState { MainMenu, InGamePlay, InGamePause };
+        internal GameState gameState;
+        //internal bool pause = false;
 
         public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
-            Camera.WindowSize = new Vector2(1280, 720);
             Content.RootDirectory = "Content";
         }
 
@@ -44,9 +42,12 @@ namespace Sailing_by_the_Stars
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            gameState = GameState.MainMenu;
             this.IsMouseVisible = true;
             this.Window.Title = "Sailing by the Stars";
+            gameState = GameState.InGamePlay;
+            Camera = new Camera();
+            Camera.WindowSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            hud = new HUD();
             base.Initialize();
         }
 
@@ -107,18 +108,14 @@ namespace Sailing_by_the_Stars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (this.pause)
-            {
-                userInput.update();
-                base.Update(gameTime);
-                return;
-            }
-
             // TODO: Add your update logic here
             userInput.update();
 
-            physics.update(gameTime.ElapsedGameTime);
-            
+            if (gameState == GameState.InGamePlay)
+            {
+                physics.update(gameTime.ElapsedGameTime);
+            }
+
             base.Update(gameTime);
         }
 

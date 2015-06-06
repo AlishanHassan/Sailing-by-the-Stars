@@ -24,11 +24,16 @@ namespace Sailing_by_the_Stars
 
         public void update()
         {
-            keyboard();
-            cameraControl();
-            if (!game.pause)
+            if (game.gameState == MainGame.GameState.InGamePlay)
             {
+                keyboard();
+                cameraControl();
                 densityControl();
+            }
+            else if (game.gameState == MainGame.GameState.InGamePause)
+            {
+                keyboard();
+                cameraControl();
             }
         }
 
@@ -125,8 +130,11 @@ namespace Sailing_by_the_Stars
 
             if (oldKeyState.IsKeyUp(Keys.P) && newKeyState.IsKeyDown(Keys.P))
             {
-                game.pause = !game.pause;
-                Debug.WriteLine(game.pause);
+                if (game.gameState == MainGame.GameState.InGamePlay) {
+                    game.gameState = MainGame.GameState.InGamePause;
+                } else if (game.gameState == MainGame.GameState.InGamePause) {
+                    game.gameState = MainGame.GameState.InGamePlay;
+                }
             }
 
             oldKeyState = newKeyState;
