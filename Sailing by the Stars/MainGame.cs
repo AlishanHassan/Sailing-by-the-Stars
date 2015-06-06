@@ -221,15 +221,19 @@ namespace Sailing_by_the_Stars
         private void ReadGameFromFile(string path = @"C:\Users\Public\InitGame")
         {
             string[] lines;
-            try
-            {
-                lines = System.IO.File.ReadAllLines(path);
-            }
-            catch (Exception)
-            {
-                lines = new string[] { "1280,720,0,0,0,0,0,1", "1,1,100,75,-640,-360,60,0", "0,1,150,125,-300,50,0,0", "0,2,60,1250,2000,1650,0,0", "0,3,150,228,2100,-150,0,0", "0,4,60,1250,6000,2800,0,0" };
+            //try
+            //{
+            //    lines = System.IO.File.ReadAllLines(path);
+            //}
+            //catch (Exception)
+            //{
+            lines = new string[] { "1280,720,0,0,0,0,0,1", "1,1,1000,10,-2000,-360,80,0", 
+                //Tutorial part
+                "0,2,15,1250,0,1500,0,0", "0,2,15,1250,0,-2500,0,0","0,2,15,1250,2750,1500,0,0", "0,2,15,1250,2750,-2500,0,0","0,2,15,1250,5500,1500,0,0", "0,2,15,1250,5500,-2500,0,0"
+            //"0,2,150,125,-100,700,0,0", "0,3,150,125,300,-800,0,0",  "0,4,150,125,3000,0,0,0", "0,5,150,125,7000,500,0,0"
+            };
                 System.IO.File.WriteAllLines(@"C:\Users\Public\InitGame", lines);
-            }
+            //}
 
             float[] cam = lines[0].Split(',').Select(float.Parse).ToArray();
             Camera = new Camera(new Vector2(cam[0], cam[1]), new Vector2(cam[2], cam[3]), new Vector2(cam[4], cam[5]), cam[6], cam[7]);

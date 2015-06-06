@@ -55,7 +55,7 @@ namespace Sailing_by_the_Stars
             this.Origin = origin;
             this.Position = position;
             this.Rotation = rotation;
-            this.Zoom = zoom;
+            this.Zoom = .3F;
         }
         public override string ToString()
         {
