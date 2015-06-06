@@ -12,8 +12,8 @@ namespace Sailing_by_the_Stars
     {
         private object[] objects;
         private Camera camera;
-        private Game1 game;
-        public UserInput(Game1 game)
+        private MainGame game;
+        public UserInput(MainGame game)
         {
             this.objects = game.allGravObjects;
             this.camera = game.Camera;
