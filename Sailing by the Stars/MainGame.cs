@@ -23,7 +23,6 @@ namespace Sailing_by_the_Stars
         HUD hud;
         public enum GameState { MainMenu, InGamePlay, InGamePause };
         internal GameState gameState;
-        //internal bool pause = false;
 
         public MainGame()
         {
@@ -74,6 +73,7 @@ namespace Sailing_by_the_Stars
             for (int i = 0; i < 4; i++)
             {
                 int val = i + 1;
+                allGravObjects[i].Id = val;
                 allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
             }
 
@@ -83,6 +83,7 @@ namespace Sailing_by_the_Stars
 
             for (int i = 0; i < 1; i++)
             {
+                allGravObjects[4].Id = (i + 1);
                 allGravObjects[4].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
             }
 
@@ -168,7 +169,18 @@ namespace Sailing_by_the_Stars
             return new Vector3(scaleX, scaleY, 1.0f);
         }
 
+        public void SaveGame()
+        {
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\SailingByTheStarsGameSave"))
+            {
+                
+                foreach (object o in allGravObjects)
+                {
+                    file.WriteLine(o.ToString());
+                }
 
+            }
+        }
 
     }
 }

@@ -128,13 +128,23 @@ namespace Sailing_by_the_Stars
         {
             KeyboardState newKeyState = Keyboard.GetState();
 
+            // P for pause and resume
             if (oldKeyState.IsKeyUp(Keys.P) && newKeyState.IsKeyDown(Keys.P))
             {
-                if (game.gameState == MainGame.GameState.InGamePlay) {
+                if (game.gameState == MainGame.GameState.InGamePlay)
+                {
                     game.gameState = MainGame.GameState.InGamePause;
-                } else if (game.gameState == MainGame.GameState.InGamePause) {
+                }
+                else if (game.gameState == MainGame.GameState.InGamePause)
+                {
                     game.gameState = MainGame.GameState.InGamePlay;
                 }
+            }
+
+            // Ctrl + S for saving game
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.S) && oldKeyState.IsKeyUp(Keys.S))
+            {
+                game.SaveGame();
             }
 
             oldKeyState = newKeyState;
