@@ -15,22 +15,23 @@ namespace Sailing_by_the_Stars
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Object[] allGravObjects;
+        internal Object[] allGravObjects;
         Texture2D arrow;
-        DensityControl densityControl;
+        UserInput userInput;
+        Physics physics;
         //float gConst = 6.67384E-11F;
-        Camera Camera = new Camera();
+        internal Camera Camera = new Camera();
         HUD hud = new HUD();
         public enum GameState { MainMenu, InGame };
         GameState gameState;
-
+        internal bool pause = false;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
-            Camera.ScreenSize = new Vector2(1280, 720);
+            Camera.WindowSize = new Vector2(1280, 720);
             Content.RootDirectory = "Content";
         }
 
@@ -62,7 +63,8 @@ namespace Sailing_by_the_Stars
 
 
             allGravObjects = new Object[5];
-            densityControl = new DensityControl(allGravObjects, Camera);
+            userInput = new UserInput(this);
+            physics = new Physics(allGravObjects);
 
             allGravObjects[0] = new Planet(150, 125, new Vector2(-300, 50));
             allGravObjects[1] = new Planet(60, 1250, new Vector2(2000, 1650));
@@ -105,141 +107,18 @@ namespace Sailing_by_the_Stars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-
+            if (this.pause)
+            {
+                userInput.update();
+                base.Update(gameTime);
+                return;
+            }
 
             // TODO: Add your update logic here
-            densityControl.update();
+            userInput.update();
 
-
-
-            //basic camera control
-            //might want to clean this up with its own class for the final build
-
-            var mainMouseState = Mouse.GetState();
-            //var mousePosition = new Point(mouseState.X, mouseState.Y);
-            if (mainMouseState.X > 1152 && mainMouseState.X < 1280 && mainMouseState.Y > 0 && mainMouseState.Y < 720)
-            {
-                Vector2 pan = new Vector2(-50, 0);
-                Camera.Move(pan);
-            }
-            if (mainMouseState.X < 128 && mainMouseState.X > 0 && mainMouseState.Y > 0 && mainMouseState.Y < 720)
-            {
-                Vector2 pan = new Vector2(50, 0);
-                Camera.Move(pan);
-            }
-            if (mainMouseState.Y > 648 && mainMouseState.Y < 720 && mainMouseState.X > 0 && mainMouseState.X < 1280)
-            {
-                Vector2 pan = new Vector2(0, -50);
-                Camera.Move(pan);
-            }
-            if (mainMouseState.Y < 72 && mainMouseState.Y > 0 && mainMouseState.X > 0 && mainMouseState.X < 1280)
-            {
-                Vector2 pan = new Vector2(0, 50);
-                Camera.Move(pan);
-            }
-
-            /*
-            if (mainMouseState.ScrollWheelValue > 0)
-            {
-                Camera.SetZoom(.01f);
-            }
-             */
-
-            Debug.WriteLine(mainMouseState.ScrollWheelValue);
-
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                //Debug.WriteLine("Ding dong left");
-                Vector2 pan = new Vector2(50, 0);
-                Camera.Move(pan);
-            }
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                //Debug.WriteLine("Ding dong right");
-                Vector2 pan = new Vector2(-50, 0);
-                Camera.Move(pan);
-            }
-            if (keyboardState.IsKeyDown(Keys.Up))
-            {
-                //Debug.WriteLine("Ding dong up");
-                Vector2 pan = new Vector2(0, 50);
-                Camera.Move(pan);
-            }
-            if (keyboardState.IsKeyDown(Keys.Down))
-            {
-                //Debug.WriteLine("Ding dong down");
-                Vector2 pan = new Vector2(0, -50);
-                Camera.Move(pan);
-            }
-
-            if (keyboardState.IsKeyDown(Keys.O))
-            {
-                //Debug.WriteLine("Zoom out");
-                Camera.SetZoom(-.01f);
-            }
-            if (keyboardState.IsKeyDown(Keys.P))
-            {
-                //Debug.WriteLine("Zoom in");
-                Camera.SetZoom(.01f);
-            }
-
-
-
-
-            // a second version for calculation the acceleration - using center of mass
-            // altough the runtime for acceleration calculation is only 2n, the collision detection still takes n^2.
-            // so I'm not sure which one we use
-            Vector2 centerOfMass = new Vector2(0, 0);
-            float totalMass = 0;
-            foreach (Object obj in allGravObjects)
-            {
-                centerOfMass += obj.Mass * obj.Position;
-                totalMass += obj.Mass;
-            }
-            centerOfMass /= totalMass;
-
-            foreach (Object obj in allGravObjects)
-            {
-                obj.Update(centerOfMass, totalMass, gameTime.ElapsedGameTime);
-            }
-
-            for (int i = 0; i < allGravObjects.Length; i++)
-            {
-                var o1 = allGravObjects[i];
-                for (int j = i + 1; j < allGravObjects.Length; j++)
-                {
-                    var o2 = allGravObjects[j];
-                    Object.CheckCollision(o1, o2, gameTime.ElapsedGameTime);
-                }
-            }
-
-
-
-            //foreach (Object p in allGravObjects)
-            //{
-            //    Vector2 force = new Vector2(0, 0);
-            //    foreach (Object p2 in allGravObjects)
-            //    {
-            //        if (!p2.Equals(p))
-            //        {
-            //            Vector2 r = Vector2.Subtract(p2.Position, p.Position);
-            //            if (r.Length() > p.Radius + p2.Radius)
-            //            {
-            //                force += 5000F * p2.Mass * p.Mass * Vector2.Normalize(r) / r.LengthSquared(); //decreased this to 5000 from 10000 to slow it down for analysis
-            //            }
-            //            else
-            //            {
-            //                p.Collide(p2);
-            //            }
-
-            //        }
-            //    }
-
-            //    p.Move(force, gameTime.ElapsedGameTime);
-            //}
-            var mouseState = Mouse.GetState();
-            Console.WriteLine(mouseState.X);
+            physics.update(gameTime.ElapsedGameTime);
+            
             base.Update(gameTime);
         }
 

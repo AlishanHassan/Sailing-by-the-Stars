@@ -38,7 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DensityControl.cs" />
+    <Compile Include="Physics.cs" />
+    <Compile Include="UserInput.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="CommunicationsWindow.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
