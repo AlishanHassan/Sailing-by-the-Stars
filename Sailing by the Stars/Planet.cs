@@ -25,7 +25,7 @@ namespace Sailing_by_the_Stars
 
         public override string ToString()
         {
-            return "Planet," + base.ToString();
+            return "0," + base.ToString();
         }
     }
 

@@ -22,7 +22,7 @@ namespace Sailing_by_the_Stars
 
         public override string ToString()
         {
-            return "Enemy" + base.ToString();
+            return "-" + base.ToString() + "," + difficulty;
         }
     }
 }

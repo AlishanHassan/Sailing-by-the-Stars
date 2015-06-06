@@ -26,14 +26,18 @@ namespace Sailing_by_the_Stars
         {
             if (game.gameState == MainGame.GameState.InGamePlay)
             {
-                keyboard();
+                keyboardShortcut();
                 cameraControl();
                 densityControl();
             }
             else if (game.gameState == MainGame.GameState.InGamePause)
             {
-                keyboard();
+                keyboardShortcut();
                 cameraControl();
+            }
+            else if (game.gameState == MainGame.GameState.MainMenu)
+            {
+                keyboardShortcut();
             }
         }
 
@@ -124,7 +128,7 @@ namespace Sailing_by_the_Stars
         }
 
         private KeyboardState oldKeyState;
-        private void keyboard()
+        private void keyboardShortcut()
         {
             KeyboardState newKeyState = Keyboard.GetState();
 
@@ -144,8 +148,36 @@ namespace Sailing_by_the_Stars
             // Ctrl + S for saving game
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.S) && oldKeyState.IsKeyUp(Keys.S))
             {
-                game.SaveGame();
+                game.SaveGameToFile(@"C:\Users\Public\SavedGame");
             }
+
+            // Ctrl + L for loading game
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.L) && oldKeyState.IsKeyUp(Keys.L))
+            {
+                game.LoadGame(@"C:\Users\Public\SavedGame");
+                game.gameState = MainGame.GameState.InGamePlay;
+            }
+
+            // Ctrl + N for new game
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.N) && oldKeyState.IsKeyUp(Keys.N))
+            {
+                game.LoadGame(@"C:\Users\Public\InitGame");
+                game.gameState = MainGame.GameState.InGamePlay;
+            }
+
+            // Ctrl + M for main menu
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.M) && oldKeyState.IsKeyUp(Keys.M))
+            {
+                if (game.gameState == MainGame.GameState.InGamePlay)
+                {
+                    game.gameState = MainGame.GameState.MainMenu;
+                }
+                else if (game.gameState == MainGame.GameState.MainMenu)
+                {
+                    game.gameState = MainGame.GameState.InGamePlay;
+                }
+            }
+
 
             oldKeyState = newKeyState;
         }
@@ -184,5 +216,7 @@ namespace Sailing_by_the_Stars
                 }
             }
         }
+
+
     }
 }

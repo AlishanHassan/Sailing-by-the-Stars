@@ -49,6 +49,19 @@ namespace Sailing_by_the_Stars
             return translationMatrix * rotationMatrix * scaleMatrix * originMatrix;
         }
 
+        public Camera(Vector2 windowSize, Vector2 origin, Vector2 position, float rotation, float zoom)
+        {
+            this.WindowSize = windowSize;
+            this.Origin = origin;
+            this.Position = position;
+            this.Rotation = rotation;
+            this.Zoom = zoom;
+        }
+        public override string ToString()
+        {
+            return WindowSize.X + "," + WindowSize.Y + "," + Origin.X + "," + Origin.Y + "," + Position.X + "," + Position.Y + "," + Rotation + "," + Zoom;
+        }
+
     }
 }
 

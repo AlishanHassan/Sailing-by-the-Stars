@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Linq;
 using System.Diagnostics;
 
 
@@ -17,6 +18,7 @@ namespace Sailing_by_the_Stars
         SpriteBatch spriteBatch;
         internal Object[] allGravObjects;
         Texture2D arrow;
+        Texture2D menuSprite;
         UserInput userInput;
         Physics physics;
         internal Camera Camera;
@@ -54,43 +56,72 @@ namespace Sailing_by_the_Stars
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
+        //protected void LoadContent1()
+        //{
+        //    // Create a new SpriteBatch, which can be used to draw textures.
+        //    spriteBatch = new SpriteBatch(GraphicsDevice);
+
+        //    // TODO: use this.Content to load your game content here
+        //    menuSprite = Content.Load<Texture2D>("mainmenu");
+
+        //    allGravObjects = new Object[5];
+        //    userInput = new UserInput(this);
+        //    physics = new Physics(allGravObjects);
+
+        //    allGravObjects[0] = new Planet(150, 125, new Vector2(-300, 50));
+        //    allGravObjects[1] = new Planet(60, 1250, new Vector2(2000, 1650));
+        //    allGravObjects[2] = new Planet(150, 228, new Vector2(2100, -150));
+        //    allGravObjects[3] = new Planet(60, 1250, new Vector2(6000, 2800));
+        //    for (int i = 0; i < 4; i++)
+        //    {
+        //        int val = i + 1;
+        //        allGravObjects[i].Id = val;
+        //        allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
+        //    }
+
+
+        //    Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
+        //    allGravObjects[4] = new Ship(100, 75, new Vector2(-640, -360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
+
+        //    for (int i = 0; i < 1; i++)
+        //    {
+        //        allGravObjects[4].Id = (i + 1);
+        //        allGravObjects[4].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
+        //    }
+
+        //    arrow = Content.Load<Texture2D>("arrow");
+        //}
+
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            menuSprite = Content.Load<Texture2D>("mainmenu");
 
-
-            allGravObjects = new Object[5];
+            ReadGameFromFile();
             userInput = new UserInput(this);
             physics = new Physics(allGravObjects);
 
-            allGravObjects[0] = new Planet(150, 125, new Vector2(-300, 50));
-            allGravObjects[1] = new Planet(60, 1250, new Vector2(2000, 1650));
-            allGravObjects[2] = new Planet(150, 228, new Vector2(2100, -150));
-            allGravObjects[3] = new Planet(60, 1250, new Vector2(6000, 2800));
-            for (int i = 0; i < 4; i++)
-            {
-                int val = i + 1;
-                allGravObjects[i].Id = val;
-                allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
-            }
-
-
-            Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
-            allGravObjects[4] = new Ship(100, 75, new Vector2(-640, -360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
-
-            for (int i = 0; i < 1; i++)
-            {
-                allGravObjects[4].Id = (i + 1);
-                allGravObjects[4].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
-            }
+            updateSprites(); // want to use it somewhere else
 
             arrow = Content.Load<Texture2D>("arrow");
+        }
 
-
-
+        private void updateSprites()
+        {
+            foreach (Object o in allGravObjects)
+            {
+                if (o is Planet)
+                {
+                    o.Sprite = Content.Load<Texture2D>("planet-" + o.Id);
+                }
+                else if (o is Ship)
+                {
+                    o.Sprite = Content.Load<Texture2D>("ship-" + o.Id);
+                }
+            }
         }
 
         /// <summary>
@@ -126,39 +157,38 @@ namespace Sailing_by_the_Stars
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-
-
-
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
-            spriteBatch.Begin();
 
-
-
-            //TODO: draw the HUD here
-
-            //spriteBatch.DrawString(font, "Health", new Vector2(100, 700), Color.Yellow);  //this will ultimately be in the draw method in HUD
-
-            //hud.Draw();
-
-            spriteBatch.End();
-
-
-            var screenScale = GetScreenScale();
-            var viewMatrix = Camera.GetTransform();
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
-                                       null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
-            foreach (Object p in allGravObjects)
+            if (gameState == GameState.InGamePlay || gameState == GameState.InGamePause)
             {
-                p.draw(spriteBatch);
-                p.drawNetForce(spriteBatch, arrow);
+
+                spriteBatch.Begin();
+                //TODO: draw the HUD here
+                //spriteBatch.DrawString(font, "Health", new Vector2(100, 700), Color.Yellow);  //this will ultimately be in the draw method in HUD
+                //hud.Draw();
+                spriteBatch.End();
+
+                var screenScale = GetScreenScale();
+                var viewMatrix = Camera.GetTransform();
+
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+                                           null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
+                foreach (Object p in allGravObjects)
+                {
+                    p.draw(spriteBatch);
+                    p.drawNetForce(spriteBatch, arrow);
+                }
+                spriteBatch.End();
             }
-
-            spriteBatch.End();
-
+            else if (gameState == GameState.MainMenu)
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(menuSprite, new Vector2(0, 0));
+                spriteBatch.End();
+            }
             base.Draw(gameTime);
         }
 
@@ -169,17 +199,65 @@ namespace Sailing_by_the_Stars
             return new Vector3(scaleX, scaleY, 1.0f);
         }
 
-        public void SaveGame()
+        public void SaveGameToFile(string path = @"C:\Users\Public\SavedGame")
         {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\SailingByTheStarsGameSave"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path))
             {
-                
+                file.WriteLine(Camera.ToString());
                 foreach (object o in allGravObjects)
                 {
                     file.WriteLine(o.ToString());
                 }
+            }
+        }
+
+        public void LoadGame(string path = @"C:\Users\Public\InitGame")
+        {
+            ReadGameFromFile(path);
+            physics = new Physics(allGravObjects);
+            userInput = new UserInput(this);
+        }
+
+        private void ReadGameFromFile(string path = @"C:\Users\Public\InitGame")
+        {
+            string[] lines;
+            try
+            {
+                lines = System.IO.File.ReadAllLines(path);
+            }
+            catch (Exception)
+            {
+                lines = new string[] { "1280,720,0,0,0,0,0,1", "1,1,100,75,-640,-360,60,0", "0,1,150,125,-300,50,0,0", "0,2,60,1250,2000,1650,0,0", "0,3,150,228,2100,-150,0,0", "0,4,60,1250,6000,2800,0,0" };
+                System.IO.File.WriteAllLines(@"C:\Users\Public\InitGame", lines);
+            }
+
+            float[] cam = lines[0].Split(',').Select(float.Parse).ToArray();
+            Camera = new Camera(new Vector2(cam[0], cam[1]), new Vector2(cam[2], cam[3]), new Vector2(cam[4], cam[5]), cam[6], cam[7]);
+
+            allGravObjects = new Object[lines.Length - 1];
+            for (int i = 1; i < lines.Length; i++)
+            {
+                float[] line = lines[i].Split(',').Select(float.Parse).ToArray();
+                if (line[0] == 0) // Planet
+                {
+                    allGravObjects[i - 1] = new Planet(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
+                    allGravObjects[i - 1].Id = (int)(line[1]);
+                }
+                else if (line[0] == 1) // Ship
+                {
+                    allGravObjects[i - 1] = new Ship(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
+                    allGravObjects[i - 1].Id = (int)(line[1]);
+                }
+                else if (line[0] == -1) // EnemyShip
+                {
+                    allGravObjects[i - 1] = new EnemyShip(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
+                    allGravObjects[i - 1].Id = (int)(line[1]);
+                }
 
             }
+
+            updateSprites(); // have to update sprites right after reading data, otherwise the Sprites are null
+
         }
 
     }

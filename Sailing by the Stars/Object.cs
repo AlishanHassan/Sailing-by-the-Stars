@@ -10,8 +10,8 @@ namespace Sailing_by_the_Stars
     class Object
     {
         public int Id; // The same as the number of the sprite name. For finding the right sprite when loading game.
-        public float Radius;
         public float Mass;
+        public float Radius;
         public Vector2 Position;
         public Vector2 Velocity;
         public Vector2 Acceleration;

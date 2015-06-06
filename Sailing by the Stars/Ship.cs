@@ -28,7 +28,7 @@ namespace Sailing_by_the_Stars
 
         public override string ToString()
         {
-            return "Ship," + base.ToString();
+            return "1," + base.ToString();
         }
     }
 
