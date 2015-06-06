@@ -107,11 +107,11 @@ namespace Sailing_by_the_Stars
                 camera.Move(pan);
             }
 
-            if (keyboardState.IsKeyDown(Keys.O))
+            if (keyboardState.IsKeyDown(Keys.OemMinus))
             {
                 camera.SetZoom(-keyboardZoomSpeed);
             }
-            if (keyboardState.IsKeyDown(Keys.P))
+            if (keyboardState.IsKeyDown(Keys.OemPlus))
             {
                 camera.SetZoom(keyboardZoomSpeed);
             }
@@ -123,7 +123,7 @@ namespace Sailing_by_the_Stars
         {
             KeyboardState newKeyState = Keyboard.GetState();
 
-            if (oldKeyState.IsKeyUp(Keys.I) && newKeyState.IsKeyDown(Keys.I))
+            if (oldKeyState.IsKeyUp(Keys.P) && newKeyState.IsKeyDown(Keys.P))
             {
                 game.pause = !game.pause;
                 Debug.WriteLine(game.pause);
