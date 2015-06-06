@@ -10,14 +10,16 @@ namespace Sailing_by_the_Stars
 {
     class UserInput
     {
+        private MainGame game;
         private object[] objects;
         private Camera camera;
-        private MainGame game;
+        private Vector2 windowSize;
         public UserInput(MainGame game)
         {
+            this.game = game;
             this.objects = game.allGravObjects;
             this.camera = game.Camera;
-            this.game = game;
+            this.windowSize = camera.WindowSize;
         }
 
         public void update()
@@ -36,6 +38,7 @@ namespace Sailing_by_the_Stars
             mouseCameraControl();
         }
 
+        private int mousePanSpeed = 30;
         private void mouseCameraControl()
         {
             //basic camera control
@@ -43,24 +46,29 @@ namespace Sailing_by_the_Stars
 
             var mainMouseState = Mouse.GetState();
             //var mousePosition = new Point(mouseState.X, mouseState.Y);
-            if (mainMouseState.X > 1152 && mainMouseState.X < 1280 && mainMouseState.Y > 0 && mainMouseState.Y < 720)
+            if (mainMouseState.X < 0 || mainMouseState.X > windowSize.X || mainMouseState.Y < 0 || mainMouseState.Y > windowSize.Y)
             {
-                Vector2 pan = new Vector2(-50, 0);
+                return;
+            }
+
+            if (mainMouseState.X > windowSize.X * 0.9)
+            {
+                Vector2 pan = new Vector2(-mousePanSpeed, 0);
                 camera.Move(pan);
             }
-            if (mainMouseState.X < 128 && mainMouseState.X > 0 && mainMouseState.Y > 0 && mainMouseState.Y < 720)
+            if (mainMouseState.X < windowSize.X * 0.1)
             {
-                Vector2 pan = new Vector2(50, 0);
+                Vector2 pan = new Vector2(mousePanSpeed, 0);
                 camera.Move(pan);
             }
-            if (mainMouseState.Y > 648 && mainMouseState.Y < 720 && mainMouseState.X > 0 && mainMouseState.X < 1280)
+            if (mainMouseState.Y > windowSize.Y * 0.9)
             {
-                Vector2 pan = new Vector2(0, -50);
+                Vector2 pan = new Vector2(0, -mousePanSpeed);
                 camera.Move(pan);
             }
-            if (mainMouseState.Y < 72 && mainMouseState.Y > 0 && mainMouseState.X > 0 && mainMouseState.X < 1280)
+            if (mainMouseState.Y < windowSize.Y * 0.1)
             {
-                Vector2 pan = new Vector2(0, 50);
+                Vector2 pan = new Vector2(0, mousePanSpeed);
                 camera.Move(pan);
             }
 
@@ -73,38 +81,39 @@ namespace Sailing_by_the_Stars
 
             //Debug.WriteLine(mainMouseState.ScrollWheelValue);
         }
-
+        private int keyboardPanSpeed = 50;
+        private float keyboardZoomSpeed = 0.01f;
         private void keyboardCameraControl()
         {
             KeyboardState keyboardState = Keyboard.GetState();
             if (keyboardState.IsKeyDown(Keys.Left))
             {
-                Vector2 pan = new Vector2(50, 0);
+                Vector2 pan = new Vector2(keyboardPanSpeed, 0);
                 camera.Move(pan);
             }
             if (keyboardState.IsKeyDown(Keys.Right))
             {
-                Vector2 pan = new Vector2(-50, 0);
+                Vector2 pan = new Vector2(-keyboardPanSpeed, 0);
                 camera.Move(pan);
             }
             if (keyboardState.IsKeyDown(Keys.Up))
             {
-                Vector2 pan = new Vector2(0, 50);
+                Vector2 pan = new Vector2(0, keyboardPanSpeed);
                 camera.Move(pan);
             }
             if (keyboardState.IsKeyDown(Keys.Down))
             {
-                Vector2 pan = new Vector2(0, -50);
+                Vector2 pan = new Vector2(0, -keyboardPanSpeed);
                 camera.Move(pan);
             }
 
             if (keyboardState.IsKeyDown(Keys.O))
             {
-                camera.SetZoom(-.01f);
+                camera.SetZoom(-keyboardZoomSpeed);
             }
             if (keyboardState.IsKeyDown(Keys.P))
             {
-                camera.SetZoom(.01f);
+                camera.SetZoom(keyboardZoomSpeed);
             }
 
         }
