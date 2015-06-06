@@ -13,7 +13,7 @@ namespace Sailing_by_the_Stars
     {
         public Camera()
         {
-            Zoom = 1F;
+            Zoom = .3F;
             Position = Vector2.Zero;
             Rotation = 0;
             Origin = Vector2.Zero;
