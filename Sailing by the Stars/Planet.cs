@@ -23,7 +23,10 @@ namespace Sailing_by_the_Stars
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }
 
-
+        public override string ToString()
+        {
+            return "0," + base.ToString();
+        }
     }
 
 }

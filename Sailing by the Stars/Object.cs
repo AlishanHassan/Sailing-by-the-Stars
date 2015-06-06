@@ -9,8 +9,9 @@ namespace Sailing_by_the_Stars
 {
     class Object
     {
-        public float Radius;
+        public int Id; // The same as the number of the sprite name. For finding the right sprite when loading game.
         public float Mass;
+        public float Radius;
         public Vector2 Position;
         public Vector2 Velocity;
         public Vector2 Acceleration;
@@ -44,9 +45,9 @@ namespace Sailing_by_the_Stars
         {
             Radius = r;
             Mass = m;
-            if (pos == null) { pos = new Vector2(0, 0); }
+            if (pos == null) { pos = Vector2.Zero; }
             Position = pos.Value;
-            if (vel == null) { vel = new Vector2(0, 0); }
+            if (vel == null) { vel = Vector2.Zero; }
             Velocity = vel.Value;
         }
 
@@ -113,6 +114,11 @@ namespace Sailing_by_the_Stars
             Vector2 force = 5000F * (M - this.Mass) * this.Mass * Vector2.Normalize(r) / r.LengthSquared();
 
             this.Move(force, deltaTime);
+        }
+
+        public override string ToString()
+        {
+            return this.Id + "," + this.Mass + "," + this.Radius + "," + this.Position.X + "," + this.Position.Y + "," + this.Velocity.X + "," + this.Velocity.Y;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Sailing_by_the_Stars
         public Vector2 Position { get; set; }
         public float Rotation { get; set; }
         public Vector2 Origin { get; set; }
-        public Vector2 ScreenSize { get; set; }
+        public Vector2 WindowSize { get; set; }
 
         public void Move(Vector2 direction)
         {
@@ -41,13 +41,27 @@ namespace Sailing_by_the_Stars
 
         public Matrix GetTransform()
         {
-            var translationMatrix = Matrix.CreateTranslation(new Vector3(Position.X + ScreenSize.X / 2, Position.Y + ScreenSize.Y / 2, 0));
+            var translationMatrix = Matrix.CreateTranslation(new Vector3(Position.X + WindowSize.X / 2, Position.Y + WindowSize.Y / 2, 0));
             var rotationMatrix = Matrix.CreateRotationZ(Rotation);
             var scaleMatrix = Matrix.CreateScale(new Vector3(Zoom, Zoom, 1));
-            var originMatrix = Matrix.CreateTranslation(new Vector3(Origin.X + ScreenSize.X / 2, Origin.Y + ScreenSize.Y / 2, 0));
+            var originMatrix = Matrix.CreateTranslation(new Vector3(Origin.X + WindowSize.X / 2, Origin.Y + WindowSize.Y / 2, 0));
 
             return translationMatrix * rotationMatrix * scaleMatrix * originMatrix;
         }
+
+        public Camera(Vector2 windowSize, Vector2 origin, Vector2 position, float rotation, float zoom)
+        {
+            this.WindowSize = windowSize;
+            this.Origin = origin;
+            this.Position = position;
+            this.Rotation = rotation;
+            this.Zoom = zoom;
+        }
+        public override string ToString()
+        {
+            return WindowSize.X + "," + WindowSize.Y + "," + Origin.X + "," + Origin.Y + "," + Position.X + "," + Position.Y + "," + Rotation + "," + Zoom;
+        }
+
     }
 }
 

@@ -38,7 +38,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DensityControl.cs" />
+    <Compile Include="Physics.cs" />
+    <Compile Include="UserInput.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="CommunicationsWindow.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -46,16 +47,13 @@
     <Compile Include="EnemyShip.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Game1.cs">
+    <Compile Include="MainGame.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="HUD.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Intro.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="MainGame.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Menu.cs">
@@ -91,6 +89,9 @@
   <ItemGroup>
     <Content Include="bin\WindowsGL\Debug\Sailing by the Stars.vshost.exe" />
     <Content Include="Content\arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\mainmenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\planet-2.png">

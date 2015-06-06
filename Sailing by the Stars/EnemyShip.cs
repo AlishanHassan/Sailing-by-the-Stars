@@ -19,5 +19,10 @@ namespace Sailing_by_the_Stars
         {
 
         }
+
+        public override string ToString()
+        {
+            return "-" + base.ToString() + "," + difficulty;
+        }
     }
 }
