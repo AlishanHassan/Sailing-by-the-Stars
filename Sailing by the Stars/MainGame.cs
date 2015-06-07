@@ -218,16 +218,18 @@ namespace Sailing_by_the_Stars
             userInput = new UserInput(this);
         }
 
-        private void ReadGameFromFile(string path = @"C:\Users\Public\InitGame")
+        private void ReadGameFromFile(string path = null)
+        // use null to always raise exception for a default game level so that changes made here can be reflected in the InitGame file
+        // later we can change it so that different files are for different levels
         {
             string[] lines;
-            //try
-            //{
-            //    lines = System.IO.File.ReadAllLines(path);
-            //}
-            //catch (Exception)
-            //{
-            lines = new string[] { "1280,720,0,0,0,0,0,.3", "1,1,1000,10,-2000,-360,150,0", 
+            try
+            {
+                lines = System.IO.File.ReadAllLines(path);
+            }
+            catch (Exception) // when there is no path specified or the file doesn't exist, create a new game file "InitGame"
+            {
+                lines = new string[] { "1280,720,0,0,0,0,0,.3", "1,1,1000,10,-2000,-360,150,0", 
                 //Tutorial part
                 "0,2,150,1250,0,1500,0,0", "0,2,150,1250,0,-2500,0,0","0,2,150,1250,2750,1500,0,0", "0,2,150,1250,2750,-2500,0,0","0,2,150,1250,5500,1500,0,0", "0,2,15,1250,5500,-2500,0,0",
                 //Moons around a larger planet navigation
@@ -238,9 +240,9 @@ namespace Sailing_by_the_Stars
                 "0,6,500,1250,15500,-5000,0,0","0,7,500,1250,17500,-800,0,0","0,5,500,1250,21000,-300,0,0",
                 
                 //"0,2,150,125,-100,700,0,0", "0,3,150,125,300,-800,0,0",  "0,4,150,125,3000,0,0,0", "0,5,150,125,7000,500,0,0"
-            };
+                };
                 System.IO.File.WriteAllLines(@"C:\Users\Public\InitGame", lines);
-            //}
+            }
 
             float[] cam = lines[0].Split(',').Select(float.Parse).ToArray();
             Camera = new Camera(new Vector2(cam[0], cam[1]), new Vector2(cam[2], cam[3]), new Vector2(cam[4], cam[5]), cam[6], cam[7]);
