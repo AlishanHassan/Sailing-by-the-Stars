@@ -38,7 +38,7 @@ namespace Sailing_by_the_Stars
         {
             get
             {
-                return Position - new Vector2(Radius, Radius);
+                return Position - new Vector2(Sprite.Width/2, Sprite.Height/2);
             }
         }
 
