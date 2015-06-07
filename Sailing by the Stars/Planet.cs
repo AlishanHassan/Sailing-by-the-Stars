@@ -20,6 +20,7 @@ namespace Sailing_by_the_Stars
         {
             Acceleration = force / this.Mass;
             Velocity += Acceleration * (float)deltaTime.TotalSeconds * (float).1;
+            PreviousPosition = Position;
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }
 

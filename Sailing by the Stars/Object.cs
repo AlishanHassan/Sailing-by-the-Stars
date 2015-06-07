@@ -13,6 +13,7 @@ namespace Sailing_by_the_Stars
         public float Mass;
         public float Radius;
         public Vector2 Position;
+        protected Vector2 PreviousPosition;
         public Vector2 Velocity;
         public Vector2 Acceleration;
         public Texture2D Sprite;
@@ -47,6 +48,7 @@ namespace Sailing_by_the_Stars
             Mass = m;
             if (pos == null) { pos = Vector2.Zero; }
             Position = pos.Value;
+            PreviousPosition = Position;
             if (vel == null) { vel = Vector2.Zero; }
             Velocity = vel.Value;
         }
@@ -55,6 +57,7 @@ namespace Sailing_by_the_Stars
         {
             Acceleration = force / this.Mass;
             Velocity += Acceleration * (float)deltaTime.TotalSeconds;
+            PreviousPosition = Position;
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }
 
@@ -64,8 +67,8 @@ namespace Sailing_by_the_Stars
             if (r.Length() < o1.Radius + o2.Radius)
             {
                 // go back one step
-                o1.Position -= o1.Velocity * (float)elapsedTime.TotalSeconds;
-                o2.Position -= o2.Velocity * (float)elapsedTime.TotalSeconds;
+                o1.Position = o1.PreviousPosition;
+                o2.Position = o2.PreviousPosition;
                 // bounce
                 Bounce(o1, o2);
             }
@@ -82,8 +85,8 @@ namespace Sailing_by_the_Stars
             var v2 = o2.Velocity;
             Vector2 v1f = v1 - 2 * m2 / (m1 + m2) * Vector2.Dot(v1 - v2, x1 - x2) / (x1 - x2).LengthSquared() * (x1 - x2);
             Vector2 v2f = v2 - 2 * m1 / (m1 + m2) * Vector2.Dot(v2 - v1, x2 - x1) / (x2 - x1).LengthSquared() * (x2 - x1);
-            o1.Velocity = v1f*.9f;
-            o2.Velocity = v2f*.9f;
+            o1.Velocity = v1f * .9f;
+            o2.Velocity = v2f * .9f;
         }
 
         internal void changeDesnity()
