@@ -40,6 +40,20 @@ namespace Sailing_by_the_Stars
             {
                 keyboardShortcut();
             }
+            else if (game.gameState == MainGame.GameState.TitleScreen)
+            {
+                clickToContinue();
+            }
+        }
+
+        private void clickToContinue()
+        {
+            var mouseState = Mouse.GetState();
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed || mouseState.RightButton == ButtonState.Pressed))
+            {
+                game.gameState = MainGame.GameState.MainMenu;
+            }
+
         }
 
         private void cameraControl()

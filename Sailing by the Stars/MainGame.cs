@@ -21,7 +21,7 @@ namespace Sailing_by_the_Stars
         Physics physics;
         internal Camera Camera;
         HUD hud;
-        public enum GameState { MainMenu, InGamePlay, InGamePause };
+        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause };
         internal GameState gameState;
         Ship s;
 
@@ -45,7 +45,7 @@ namespace Sailing_by_the_Stars
             // TODO: Add your initialization logic here
             this.IsMouseVisible = true;
             this.Window.Title = "Sailing by the Stars";
-            gameState = GameState.MainMenu;
+            gameState = GameState.TitleScreen;
             Camera = new Camera();
             Camera.WindowSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             hud = new HUD();
@@ -122,6 +122,10 @@ namespace Sailing_by_the_Stars
             else if (gameState == GameState.MainMenu)
             {
                 g.drawMainMenu();
+            }
+            else if (gameState == GameState.TitleScreen)
+            {
+                g.drawTitleScreen();
             }
             base.Draw(gameTime);
         }
