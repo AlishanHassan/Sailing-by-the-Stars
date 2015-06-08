@@ -51,7 +51,7 @@ namespace Sailing_by_the_Stars
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }
 
-        internal static void CheckCollision(Object o1, Object o2, TimeSpan elapsedTime)
+        internal static void CheckCollision(Object o1, Object o2)
         {
             Vector2 r = Vector2.Subtract(o2.Position, o1.Position);
             if (r.Length() < o1.Radius + o2.Radius)
@@ -86,14 +86,14 @@ namespace Sailing_by_the_Stars
 
 
 
-        internal void Update(Vector2 centerOfMass, float M, TimeSpan deltaTime)
-        {
-            Vector2 centerOfMassOfOtherObj = (centerOfMass * M - this.Mass * this.Position) / (M - this.Mass);
-            Vector2 r = Vector2.Subtract(centerOfMassOfOtherObj, this.Position);
-            this.Acceleration = 5000F * (M - this.Mass) * Vector2.Normalize(r) / r.LengthSquared();
+        //internal void Update(Vector2 centerOfMass, float M, TimeSpan deltaTime)
+        //{
+        //    Vector2 centerOfMassOfOtherObj = (centerOfMass * M - this.Mass * this.Position) / (M - this.Mass);
+        //    Vector2 r = Vector2.Subtract(centerOfMassOfOtherObj, this.Position);
+        //    this.Acceleration = 1000F * (M - this.Mass) * Vector2.Normalize(r) / r.LengthSquared();
 
-            this.Move(deltaTime);
-        }
+        //    this.Move(deltaTime);
+        //}
 
         public override string ToString()
         {

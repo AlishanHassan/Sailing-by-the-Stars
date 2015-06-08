@@ -195,7 +195,7 @@ namespace Sailing_by_the_Stars
                     if ((mousePosition.X - o.Position.X) * (mousePosition.X - o.Position.X) + (mousePosition.Y - o.Position.Y) * (mousePosition.Y - o.Position.Y) <= o.Radius * o.Radius)
                     {
                         o.Mass = o.Mass + 100;
-                        Debug.WriteLine(o.Mass);
+                        //Debug.WriteLine(o.Mass);
                     }
 
                 }
@@ -211,7 +211,7 @@ namespace Sailing_by_the_Stars
                             o.Mass = o.Mass - 100;
                         }
 
-                        Debug.WriteLine(o.Mass);
+                        //Debug.WriteLine(o.Mass);
                     }
                 }
             }

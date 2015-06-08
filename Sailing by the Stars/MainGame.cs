@@ -152,13 +152,13 @@ namespace Sailing_by_the_Stars
             catch (Exception) // when there is no path specified or the file doesn't exist, create a new game file "InitGame"
             {
                 string cameraSetting = "1280,720,0,0,0,0,0,.3";
-                string p2 = "0,2,150,1250,";
-                string p3 = "0,3,50,150,";
-                string p4 = "0,4,500,1500,";
-                string p5 = "0,5,500,1250,";
-                string p6 = "0,6,500,1250,";
-                string p7 = "0,7,500,1250,";
-                lines = new string[] { cameraSetting, "1,1,50,10,-2000,-360,150,0", 
+                string p2 = "0,2,1000,1250,";
+                string p3 = "0,3,100,150,";
+                string p4 = "0,4,1000,1500,";
+                string p5 = "0,5,1000,1250,";
+                string p6 = "0,6,1000,1250,";
+                string p7 = "0,7,1000,1250,";
+                lines = new string[] { cameraSetting, "1,1,100,10,-2000,-360,450,0", 
                 //Tutorial part
                 p2+"0,1500,0,0", p2+"0,-2500,0,0",p2+"2750,1500,0,0", p2+"2750,-2500,0,0",p2+"5500,1500,0,0", p2+"5500,-2500,0,0",
                 //Moons around a larger planet navigation
