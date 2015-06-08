@@ -38,7 +38,7 @@ namespace Sailing_by_the_Stars
 
         public void hudToggle()
         {
-            if(hudOn == true)
+            if (hudOn == true)
             {
                 hudOn = false;
             }
@@ -103,7 +103,8 @@ namespace Sailing_by_the_Stars
 
             if (s.checkIfWon(finishline) == true)
             {
-                gameState = GameState.InGamePause;
+                gameState = GameState.GameWin;
+                LoadGame();
             }
 
             if (gameState == GameState.InGamePlay)
@@ -123,6 +124,16 @@ namespace Sailing_by_the_Stars
             {
                 g.setFadeOutMenu();
             }
+            // fade effect for win
+            if (oldGameState != GameState.GameWin && gameState == GameState.GameWin)
+            {
+                g.setFadeInWin();
+            }
+            else if (oldGameState == GameState.GameWin && gameState != GameState.GameWin)
+            {
+                g.setFadeOutWin();
+            }
+ 
 
             oldGameState = gameState;
 
@@ -142,10 +153,10 @@ namespace Sailing_by_the_Stars
             // TODO: Add your drawing code here
             if (gameState == GameState.InGamePlay || gameState == GameState.InGamePause)
             {
-                
-                g.drawAllObj(allGravObjects);
 
-                if(hudOn == true)
+                g.drawAllObj(allGravObjects);
+                g.drawFinishLine(gameTime.ElapsedGameTime, finishline);
+                if (hudOn == true)
                 {
                     g.drawHUD(); //draw this last so it's on top of the objects
                 }
@@ -155,6 +166,10 @@ namespace Sailing_by_the_Stars
             else if (gameState == GameState.MainMenu)
             {
                 g.drawMainMenu(gameTime.ElapsedGameTime);
+            }
+            else if (gameState == GameState.GameWin)
+            {
+                g.drawGameWin(gameTime.ElapsedGameTime);
             }
             else if (gameState == GameState.TitleScreen)
             {
