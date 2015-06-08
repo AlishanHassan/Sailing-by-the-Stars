@@ -17,6 +17,7 @@ namespace Sailing_by_the_Stars
         public Texture2D[] planetSprites;
         public Texture2D[] shipSprites;
         public Texture2D finishLine;
+        public Texture2D hudSprite;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
         private MainGame game;
 
@@ -32,6 +33,7 @@ namespace Sailing_by_the_Stars
             this.planetSprites = new Texture2D[10];
             this.shipSprites = new Texture2D[2];
             this.finishLine = Content.Load<Texture2D>("finishline");
+            this.hudSprite = Content.Load<Texture2D>("hud");
         }
 
         internal void loadSprites(Object[] allGravObjects)
@@ -61,6 +63,8 @@ namespace Sailing_by_the_Stars
             //TODO: draw the HUD here
             //spriteBatch.DrawString(font, "Health", new Vector2(100, 700), Color.Yellow);  //this will ultimately be in the draw method in HUD
             //hud.Draw();
+            Vector2 hudLocation = new Vector2(0,300);
+            spriteBatch.Draw(hudSprite, hudLocation, Color.White);
             spriteBatch.End();
         }
 
