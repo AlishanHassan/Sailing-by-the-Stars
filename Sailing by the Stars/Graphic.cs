@@ -107,10 +107,36 @@ namespace Sailing_by_the_Stars
             spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, o.AccAngle, origin, size, SpriteEffects.None, 1);
         }
 
-        internal void drawMainMenu()
+        int menuAlpha = 1;
+        int menuFadeIncrement = 6;
+        double menuFadeDelay = .035;
+        internal void setFadeInMenu()
         {
+            menuAlpha = 1;
+            menuFadeIncrement = 6;
+        }
+        internal void setFadeOutMenu()
+        {
+            menuFadeIncrement = -12;
+        }
+        internal void drawMainMenu(TimeSpan elapsedTime)
+        {
+            //if (menuAlpha < 0) { menuAlpha = 0; }
+            //else if (menuAlpha > 255) { menuAlpha = 255; }
+            if (menuAlpha < 0)
+            {
+                return;
+            }
+
+            menuFadeDelay -= elapsedTime.TotalSeconds;
+            if (menuFadeDelay <= 0)
+            {
+                menuFadeDelay = .035;
+                menuAlpha += menuFadeIncrement;
+            }
             spriteBatch.Begin();
-            spriteBatch.Draw(menuSprite, new Vector2(0, 0));
+            Color color = Color.White * (menuAlpha / 255f);
+            spriteBatch.Draw(menuSprite, new Vector2(0, 0), color);
             spriteBatch.End();
         }
     }

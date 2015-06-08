@@ -100,10 +100,22 @@ namespace Sailing_by_the_Stars
             {
                 physics.updateAcceleration();
             }
-            
+
+            if (oldGameState != GameState.MainMenu && gameState == GameState.MainMenu)
+            {
+                g.setFadeInMenu();
+            }
+            else if (oldGameState == GameState.MainMenu && gameState != GameState.MainMenu)
+            {
+                g.setFadeOutMenu();
+            }
+
+            oldGameState = gameState;
 
             base.Update(gameTime);
         }
+
+        private GameState oldGameState;
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -118,10 +130,11 @@ namespace Sailing_by_the_Stars
             {
                 g.drawHUD();
                 g.drawAllObj(allGravObjects);
+                g.drawMainMenu(gameTime.ElapsedGameTime);
             }
             else if (gameState == GameState.MainMenu)
             {
-                g.drawMainMenu();
+                g.drawMainMenu(gameTime.ElapsedGameTime);
             }
             base.Draw(gameTime);
         }
