@@ -16,8 +16,7 @@ namespace Sailing_by_the_Stars
         protected Vector2 PreviousPosition;
         public Vector2 Velocity;
         public Vector2 Acceleration;
-        public Texture2D Sprite;
-        protected float AccAngle
+        internal float AccAngle
         {
             get
             {
@@ -25,20 +24,12 @@ namespace Sailing_by_the_Stars
                 return radians;
             }
         }
-        protected float VelAngle
+        internal float VelAngle
         {
             get
             {
                 float radians = (float)(Math.Atan2(Velocity.Y, Velocity.X) + Math.PI / 2);
                 return radians;
-            }
-        }
-
-        public Vector2 TopLeftCorner
-        {
-            get
-            {
-                return Position - new Vector2(Sprite.Width/2, Sprite.Height/2);
             }
         }
 
@@ -92,11 +83,6 @@ namespace Sailing_by_the_Stars
         internal void changeDesnity()
         {
 
-        }
-
-        internal virtual void draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(this.Sprite, this.TopLeftCorner, Color.White);
         }
 
         internal void drawNetForce(SpriteBatch spriteBatch, Texture2D arrow)

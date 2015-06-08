@@ -38,6 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Graphic.cs" />
     <Compile Include="Physics.cs" />
     <Compile Include="UserInput.cs" />
     <Compile Include="Camera.cs" />

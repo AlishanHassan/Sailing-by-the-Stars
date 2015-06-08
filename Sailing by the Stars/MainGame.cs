@@ -15,10 +15,9 @@ namespace Sailing_by_the_Stars
     public class MainGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+
         internal Object[] allGravObjects;
-        Texture2D arrow;
-        Texture2D menuSprite;
+        Graphic g;
         UserInput userInput;
         Physics physics;
         internal Camera Camera;
@@ -56,73 +55,17 @@ namespace Sailing_by_the_Stars
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        //protected void LoadContent1()
-        //{
-        //    // Create a new SpriteBatch, which can be used to draw textures.
-        //    spriteBatch = new SpriteBatch(GraphicsDevice);
-
-        //    // TODO: use this.Content to load your game content here
-        //    menuSprite = Content.Load<Texture2D>("mainmenu");
-
-        //    allGravObjects = new Object[5];
-        //    userInput = new UserInput(this);
-        //    physics = new Physics(allGravObjects);
-
-        //    allGravObjects[0] = new Planet(150, 125, new Vector2(-300, 50));
-        //    allGravObjects[1] = new Planet(60, 1250, new Vector2(2000, 1650));
-        //    allGravObjects[2] = new Planet(150, 228, new Vector2(2100, -150));
-        //    allGravObjects[3] = new Planet(60, 1250, new Vector2(6000, 2800));
-        //    for (int i = 0; i < 4; i++)
-        //    {
-        //        int val = i + 1;
-        //        allGravObjects[i].Id = val;
-        //        allGravObjects[i].Sprite = Content.Load<Texture2D>("planet-" + val);
-        //    }
-
-
-        //    Vector2 initialVelocity = new Vector2(60, 0);//ship initial velocity
-        //    allGravObjects[4] = new Ship(100, 75, new Vector2(-640, -360), initialVelocity); //increased the radius for the ship from 5 to 38 so it's easier to click for the demo
-
-        //    for (int i = 0; i < 1; i++)
-        //    {
-        //        allGravObjects[4].Id = (i + 1);
-        //        allGravObjects[4].Sprite = Content.Load<Texture2D>("ship-" + (i + 1));
-        //    }
-
-        //    arrow = Content.Load<Texture2D>("arrow");
-        //}
-
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
-            menuSprite = Content.Load<Texture2D>("mainmenu");
-
+            g = new Graphic(this);
             ReadGameFromFile();
+            g.loadSprites(allGravObjects);
+
             userInput = new UserInput(this);
             physics = new Physics(allGravObjects);
-
-            updateSprites(); // want to use it somewhere else
-
-            arrow = Content.Load<Texture2D>("arrow");
         }
 
-        private void updateSprites()
-        {
-            foreach (Object o in allGravObjects)
-            {
-                if (o is Planet)
-                {
-                    o.Sprite = Content.Load<Texture2D>("planet-" + o.Id);
-                }
-                else if (o is Ship)
-                {
-                    o.Sprite = Content.Load<Texture2D>("ship-" + o.Id);
-                }
-            }
-        }
+
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -160,34 +103,14 @@ namespace Sailing_by_the_Stars
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-
-
             if (gameState == GameState.InGamePlay || gameState == GameState.InGamePause)
             {
-
-                spriteBatch.Begin();
-                //TODO: draw the HUD here
-                //spriteBatch.DrawString(font, "Health", new Vector2(100, 700), Color.Yellow);  //this will ultimately be in the draw method in HUD
-                //hud.Draw();
-                spriteBatch.End();
-
-                var screenScale = GetScreenScale();
-                var viewMatrix = Camera.GetTransform();
-
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
-                                           null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
-                foreach (Object p in allGravObjects)
-                {
-                    p.draw(spriteBatch);
-                    p.drawNetForce(spriteBatch, arrow);
-                }
-                spriteBatch.End();
+                g.drawHUB();
+                g.drawAllObj(allGravObjects);
             }
             else if (gameState == GameState.MainMenu)
             {
-                spriteBatch.Begin();
-                spriteBatch.Draw(menuSprite, new Vector2(0, 0));
-                spriteBatch.End();
+                g.drawMainMenu();
             }
             base.Draw(gameTime);
         }
@@ -276,7 +199,6 @@ namespace Sailing_by_the_Stars
 
             }
 
-            updateSprites(); // have to update sprites right after reading data, otherwise the Sprites are null
 
         }
 
