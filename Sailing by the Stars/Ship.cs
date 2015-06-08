@@ -20,6 +20,18 @@ namespace Sailing_by_the_Stars
         {
             return "1," + base.ToString();
         }
+
+        public Boolean checkIfWon()
+        {
+            if (Position.X > 15000)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
 }

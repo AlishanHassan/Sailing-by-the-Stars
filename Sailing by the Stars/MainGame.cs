@@ -23,6 +23,7 @@ namespace Sailing_by_the_Stars
         HUD hud;
         public enum GameState { MainMenu, InGamePlay, InGamePause };
         internal GameState gameState;
+        Ship s;
 
         public MainGame()
         {
@@ -85,6 +86,11 @@ namespace Sailing_by_the_Stars
         {
             // TODO: Add your update logic here
             userInput.update();
+
+            if (s.checkIfWon() == true)
+            {
+                gameState = GameState.InGamePause;
+            }
 
             if (gameState == GameState.InGamePlay)
             {
@@ -195,7 +201,8 @@ namespace Sailing_by_the_Stars
                 }
                 else if (line[0] == 1) // Ship
                 {
-                    allGravObjects[i - 1] = new Ship(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
+                    s = new Ship(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
+                    allGravObjects[i - 1] = s;
                     allGravObjects[i - 1].Id = (int)(line[1]);
                 }
                 else if (line[0] == -1) // EnemyShip
