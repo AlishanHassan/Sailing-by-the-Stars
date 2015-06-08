@@ -29,6 +29,7 @@ namespace Sailing_by_the_Stars
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferHeight = 720;
             graphics.PreferredBackBufferWidth = 1280;
+            Window.Position = Point.Zero;
             Content.RootDirectory = "Content";
         }
 
