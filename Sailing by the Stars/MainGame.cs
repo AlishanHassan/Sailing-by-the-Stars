@@ -89,6 +89,11 @@ namespace Sailing_by_the_Stars
             {
                 physics.update(gameTime.ElapsedGameTime);
             }
+            else if (gameState == GameState.InGamePause)
+            {
+                physics.updateAcceleration();
+            }
+            
 
             base.Update(gameTime);
         }

@@ -34,6 +34,7 @@ namespace Sailing_by_the_Stars
             {
                 keyboardShortcut();
                 cameraControl();
+                densityControl();
             }
             else if (game.gameState == MainGame.GameState.MainMenu)
             {

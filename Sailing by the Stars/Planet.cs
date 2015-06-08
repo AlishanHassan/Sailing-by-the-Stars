@@ -17,7 +17,7 @@ namespace Sailing_by_the_Stars
         }
         internal override void Move(TimeSpan deltaTime)
         {
-            Velocity += Acceleration * (float)deltaTime.TotalSeconds * (float).1;
+            Velocity += Acceleration * (float)deltaTime.TotalSeconds * (float).01;
             PreviousPosition = Position;
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }

@@ -18,6 +18,17 @@ namespace Sailing_by_the_Stars
         internal void update(TimeSpan deltaTime)
         {
             // update accelerations
+            updateAcceleration();
+
+            // move
+            foreach (Object o in objects)
+            {
+                o.Move(deltaTime);
+            }
+        }
+
+        internal void updateAcceleration()
+        {
             foreach (Object o1 in objects)
             {
                 Vector2 netAcceleration = Vector2.Zero;
@@ -34,15 +45,7 @@ namespace Sailing_by_the_Stars
                         Object.CheckCollision(o1, o2);
                     }
                 }
-
                 o1.Acceleration = netAcceleration;
-
-            }
-
-            // move
-            foreach (Object o in objects)
-            {
-                o.Move(deltaTime);
             }
         }
 
