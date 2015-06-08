@@ -12,6 +12,7 @@ namespace Sailing_by_the_Stars
         public SpriteBatch spriteBatch;
         public Texture2D arrow;
         public Texture2D menuSprite;
+        public Texture2D titleSprite;
         public Texture2D[] planetSprites;
         public Texture2D[] shipSprites;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
@@ -23,6 +24,7 @@ namespace Sailing_by_the_Stars
             this.Content = game.Content;
             this.spriteBatch = new SpriteBatch(game.GraphicsDevice);
             this.menuSprite = Content.Load<Texture2D>("mainmenu");
+            this.titleSprite = Content.Load<Texture2D>("titlescreen");
             this.arrow = Content.Load<Texture2D>("arrow");
             this.planetSprites = new Texture2D[10];
             this.shipSprites = new Texture2D[2];
@@ -137,6 +139,14 @@ namespace Sailing_by_the_Stars
             spriteBatch.Begin();
             Color color = Color.White * (menuAlpha / 255f);
             spriteBatch.Draw(menuSprite, new Vector2(0, 0), color);
+            spriteBatch.End();
+        }
+
+
+        internal void drawTitleScreen()
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(titleSprite, new Vector2(0, 0));
             spriteBatch.End();
         }
     }
