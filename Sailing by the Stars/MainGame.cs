@@ -22,9 +22,10 @@ namespace Sailing_by_the_Stars
         internal Camera Camera;
         HUD hud;
         Boolean hudOn = true;
-        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause };
+        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause, GameWin };
         internal GameState gameState;
         Ship s;
+        int finishline = 20000;
 
         public MainGame()
         {
@@ -100,7 +101,7 @@ namespace Sailing_by_the_Stars
             // TODO: Add your update logic here
             userInput.update();
 
-            if (s.checkIfWon() == true)
+            if (s.checkIfWon(finishline) == true)
             {
                 gameState = GameState.InGamePause;
             }
