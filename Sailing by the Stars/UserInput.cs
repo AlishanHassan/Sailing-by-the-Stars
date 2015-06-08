@@ -193,10 +193,13 @@ namespace Sailing_by_the_Stars
             {
                 foreach (Object o in objects)
                 {
-                    if ((mousePosition.X - o.Position.X) * (mousePosition.X - o.Position.X) + (mousePosition.Y - o.Position.Y) * (mousePosition.Y - o.Position.Y) <= o.Radius * o.Radius)
+                    if (o.Mass < o.OriginalMass * 6 &&
+                        (mousePosition.X - o.Position.X) * (mousePosition.X - o.Position.X) + (mousePosition.Y - o.Position.Y) * (mousePosition.Y - o.Position.Y) <= o.Radius * o.Radius)
                     {
+
                         o.Mass *= 1.05f;
                     }
+
 
                 }
             }
@@ -204,15 +207,12 @@ namespace Sailing_by_the_Stars
             {
                 foreach (Object o in objects)
                 {
-                    if ((mousePosition.X - o.Position.X) * (mousePosition.X - o.Position.X) + (mousePosition.Y - o.Position.Y) * (mousePosition.Y - o.Position.Y) <= o.Radius * o.Radius)
+                    if (o.Mass > o.OriginalMass &&
+                        (mousePosition.X - o.Position.X) * (mousePosition.X - o.Position.X) + (mousePosition.Y - o.Position.Y) * (mousePosition.Y - o.Position.Y) <= o.Radius * o.Radius)
                     {
-                        if (o.Mass > 100)
-                        {
-                            o.Mass /= 1.05f;
-                        }
-
-                        //Debug.WriteLine(o.Mass);
+                        o.Mass /= 1.05f;
                     }
+
                 }
             }
         }

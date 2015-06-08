@@ -75,7 +75,7 @@ namespace Sailing_by_the_Stars
                     drawShip((Ship)o);
                 }
                 //o.draw(spriteBatch);
-                drawNetForce(o);
+                drawNetAcceleration(o);
             }
             spriteBatch.End();
         }
@@ -98,13 +98,13 @@ namespace Sailing_by_the_Stars
 
         }
 
-        private void drawNetForce(Object o)
+        private void drawNetAcceleration(Object o)
         {
             Vector2 location = o.Position;
             Rectangle sourceRectangle = new Rectangle(0, 0, arrow.Width, arrow.Height);
             Vector2 origin = new Vector2(arrow.Width / 2, arrow.Height); //rotate with respect to the bottom-middle point
-
-            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, o.AccAngle, origin, (float)o.Acceleration.Length() / 10, SpriteEffects.None, 1);
+            float size = Math.Min((float)o.Acceleration.Length() / 10, 30);
+            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, o.AccAngle, origin, size, SpriteEffects.None, 1);
         }
 
         internal void drawMainMenu()

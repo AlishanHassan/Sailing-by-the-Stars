@@ -11,6 +11,7 @@ namespace Sailing_by_the_Stars
     {
         public int Id; // The same as the number of the sprite name. For finding the right sprite when loading game.
         public float Mass;
+        public readonly float OriginalMass;
         public float Radius;
         public Vector2 Position;
         protected Vector2 PreviousPosition;
@@ -37,6 +38,7 @@ namespace Sailing_by_the_Stars
         {
             Radius = r;
             Mass = m;
+            OriginalMass = m;
             if (pos == null) { pos = Vector2.Zero; }
             Position = pos.Value;
             PreviousPosition = Position;
