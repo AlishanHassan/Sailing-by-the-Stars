@@ -130,11 +130,11 @@ namespace Sailing_by_the_Stars
             {
                 
                 g.drawAllObj(allGravObjects);
-<<<<<<< HEAD
-                //g.drawHUD(); //draw this last so it's on top of the objects
-=======
+
+                g.drawHUD(); //draw this last so it's on top of the objects
+
                 g.drawMainMenu(gameTime.ElapsedGameTime);
->>>>>>> origin/master
+
             }
             else if (gameState == GameState.MainMenu)
             {
