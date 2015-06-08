@@ -116,8 +116,9 @@ namespace Sailing_by_the_Stars
             // TODO: Add your drawing code here
             if (gameState == GameState.InGamePlay || gameState == GameState.InGamePause)
             {
-                g.drawHUD();
+                
                 g.drawAllObj(allGravObjects);
+                //g.drawHUD(); //draw this last so it's on top of the objects
             }
             else if (gameState == GameState.MainMenu)
             {
