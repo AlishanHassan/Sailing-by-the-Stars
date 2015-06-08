@@ -44,9 +44,8 @@ namespace Sailing_by_the_Stars
             Velocity = vel.Value;
         }
 
-        internal virtual void Move(Vector2 force, TimeSpan deltaTime)
+        internal virtual void Move(TimeSpan deltaTime)
         {
-            Acceleration = force / this.Mass;
             Velocity += Acceleration * (float)deltaTime.TotalSeconds;
             PreviousPosition = Position;
             Position += Velocity * (float)deltaTime.TotalSeconds;
@@ -85,24 +84,15 @@ namespace Sailing_by_the_Stars
 
         }
 
-        internal void drawNetForce(SpriteBatch spriteBatch, Texture2D arrow)
-        {
 
-            Vector2 location = this.Position;
-            Rectangle sourceRectangle = new Rectangle(0, 0, arrow.Width, arrow.Height);
-            Vector2 origin = new Vector2(arrow.Width / 2, arrow.Height); //rotate with respect to the bottom-middle point
-
-            spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, this.AccAngle, origin, (float)Acceleration.Length() / 10, SpriteEffects.None, 1);
-
-        }
 
         internal void Update(Vector2 centerOfMass, float M, TimeSpan deltaTime)
         {
             Vector2 centerOfMassOfOtherObj = (centerOfMass * M - this.Mass * this.Position) / (M - this.Mass);
             Vector2 r = Vector2.Subtract(centerOfMassOfOtherObj, this.Position);
-            Vector2 force = 5000F * (M - this.Mass) * this.Mass * Vector2.Normalize(r) / r.LengthSquared();
+            this.Acceleration = 5000F * (M - this.Mass) * Vector2.Normalize(r) / r.LengthSquared();
 
-            this.Move(force, deltaTime);
+            this.Move(deltaTime);
         }
 
         public override string ToString()

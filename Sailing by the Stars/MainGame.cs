@@ -15,7 +15,6 @@ namespace Sailing_by_the_Stars
     public class MainGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-
         internal Object[] allGravObjects;
         Graphic g;
         UserInput userInput;
@@ -58,7 +57,7 @@ namespace Sailing_by_the_Stars
         protected override void LoadContent()
         {
             g = new Graphic(this);
-            ReadGameFromFile();
+            ReadGameFromFile(null);
             g.loadSprites(allGravObjects);
 
             userInput = new UserInput(this);
@@ -159,11 +158,11 @@ namespace Sailing_by_the_Stars
                 string p5 = "0,5,500,1250,";
                 string p6 = "0,6,500,1250,";
                 string p7 = "0,7,500,1250,";
-                lines = new string[] { cameraSetting, "1,1,3,10,-2000,-360,150,0", 
+                lines = new string[] { cameraSetting, "1,1,50,10,-2000,-360,150,0", 
                 //Tutorial part
                 p2+"0,1500,0,0", p2+"0,-2500,0,0",p2+"2750,1500,0,0", p2+"2750,-2500,0,0",p2+"5500,1500,0,0", p2+"5500,-2500,0,0",
                 //Moons around a larger planet navigation
-                p4+"10500,-1400,0,0", p3+"9000,-1900,0,0", p3+"11000,-2900,0,0", p3+"13000,-1900,0,0",p3+"13000, 100,0,0" ,p3+"11000,900,0,0" ,p3+"9000,100,0,0",
+                p4+"11000,-1000,0,0", p3+"9000,-1900,0,0", p3+"11000,-2900,0,0", p3+"13000,-1900,0,0",p3+"13000, 100,0,0" ,p3+"11000,900,0,0" ,p3+"9000,100,0,0",
                 //Other planets
                 p7+"750,5500,0,0",p5+"6600,6000,0,0",p6+"11000,5500,0,0",
                 p6+"1500,-6000,0,0",p7+"7500,-7000,0,0",p5+"12000,-6500,0,0",
@@ -196,7 +195,6 @@ namespace Sailing_by_the_Stars
                     allGravObjects[i - 1] = new EnemyShip(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
                     allGravObjects[i - 1].Id = (int)(line[1]);
                 }
-
             }
 
 
