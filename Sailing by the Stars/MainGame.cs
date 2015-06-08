@@ -21,9 +21,10 @@ namespace Sailing_by_the_Stars
         Physics physics;
         internal Camera Camera;
         HUD hud;
-        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause };
+        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause, GameWin };
         internal GameState gameState;
         Ship s;
+        int finishline = 20000;
 
         public MainGame()
         {
@@ -87,9 +88,10 @@ namespace Sailing_by_the_Stars
             // TODO: Add your update logic here
             userInput.update();
 
-            if (s.checkIfWon() == true)
+            if (s.checkIfWon(finishline) == true)
             {
-                gameState = GameState.InGamePause;
+                gameState = GameState.GameWin;
+                LoadGame(null);
             }
 
             if (gameState == GameState.InGamePlay)
@@ -100,7 +102,7 @@ namespace Sailing_by_the_Stars
             {
                 physics.updateAcceleration();
             }
-
+            // fade effect for menu
             if (oldGameState != GameState.MainMenu && gameState == GameState.MainMenu)
             {
                 g.setFadeInMenu();
@@ -108,6 +110,15 @@ namespace Sailing_by_the_Stars
             else if (oldGameState == GameState.MainMenu && gameState != GameState.MainMenu)
             {
                 g.setFadeOutMenu();
+            }
+            // fade effect for win
+            if (oldGameState != GameState.GameWin && gameState == GameState.GameWin)
+            {
+                g.setFadeInWin();
+            }
+            else if (oldGameState == GameState.GameWin && gameState != GameState.GameWin)
+            {
+                g.setFadeOutWin();
             }
 
             oldGameState = gameState;
@@ -130,11 +141,16 @@ namespace Sailing_by_the_Stars
             {
                 g.drawHUD();
                 g.drawAllObj(allGravObjects);
+                g.drawFinishLine(gameTime.ElapsedGameTime,finishline);
                 g.drawMainMenu(gameTime.ElapsedGameTime);
             }
             else if (gameState == GameState.MainMenu)
             {
                 g.drawMainMenu(gameTime.ElapsedGameTime);
+            }
+            else if (gameState == GameState.GameWin)
+            {
+                g.drawGameWin(gameTime.ElapsedGameTime);
             }
             else if (gameState == GameState.TitleScreen)
             {
@@ -189,7 +205,7 @@ namespace Sailing_by_the_Stars
                 string p6 = "0,6,1000,1250,";
                 string p7 = "0,7,1000,1250,";
                 //string p8 = "0,8,1000,1500";
-                lines = new string[] { cameraSetting, "1,1,100,10,-2000,-360,450,0", 
+                lines = new string[] { cameraSetting, "1,0,100,10,-2000,-360,450,0", 
                 //Tutorial part
                 p2+"0,1500,0,0", p2+"0,-2500,0,0",p2+"2750,1500,0,0", p2+"2750,-2500,0,0",p2+"5500,1500,0,0", p2+"5500,-2500,0,0",
                 //Moons around a larger planet navigation
@@ -208,24 +224,24 @@ namespace Sailing_by_the_Stars
             Camera = new Camera(new Vector2(cam[0], cam[1]), new Vector2(cam[2], cam[3]), new Vector2(cam[4], cam[5]), cam[6], cam[7]);
 
             allGravObjects = new Object[lines.Length - 1];
-            for (int i = 1; i < lines.Length; i++)
+            for (int i = 0; i < lines.Length-1; i++)
             {
-                float[] line = lines[i].Split(',').Select(float.Parse).ToArray();
+                float[] line = lines[i+1].Split(',').Select(float.Parse).ToArray();
                 if (line[0] == 0) // Planet
                 {
-                    allGravObjects[i - 1] = new Planet(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
-                    allGravObjects[i - 1].Id = (int)(line[1]);
+                    allGravObjects[i] = new Planet(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
+                    allGravObjects[i].Id = (int)(line[1]);
                 }
                 else if (line[0] == 1) // Ship
                 {
                     s = new Ship(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
-                    allGravObjects[i - 1] = s;
-                    allGravObjects[i - 1].Id = (int)(line[1]);
+                    allGravObjects[i] = s;
+                    allGravObjects[i].Id = (int)(line[1]);
                 }
                 else if (line[0] == -1) // EnemyShip
                 {
-                    allGravObjects[i - 1] = new EnemyShip(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
-                    allGravObjects[i - 1].Id = (int)(line[1]);
+                    allGravObjects[i] = new EnemyShip(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
+                    allGravObjects[i].Id = (int)(line[1]);
                 }
             }
 

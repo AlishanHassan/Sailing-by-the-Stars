@@ -40,6 +40,10 @@ namespace Sailing_by_the_Stars
             {
                 keyboardShortcut();
             }
+            else if (game.gameState == MainGame.GameState.GameWin)
+            {
+                keyboardShortcut();
+            }
             else if (game.gameState == MainGame.GameState.TitleScreen)
             {
                 clickToContinue();
@@ -183,7 +187,7 @@ namespace Sailing_by_the_Stars
             // Ctrl + M for main menu
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.M) && oldKeyState.IsKeyUp(Keys.M))
             {
-                if (game.gameState == MainGame.GameState.InGamePlay)
+                if (game.gameState == MainGame.GameState.InGamePlay || game.gameState == MainGame.GameState.InGamePause || game.gameState == MainGame.GameState.GameWin)
                 {
                     game.gameState = MainGame.GameState.MainMenu;
                 }
