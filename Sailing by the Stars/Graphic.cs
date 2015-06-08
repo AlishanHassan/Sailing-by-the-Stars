@@ -12,9 +12,11 @@ namespace Sailing_by_the_Stars
         public SpriteBatch spriteBatch;
         public Texture2D arrow;
         public Texture2D menuSprite;
+        public Texture2D winSprite;
         public Texture2D titleSprite;
         public Texture2D[] planetSprites;
         public Texture2D[] shipSprites;
+        public Texture2D finishLine;
         public Texture2D hudSprite;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
         private MainGame game;
@@ -25,10 +27,12 @@ namespace Sailing_by_the_Stars
             this.Content = game.Content;
             this.spriteBatch = new SpriteBatch(game.GraphicsDevice);
             this.menuSprite = Content.Load<Texture2D>("mainmenu");
+            this.winSprite = Content.Load<Texture2D>("win");
             this.titleSprite = Content.Load<Texture2D>("titlescreen");
             this.arrow = Content.Load<Texture2D>("arrow");
             this.planetSprites = new Texture2D[10];
             this.shipSprites = new Texture2D[2];
+            this.finishLine = Content.Load<Texture2D>("finishline");
             this.hudSprite = Content.Load<Texture2D>("hud");
         }
 
@@ -83,6 +87,7 @@ namespace Sailing_by_the_Stars
                 //o.draw(spriteBatch);
                 drawNetAcceleration(o);
             }
+
             spriteBatch.End();
         }
 
@@ -146,6 +151,36 @@ namespace Sailing_by_the_Stars
             spriteBatch.End();
         }
 
+        int winAlpha = 1;
+        int winFadeIncrement = 6;
+        double winFadeDelay = .035;
+        internal void setFadeInWin()
+        {
+            winAlpha = 1;
+            winFadeIncrement = 6;
+        }
+        internal void setFadeOutWin()
+        {
+            winFadeIncrement = -12;
+        }
+        internal void drawGameWin(TimeSpan elapsedTime)
+        {
+            if (winAlpha < 0)
+            {
+                return;
+            }
+
+            winFadeDelay -= elapsedTime.TotalSeconds;
+            if (winFadeDelay <= 0)
+            {
+                winFadeDelay = .035;
+                winAlpha += winFadeIncrement;
+            }
+            spriteBatch.Begin();
+            Color color = Color.White * (winAlpha / 255f);
+            spriteBatch.Draw(winSprite, new Vector2(0, 0), color);
+            spriteBatch.End();
+        }
 
         internal void drawTitleScreen()
         {
@@ -153,5 +188,30 @@ namespace Sailing_by_the_Stars
             spriteBatch.Draw(titleSprite, new Vector2(0, 0));
             spriteBatch.End();
         }
+
+
+        int lineAlpha = 1;
+        int lineFadeIncrement = 12;
+        double lineFadeDelay = .035;
+        internal void drawFinishLine(TimeSpan elapsedTime, int linePosition)
+        {
+
+            lineFadeDelay -= elapsedTime.TotalSeconds;
+            if (lineFadeDelay <= 0)
+            {
+                lineFadeDelay = .035;
+                lineAlpha += lineFadeIncrement;
+                if (lineAlpha < 0 || lineAlpha > 255) { lineFadeIncrement *= -1; }
+            }
+
+            var screenScale = game.GetScreenScale();
+            var viewMatrix = game.Camera.GetTransform();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+                                           null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
+            Color color = Color.White * (lineAlpha / 255f);
+            spriteBatch.Draw(finishLine, new Rectangle(linePosition - 150, -12000, 300, 24000), color);
+            spriteBatch.End();
+        }
+
     }
 }

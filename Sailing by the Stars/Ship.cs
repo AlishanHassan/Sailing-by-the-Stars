@@ -21,9 +21,9 @@ namespace Sailing_by_the_Stars
             return "1," + base.ToString();
         }
 
-        public Boolean checkIfWon()
+        public Boolean checkIfWon(int line)
         {
-            if (Position.X > 15000)
+            if (Position.X > line)
             {
                 return true;
             }
