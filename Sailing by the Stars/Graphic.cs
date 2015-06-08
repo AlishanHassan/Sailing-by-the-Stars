@@ -24,7 +24,7 @@ namespace Sailing_by_the_Stars
             this.spriteBatch = new SpriteBatch(game.GraphicsDevice);
             this.menuSprite = Content.Load<Texture2D>("mainmenu");
             this.arrow = Content.Load<Texture2D>("arrow");
-            this.planetSprites = new Texture2D[8];
+            this.planetSprites = new Texture2D[10];
             this.shipSprites = new Texture2D[2];
         }
 
@@ -49,7 +49,7 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        internal void drawHUB()
+        internal void drawHUD()
         {
             spriteBatch.Begin();
             //TODO: draw the HUD here

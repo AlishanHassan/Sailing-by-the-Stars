@@ -109,7 +109,7 @@ namespace Sailing_by_the_Stars
             // TODO: Add your drawing code here
             if (gameState == GameState.InGamePlay || gameState == GameState.InGamePause)
             {
-                g.drawHUB();
+                g.drawHUD();
                 g.drawAllObj(allGravObjects);
             }
             else if (gameState == GameState.MainMenu)
@@ -157,12 +157,14 @@ namespace Sailing_by_the_Stars
             catch (Exception) // when there is no path specified or the file doesn't exist, create a new game file "InitGame"
             {
                 string cameraSetting = "1280,720,0,0,0,0,0,.3";
+                string p1 = "0,8,1000,1500";
                 string p2 = "0,2,1000,1250,";
                 string p3 = "0,3,100,150,";
                 string p4 = "0,4,1000,1500,";
                 string p5 = "0,5,1000,1250,";
                 string p6 = "0,6,1000,1250,";
                 string p7 = "0,7,1000,1250,";
+                string p8 = "0,8,1000,1500";
                 lines = new string[] { cameraSetting, "1,1,100,10,-2000,-360,450,0", 
                 //Tutorial part
                 p2+"0,1500,0,0", p2+"0,-2500,0,0",p2+"2750,1500,0,0", p2+"2750,-2500,0,0",p2+"5500,1500,0,0", p2+"5500,-2500,0,0",
@@ -172,7 +174,7 @@ namespace Sailing_by_the_Stars
                 p7+"750,5500,0,0",p5+"6600,6000,0,0",p6+"11000,5500,0,0",
                 p6+"1500,-6000,0,0",p7+"7500,-7000,0,0",p5+"12000,-6500,0,0",
                 p6+"15500,-5000,0,0",p7+"17500,-800,0,0",p5+"21000,-300,0,0",
-                
+                //p8+"20500,8000,0,0",
                 //"0,2,150,125,-100,700,0,0", "0,3,150,125,300,-800,0,0",  "0,4,150,125,3000,0,0,0", "0,5,150,125,7000,500,0,0"
                 };
                 System.IO.File.WriteAllLines(@"C:\Users\Public\InitGame", lines);
