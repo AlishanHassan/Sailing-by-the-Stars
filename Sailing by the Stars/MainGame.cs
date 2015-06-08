@@ -21,6 +21,7 @@ namespace Sailing_by_the_Stars
         Physics physics;
         internal Camera Camera;
         HUD hud;
+        Boolean hudOn = true;
         public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause };
         internal GameState gameState;
         Ship s;
@@ -32,6 +33,18 @@ namespace Sailing_by_the_Stars
             graphics.PreferredBackBufferWidth = 1280;
             Window.Position = Point.Zero;
             Content.RootDirectory = "Content";
+        }
+
+        public void hudToggle()
+        {
+            if(hudOn == true)
+            {
+                hudOn = false;
+            }
+            else
+            {
+                hudOn = true;
+            }
         }
 
         /// <summary>
@@ -131,8 +144,10 @@ namespace Sailing_by_the_Stars
                 
                 g.drawAllObj(allGravObjects);
 
-                g.drawHUD(); //draw this last so it's on top of the objects
-
+                if(hudOn == true)
+                {
+                    g.drawHUD(); //draw this last so it's on top of the objects
+                }
                 g.drawMainMenu(gameTime.ElapsedGameTime);
 
             }

@@ -28,13 +28,13 @@ namespace Sailing_by_the_Stars
             {
                 keyboardShortcut();
                 cameraControl();
-                densityControl();
+                densityControl(); 
             }
             else if (game.gameState == MainGame.GameState.InGamePause)
             {
                 keyboardShortcut();
                 cameraControl();
-                densityControl();
+                densityControl(); 
             }
             else if (game.gameState == MainGame.GameState.MainMenu)
             {
@@ -55,6 +55,8 @@ namespace Sailing_by_the_Stars
             }
 
         }
+
+
 
         private void cameraControl()
         {
@@ -191,6 +193,12 @@ namespace Sailing_by_the_Stars
                 {
                     game.gameState = MainGame.GameState.InGamePlay;
                 }
+            }
+
+            // Ctrl + H to toggle HUD
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.H) && oldKeyState.IsKeyUp(Keys.H))
+            {
+                game.hudToggle();
             }
 
 

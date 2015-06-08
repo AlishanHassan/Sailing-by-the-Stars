@@ -28,6 +28,7 @@ namespace Sailing_by_the_Stars
         int health;
         Vector2 direction;
         int density;
+        int message;
 
 
 
@@ -39,6 +40,12 @@ namespace Sailing_by_the_Stars
             
         }
 
+        public void communications(int m)
+        {
+            message = m;
+            
+
+        }
 
         public void loadContent(ContentManager c)
         {

@@ -59,7 +59,7 @@ namespace Sailing_by_the_Stars
             //TODO: draw the HUD here
             //spriteBatch.DrawString(font, "Health", new Vector2(100, 700), Color.Yellow);  //this will ultimately be in the draw method in HUD
             //hud.Draw();
-            Vector2 hudLocation = new Vector2(0,300);
+            Vector2 hudLocation = new Vector2(0,630);
             spriteBatch.Draw(hudSprite, hudLocation, Color.White);
             spriteBatch.End();
         }
