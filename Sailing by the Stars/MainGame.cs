@@ -24,7 +24,7 @@ namespace Sailing_by_the_Stars
         Boolean hudOn = true;
         public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause, GameWin };
         internal GameState gameState;
-        Ship s;
+        internal Ship s;
         int finishline = 20000;
 
         public MainGame()

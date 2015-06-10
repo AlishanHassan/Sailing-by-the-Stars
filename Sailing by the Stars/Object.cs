@@ -79,8 +79,8 @@ namespace Sailing_by_the_Stars
             Vector2 v2f = v2 - 2 * m1 / (m1 + m2) * Vector2.Dot(v2 - v1, x2 - x1) / (x2 - x1).LengthSquared() * (x2 - x1);
             o1.Velocity = v1f * .9f;
             o2.Velocity = v2f * .9f;
-            o1.DecreaseHealth(10);
-            o2.DecreaseHealth(10);
+            o1.DecreaseHealth(30);
+            o2.DecreaseHealth(30);
         }
 
         protected virtual void DecreaseHealth(int damage)

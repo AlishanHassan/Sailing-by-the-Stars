@@ -38,8 +38,8 @@ namespace Sailing_by_the_Stars
             this.finishLine = Content.Load<Texture2D>("finishline");
             this.hudSprite = Content.Load<Texture2D>("hud");
             this.healthBar = Content.Load<Texture2D>("healthbar");
-            //this.bar1 = Content.Load<Texture2D>("bar1"); this was intended to be used as the background of bar2
-            this.bar2 = Content.Load<Texture2D>("bar2");
+            this.bar1 = Content.Load<Texture2D>("bar1");// this was intended to be used as the background of bar2 but no longer
+            //this.bar2 = Content.Load<Texture2D>("bar2");
         }
 
         internal void loadSprites(Object[] allGravObjects)
@@ -71,7 +71,9 @@ namespace Sailing_by_the_Stars
             //hud.Draw();
             Vector2 hudLocation = new Vector2(0, 630);
             spriteBatch.Draw(hudSprite, hudLocation, Color.White);
-            spriteBatch.Draw(healthBar, new Rectangle((int)hudLocation.X + 372, (int)hudLocation.Y + 30, 174, 33), Color.White);
+
+            spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 370, (int)hudLocation.Y + 30, 178*game.s.health/100, 38), getHPColor(game.s.health));
+
             spriteBatch.End();
         }
 
@@ -115,10 +117,27 @@ namespace Sailing_by_the_Stars
             spriteBatch.Draw(sprite, location, sourceRectangle, Color.White, s.VelAngle, origin, 1, SpriteEffects.None, 1);
 
             // health bar
-            //Rectangle rec1 = new Rectangle((int)s.Position.X - 60, (int)s.Position.Y - 100, 120, 10);
-            Rectangle rec2 = new Rectangle((int)s.Position.X - 80, (int)s.Position.Y - 120, 160 * s.health / 100, 20);
-            //spriteBatch.Draw(bar1, rec1, Color.White);
-            spriteBatch.Draw(bar2, rec2, Color.White);
+            //Rectangle rec2 = new Rectangle((int)s.Position.X - 80, (int)s.Position.Y - 120, 160 * s.health / 100, 20);
+            Rectangle rec1 = new Rectangle((int)s.Position.X - 80, (int)s.Position.Y - 120, 160 * s.health / 100, 20);
+            spriteBatch.Draw(bar1, rec1, getHPColor(s.health));
+
+            //spriteBatch.Draw(bar2, rec2, Color.White);
+        }
+
+        private Color getHPColor(int hp)
+        {
+            if (hp > 50)
+            {
+                return Color.Green;
+            }
+            else if (hp > 20)
+            {
+                return Color.Yellow;
+            }
+            else
+            {
+                return Color.Red;
+            }
         }
 
         private void drawNetAcceleration(Object o)
