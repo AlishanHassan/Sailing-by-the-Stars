@@ -111,37 +111,40 @@ namespace Sailing_by_the_Stars
 
             //Debug.WriteLine(mainMouseState.ScrollWheelValue);
         }
+
+        //Keyboard camera control, both arrow keys and WASD for panning; +/- and Q/E for zoom
+
         private int keyboardPanSpeed = 50;
         private float keyboardZoomSpeed = 0.01f;
         private void keyboardCameraControl()
         {
             KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Left))
+            if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
             {
                 Vector2 pan = new Vector2(keyboardPanSpeed, 0);
                 camera.Move(pan);
             }
-            if (keyboardState.IsKeyDown(Keys.Right))
+            if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
             {
                 Vector2 pan = new Vector2(-keyboardPanSpeed, 0);
                 camera.Move(pan);
             }
-            if (keyboardState.IsKeyDown(Keys.Up))
+            if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W))
             {
                 Vector2 pan = new Vector2(0, keyboardPanSpeed);
                 camera.Move(pan);
             }
-            if (keyboardState.IsKeyDown(Keys.Down))
+            if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S))
             {
                 Vector2 pan = new Vector2(0, -keyboardPanSpeed);
                 camera.Move(pan);
             }
 
-            if (keyboardState.IsKeyDown(Keys.OemMinus))
+            if (keyboardState.IsKeyDown(Keys.OemMinus) || keyboardState.IsKeyDown(Keys.Q))
             {
                 camera.SetZoom(-keyboardZoomSpeed);
             }
-            if (keyboardState.IsKeyDown(Keys.OemPlus))
+            if (keyboardState.IsKeyDown(Keys.OemPlus) || keyboardState.IsKeyDown(Keys.E))
             {
                 camera.SetZoom(keyboardZoomSpeed);
             }
