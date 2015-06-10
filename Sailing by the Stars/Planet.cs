@@ -26,6 +26,11 @@ namespace Sailing_by_the_Stars
         {
             return "0," + base.ToString();
         }
+
+        protected override void DecreaseHealth(int damage)
+        {
+            //blank
+        }
     }
 
 }

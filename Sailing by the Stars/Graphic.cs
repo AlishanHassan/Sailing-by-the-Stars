@@ -18,6 +18,9 @@ namespace Sailing_by_the_Stars
         public Texture2D[] shipSprites;
         public Texture2D finishLine;
         public Texture2D hudSprite;
+        public Texture2D healthBar;
+        public Texture2D bar1;
+        public Texture2D bar2;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
         private MainGame game;
 
@@ -34,6 +37,9 @@ namespace Sailing_by_the_Stars
             this.shipSprites = new Texture2D[2];
             this.finishLine = Content.Load<Texture2D>("finishline");
             this.hudSprite = Content.Load<Texture2D>("hud");
+            this.healthBar = Content.Load<Texture2D>("healthbar");
+            //this.bar1 = Content.Load<Texture2D>("bar1"); this was intended to be used as the background of bar2
+            this.bar2 = Content.Load<Texture2D>("bar2");
         }
 
         internal void loadSprites(Object[] allGravObjects)
@@ -63,8 +69,9 @@ namespace Sailing_by_the_Stars
             //TODO: draw the HUD here
             //spriteBatch.DrawString(font, "Health", new Vector2(100, 700), Color.Yellow);  //this will ultimately be in the draw method in HUD
             //hud.Draw();
-            Vector2 hudLocation = new Vector2(0,630);
+            Vector2 hudLocation = new Vector2(0, 630);
             spriteBatch.Draw(hudSprite, hudLocation, Color.White);
+            spriteBatch.Draw(healthBar, new Rectangle((int)hudLocation.X + 372, (int)hudLocation.Y + 30, 174, 33), Color.White);
             spriteBatch.End();
         }
 
@@ -107,6 +114,11 @@ namespace Sailing_by_the_Stars
 
             spriteBatch.Draw(sprite, location, sourceRectangle, Color.White, s.VelAngle, origin, 1, SpriteEffects.None, 1);
 
+            // health bar
+            //Rectangle rec1 = new Rectangle((int)s.Position.X - 60, (int)s.Position.Y - 100, 120, 10);
+            Rectangle rec2 = new Rectangle((int)s.Position.X - 80, (int)s.Position.Y - 120, 160 * s.health / 100, 20);
+            //spriteBatch.Draw(bar1, rec1, Color.White);
+            spriteBatch.Draw(bar2, rec2, Color.White);
         }
 
         private void drawNetAcceleration(Object o)

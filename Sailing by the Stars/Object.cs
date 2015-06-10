@@ -9,7 +9,7 @@ namespace Sailing_by_the_Stars
 {
     class Object
     {
-        public int Id; // The same as the number of the sprite name. For finding the right sprite when loading game.
+        public int Id; // The same as the number on the sprite name. For finding the right sprite when loading game.
         public float Mass;
         public readonly float OriginalMass;
         public float Radius;
@@ -79,6 +79,13 @@ namespace Sailing_by_the_Stars
             Vector2 v2f = v2 - 2 * m1 / (m1 + m2) * Vector2.Dot(v2 - v1, x2 - x1) / (x2 - x1).LengthSquared() * (x2 - x1);
             o1.Velocity = v1f * .9f;
             o2.Velocity = v2f * .9f;
+            o1.DecreaseHealth(10);
+            o2.DecreaseHealth(10);
+        }
+
+        protected virtual void DecreaseHealth(int damage)
+        {
+            //blank
         }
 
         internal void changeDesnity()
