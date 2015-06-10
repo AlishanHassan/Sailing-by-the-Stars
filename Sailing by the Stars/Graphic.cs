@@ -21,6 +21,7 @@ namespace Sailing_by_the_Stars
         public Texture2D healthBar;
         public Texture2D bar1;
         public Texture2D bar2;
+        public Texture2D laserSprite;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
         private MainGame game;
 
@@ -40,6 +41,7 @@ namespace Sailing_by_the_Stars
             this.healthBar = Content.Load<Texture2D>("healthbar");
             this.bar1 = Content.Load<Texture2D>("bar1");// this was intended to be used as the background of bar2 but no longer
             //this.bar2 = Content.Load<Texture2D>("bar2");
+            this.laserSprite = Content.Load<Texture2D>("laser");
         }
 
         internal void loadSprites(Object[] allGravObjects)
@@ -72,7 +74,7 @@ namespace Sailing_by_the_Stars
             Vector2 hudLocation = new Vector2(0, 630);
             spriteBatch.Draw(hudSprite, hudLocation, Color.White);
 
-            spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 370, (int)hudLocation.Y + 30, 178*game.s.health/100, 38), getHPColor(game.s.health));
+            spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 370, (int)hudLocation.Y + 30, 178 * game.s.health / 100, 38), getHPColor(game.s.health));
 
             spriteBatch.End();
         }
@@ -96,7 +98,7 @@ namespace Sailing_by_the_Stars
                 //o.draw(spriteBatch);
                 drawNetAcceleration(o);
             }
-
+            drawLasers();
             spriteBatch.End();
         }
 
@@ -147,6 +149,17 @@ namespace Sailing_by_the_Stars
             Vector2 origin = new Vector2(arrow.Width / 2, arrow.Height); //rotate with respect to the bottom-middle point
             float size = Math.Min((float)o.Acceleration.Length() / 10, 30);
             spriteBatch.Draw(arrow, location, sourceRectangle, Color.White, o.AccAngle, origin, size, SpriteEffects.None, 1);
+        }
+
+        private void drawLasers()
+        {
+            foreach (Laser laser in Laser.lasers)
+            {
+                Vector2 location = laser.Position;
+                Rectangle sourceRectangle = new Rectangle(0, 0, laserSprite.Width, laserSprite.Height);
+                Vector2 origin = new Vector2(laserSprite.Width / 2, laserSprite.Height); //rotate with respect to the bottom-middle point
+                spriteBatch.Draw(laserSprite, location, sourceRectangle, Color.White, laser.Angle, origin, 3f, SpriteEffects.None, 1);
+            }
         }
 
         int menuAlpha = 1;

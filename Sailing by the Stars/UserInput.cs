@@ -28,13 +28,13 @@ namespace Sailing_by_the_Stars
             {
                 keyboardShortcut();
                 cameraControl();
-                densityControl(); 
+                densityControl();
             }
             else if (game.gameState == MainGame.GameState.InGamePause)
             {
                 keyboardShortcut();
                 cameraControl();
-                densityControl(); 
+                densityControl();
             }
             else if (game.gameState == MainGame.GameState.MainMenu)
             {

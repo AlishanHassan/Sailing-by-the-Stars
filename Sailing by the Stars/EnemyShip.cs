@@ -39,7 +39,13 @@ namespace Sailing_by_the_Stars
             // come back if strayed
             if (nearestPlanet != null)
             {
-                this.Acceleration += (nearestPlanet.Position - this.Position)/256;
+                this.Acceleration += (nearestPlanet.Position - this.Position) / 256;
+            }
+
+            // laser cool down
+            if (laserCoolDown > 0)
+            {
+                laserCoolDown -= (float)deltaTime.TotalSeconds;
             }
 
             base.Move(deltaTime);
@@ -56,6 +62,19 @@ namespace Sailing_by_the_Stars
         public override string ToString()
         {
             return "-" + base.ToString() + "," + difficulty;
+        }
+
+        
+        private float laserCoolDown = 0;
+        internal void shootLaser(Object o2)
+        {
+            if (laserCoolDown > 0) // still cooling down
+            {
+                return;
+            }
+            laserCoolDown = 3;
+            Laser laser = new Laser(this.Position,o2.Position);
+            Laser.lasers.Add(laser);
         }
     }
 }

@@ -25,11 +25,11 @@ namespace Sailing_by_the_Stars
             {
                 o.Move(deltaTime);
             }
+
+            Laser.Update(deltaTime);
         }
 
-        private const int useThrustDistance = 300;
-        //private const int innerOrbitDist = 150;
-        //private const int outerOrbitDist = 450;
+        private const int closeDistance = 300;
 
         internal void updateAcceleration()
         {
@@ -52,67 +52,35 @@ namespace Sailing_by_the_Stars
                             netAcceleration += acc;
                             Object.CheckCollision(o1, o2);
 
-                            if (o1 is EnemyShip && o2 is Planet)
+                            if (o1 is EnemyShip)
                             {
-
                                 float surfaceDistance = r - o1.Radius - o2.Radius;
-                                float diff = useThrustDistance - surfaceDistance;
+                                float diff = closeDistance - surfaceDistance;
                                 if (diff > 0)
                                 {
-                                    ((EnemyShip)o1).creatThrust(diff / useThrustDistance * (-rVector));
+                                    ((EnemyShip)o1).creatThrust(diff / closeDistance * (-rVector));
                                 }
 
-                                if (rSquared < ((EnemyShip)o1).distanceToNearestPlanetSq)
+                                if (o2 is Planet && rSquared < ((EnemyShip)o1).distanceToNearestPlanetSq)
                                 {
                                     ((EnemyShip)o1).nearestPlanet = (Planet)o2;
                                 }
-
-                                //if (diff > useThrustDistance / 2)
-                                //{
-                                //    ((EnemyShip)o1).creatThrust(diff * diff / useThrustDistance * (-rVector));
-                                //}
-
-                                //((EnemyShip)o1).creatThrust(diff / useThrustDistance * (-acc));
-
-                                //float surfaceDistance = r - o1.Radius - o2.Radius;
-                                //float t = 0;
-                                //if (surfaceDistance < innerOrbitDist) //  too close
-                                //{
-                                //    t = (innerOrbitDist - surfaceDistance)/surfaceDistance;
-                                //}
-                                //else if (surfaceDistance > outerOrbitDist) //  too far
-                                //{
-                                //    t = (outerOrbitDist-surfaceDistance)/surfaceDistance;
-                                //}
-                                //((EnemyShip)o1).creatThrust(t * (-rVector));
+                                else if (
+                                    //!(o2 is EnemyShip) && 
+                                    o2 is Ship)
+                                {
+                                    ((EnemyShip)o1).shootLaser(o2);
+                                }
 
 
+                            }// end if enemy ship
 
-                                //if (ratioDisToClosestPlanet > r / o2.Radius)
-                                //{
-                                //    ratioDisToClosestPlanet = r / o2.Radius;
-                                //    closestPlanet = (Planet)o2;
-                                //} //end if
-
-                            }// end if
-
-                        } //end if
+                        } //end if near
 
 
                     }
                 }// end foreach o2
 
-                //if (o1 is EnemyShip)
-                //{
-                //    float diff = useThrustDistance - surfaceDistance;
-                //    if (diff < -useThrustDistance / 2)
-                //    {
-                //        ((EnemyShip)o1).creatThrust(diff / useThrustDistance / 100 * (-rVector));
-                //    }
-
-
-
-                //}
                 o1.Acceleration = netAcceleration;
             }
         }

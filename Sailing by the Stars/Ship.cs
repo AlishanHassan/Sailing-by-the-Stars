@@ -24,14 +24,7 @@ namespace Sailing_by_the_Stars
 
         public Boolean checkIfWon(int line)
         {
-            if (Position.X > line)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return Position.X > line;
         }
 
         protected override void DecreaseHealth(int damage)

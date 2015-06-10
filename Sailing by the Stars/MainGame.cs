@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Linq;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 
 namespace Sailing_by_the_Stars
@@ -15,7 +16,6 @@ namespace Sailing_by_the_Stars
     public class MainGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        internal Object[] allGravObjects;
         Graphic g;
         UserInput userInput;
         Physics physics;
@@ -24,6 +24,7 @@ namespace Sailing_by_the_Stars
         Boolean hudOn = true;
         public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause, GameWin };
         internal GameState gameState;
+        internal Object[] allGravObjects;
         internal Ship s;
         int finishline = 20000;
 
@@ -126,7 +127,7 @@ namespace Sailing_by_the_Stars
             {
                 g.setFadeOutWin();
             }
- 
+
 
             oldGameState = gameState;
 
@@ -230,7 +231,7 @@ namespace Sailing_by_the_Stars
                 //"0,2,150,125,-100,700,0,0", "0,3,150,125,300,-800,0,0",  "0,4,150,125,3000,0,0,0", "0,5,150,125,7000,500,0,0"
                 
                 //Enemy ships
-                es+"11000,-3600,-300,0"
+                es+"11000,-3600,-300,0", es+"12000,-8500,300,0",es+"12000,7000,250,0"
                 };
                 System.IO.File.WriteAllLines(@"C:\Users\Public\InitGame", lines);
             }
