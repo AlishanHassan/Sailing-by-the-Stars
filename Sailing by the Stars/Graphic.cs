@@ -39,8 +39,7 @@ namespace Sailing_by_the_Stars
             this.finishLine = Content.Load<Texture2D>("finishline");
             this.hudSprite = Content.Load<Texture2D>("hud");
             this.healthBar = Content.Load<Texture2D>("healthbar");
-            this.bar1 = Content.Load<Texture2D>("bar1");// this was intended to be used as the background of bar2 but no longer
-            //this.bar2 = Content.Load<Texture2D>("bar2");
+            this.bar1 = Content.Load<Texture2D>("bar1");
             this.laserSprite = Content.Load<Texture2D>("laser");
         }
 
@@ -119,11 +118,8 @@ namespace Sailing_by_the_Stars
             spriteBatch.Draw(sprite, location, sourceRectangle, Color.White, s.VelAngle, origin, 1, SpriteEffects.None, 1);
 
             // health bar
-            //Rectangle rec2 = new Rectangle((int)s.Position.X - 80, (int)s.Position.Y - 120, 160 * s.health / 100, 20);
             Rectangle rec1 = new Rectangle((int)s.Position.X - 80, (int)s.Position.Y - 120, 160 * s.health / 100, 20);
             spriteBatch.Draw(bar1, rec1, getHPColor(s.health));
-
-            //spriteBatch.Draw(bar2, rec2, Color.White);
         }
 
         private Color getHPColor(int hp)
@@ -158,7 +154,7 @@ namespace Sailing_by_the_Stars
                 Vector2 location = laser.Position;
                 Rectangle sourceRectangle = new Rectangle(0, 0, laserSprite.Width, laserSprite.Height);
                 Vector2 origin = new Vector2(laserSprite.Width / 2, laserSprite.Height); //rotate with respect to the bottom-middle point
-                spriteBatch.Draw(laserSprite, location, sourceRectangle, Color.White, laser.Angle, origin, 3f, SpriteEffects.None, 1);
+                spriteBatch.Draw(laserSprite, location, sourceRectangle, laser.Color, laser.Angle, origin, 3f, SpriteEffects.None, 1);
             }
         }
 

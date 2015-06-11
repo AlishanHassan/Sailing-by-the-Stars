@@ -46,7 +46,7 @@ namespace Sailing_by_the_Stars
                         Vector2 rNormalized = rVector / r;
                         double rSquared = r * r;
 
-                        if (rSquared < 500000000) //  close to each other
+                        if (r < 25600) //  close to each other
                         {
                             Vector2 acc = 100000F * o2.Mass * rNormalized / (float)rSquared;
                             netAcceleration += acc;
@@ -66,8 +66,10 @@ namespace Sailing_by_the_Stars
                                     ((EnemyShip)o1).nearestPlanet = (Planet)o2;
                                 }
                                 else if (
-                                    //!(o2 is EnemyShip) && 
-                                    o2 is Ship)
+                                    !(o2 is EnemyShip) &&
+                                    o2 is Ship
+                                    && r < Laser.range
+                                    )
                                 {
                                     ((EnemyShip)o1).shootLaser(o2);
                                 }
