@@ -79,11 +79,34 @@ namespace Sailing_by_the_Stars
              Environment.SetEnvironmentVariable("FNA_AUDIO_DISABLE_SOUND", "1");
             */
         }
-
+        
         internal void stopLaserFX()
         {
             laserFXInstance.Stop();
         }
+
+        internal void playCollideFX()
+        {
+            collideFXInstance.IsLooped = false;
+            collideFXInstance.Play();
+        }
+
+        internal void stopCollideFX()
+        {
+            collideFXInstance.Stop();
+        }
+
+        internal void playExplosionFX()
+        {
+            explosionFXInstance.IsLooped = false;
+            explosionFXInstance.Play();
+        }
+
+        internal void stopExplosionFX()
+        {
+            explosionFXInstance.Stop();
+        }
+
 
     }
 }
