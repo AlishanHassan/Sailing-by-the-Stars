@@ -14,6 +14,10 @@ namespace Sailing_by_the_Stars
         private object[] objects;
         private Camera camera;
         private Vector2 windowSize;
+        private KeyboardState newKeyState;
+        private KeyboardState oldKeyState;
+        private MouseState mouseState;
+
         public UserInput(MainGame game)
         {
             this.game = game;
@@ -24,43 +28,64 @@ namespace Sailing_by_the_Stars
 
         public void update()
         {
+            newKeyState = Keyboard.GetState();
+            mouseState = Mouse.GetState();
             if (game.gameState == MainGame.GameState.InGamePlay)
             {
-                keyboardShortcut();
+                InGameKeyboardShortcuts();
                 cameraControl();
                 densityControl();
             }
             else if (game.gameState == MainGame.GameState.InGamePause)
             {
-                keyboardShortcut();
+                InGameKeyboardShortcuts();
                 cameraControl();
                 densityControl();
             }
             else if (game.gameState == MainGame.GameState.MainMenu)
             {
-                keyboardShortcut();
+                MainMenuKeyboardShortcuts();
             }
             else if (game.gameState == MainGame.GameState.GameWin)
             {
-                keyboardShortcut();
+                GameOverKeyboardShortcuts();
             }
             else if (game.gameState == MainGame.GameState.TitleScreen)
             {
                 clickToContinue();
             }
+            oldKeyState = newKeyState;
+        }
+        private void InGameKeyboardShortcuts()
+        {
+            Shortcut_P();
+            Shortcut_Ctrl_S();
+            Shortcut_Ctrl_L();
+            Shortcut_Ctrl_N();
+            Shortcut_Ctrl_M();
+            Shortcut_Ctrl_H();
+        }
+        private void MainMenuKeyboardShortcuts()
+        {
+            Shortcut_Ctrl_L();
+            Shortcut_Ctrl_N();
+            Shortcut_Ctrl_M();
+        }
+
+        private void GameOverKeyboardShortcuts()
+        {
+            Shortcut_Ctrl_M();
+            Shortcut_Ctrl_N();
         }
 
         private void clickToContinue()
         {
-            var mouseState = Mouse.GetState();
             if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed || mouseState.RightButton == ButtonState.Pressed))
             {
                 game.gameState = MainGame.GameState.MainMenu;
             }
 
         }
-
-
 
         private void cameraControl()
         {
@@ -115,107 +140,105 @@ namespace Sailing_by_the_Stars
         //Keyboard camera control, both arrow keys and WASD for panning; +/- and Q/E for zoom
 
         private int keyboardPanSpeed = 50;
-        private float keyboardZoomSpeed = 0.01f;
+        private float keyboardZoomSpeed = 0.005f;
         private void keyboardCameraControl()
         {
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Left) || keyboardState.IsKeyDown(Keys.A))
+            if (newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl))
+            {
+                return;
+            }
+            if (newKeyState.IsKeyDown(Keys.Left) || newKeyState.IsKeyDown(Keys.A))
             {
                 Vector2 pan = new Vector2(keyboardPanSpeed, 0);
                 camera.Move(pan);
             }
-            if (keyboardState.IsKeyDown(Keys.Right) || keyboardState.IsKeyDown(Keys.D))
+            if (newKeyState.IsKeyDown(Keys.Right) || newKeyState.IsKeyDown(Keys.D))
             {
                 Vector2 pan = new Vector2(-keyboardPanSpeed, 0);
                 camera.Move(pan);
             }
-            if (keyboardState.IsKeyDown(Keys.Up) || keyboardState.IsKeyDown(Keys.W))
+            if (newKeyState.IsKeyDown(Keys.Up) || newKeyState.IsKeyDown(Keys.W))
             {
                 Vector2 pan = new Vector2(0, keyboardPanSpeed);
                 camera.Move(pan);
             }
-            if (keyboardState.IsKeyDown(Keys.Down) || keyboardState.IsKeyDown(Keys.S))
+            if (newKeyState.IsKeyDown(Keys.Down) || newKeyState.IsKeyDown(Keys.S))
             {
                 Vector2 pan = new Vector2(0, -keyboardPanSpeed);
                 camera.Move(pan);
             }
 
-            if (keyboardState.IsKeyDown(Keys.OemMinus) || keyboardState.IsKeyDown(Keys.Q))
+            if (newKeyState.IsKeyDown(Keys.OemMinus) || newKeyState.IsKeyDown(Keys.Q))
             {
                 camera.SetZoom(-keyboardZoomSpeed);
             }
-            if (keyboardState.IsKeyDown(Keys.OemPlus) || keyboardState.IsKeyDown(Keys.E))
+            if (newKeyState.IsKeyDown(Keys.OemPlus) || newKeyState.IsKeyDown(Keys.E))
             {
                 camera.SetZoom(keyboardZoomSpeed);
             }
 
         }
 
-        private KeyboardState oldKeyState;
-        private void keyboardShortcut()
+        private void Shortcut_Ctrl_H()
         {
-            KeyboardState newKeyState = Keyboard.GetState();
-
-            // P for pause and resume
-            if (oldKeyState.IsKeyUp(Keys.P) && newKeyState.IsKeyDown(Keys.P))
+            // Ctrl + H to toggle HUD
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.H) && oldKeyState.IsKeyUp(Keys.H))
             {
-                if (game.gameState == MainGame.GameState.InGamePlay)
-                {
-                    game.gameState = MainGame.GameState.InGamePause;
-                }
-                else if (game.gameState == MainGame.GameState.InGamePause)
-                {
-                    game.gameState = MainGame.GameState.InGamePlay;
-                }
+                game.hudToggle();
             }
+        }
 
-            // Ctrl + S for saving game
-            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.S) && oldKeyState.IsKeyUp(Keys.S))
+        private void Shortcut_Ctrl_M()
+        {
+            // Ctrl + M for main menu
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.M) && oldKeyState.IsKeyUp(Keys.M))
             {
-                game.SaveGameToFile(@"C:\Users\Public\SavedGame");
+                if (game.gameState != MainGame.GameState.MainMenu) { game.gameState = MainGame.GameState.MainMenu; }
+                else if (game.gameState == MainGame.GameState.MainMenu) { game.gameState = MainGame.GameState.InGamePlay; }
             }
+        }
 
-            // Ctrl + L for loading game
-            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.L) && oldKeyState.IsKeyUp(Keys.L))
-            {
-                game.LoadGame(@"C:\Users\Public\SavedGame");
-                game.gameState = MainGame.GameState.InGamePlay;
-            }
-
+        private void Shortcut_Ctrl_N()
+        {
             // Ctrl + N for new game
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.N) && oldKeyState.IsKeyUp(Keys.N))
             {
                 game.LoadGame(@"C:\Users\Public\InitGame");
                 game.gameState = MainGame.GameState.InGamePlay;
             }
-
-            // Ctrl + M for main menu
-            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.M) && oldKeyState.IsKeyUp(Keys.M))
-            {
-                if (game.gameState == MainGame.GameState.InGamePlay || game.gameState == MainGame.GameState.InGamePause || game.gameState == MainGame.GameState.GameWin)
-                {
-                    game.gameState = MainGame.GameState.MainMenu;
-                }
-                else if (game.gameState == MainGame.GameState.MainMenu)
-                {
-                    game.gameState = MainGame.GameState.InGamePlay;
-                }
-            }
-
-            // Ctrl + H to toggle HUD
-            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.H) && oldKeyState.IsKeyUp(Keys.H))
-            {
-                game.hudToggle();
-            }
-
-
-            oldKeyState = newKeyState;
         }
 
+        private void Shortcut_Ctrl_L()
+        {
+            // Ctrl + L to load game
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.L) && oldKeyState.IsKeyUp(Keys.L))
+            {
+                game.LoadGame(@"C:\Users\Public\SavedGame");
+                game.gameState = MainGame.GameState.InGamePlay;
+            }
+        }
+
+        private void Shortcut_Ctrl_S()
+        {
+            // Ctrl + S to save game
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.S) && oldKeyState.IsKeyUp(Keys.S))
+            {
+                game.SaveGameToFile(@"C:\Users\Public\SavedGame");
+            }
+        }
+
+        private void Shortcut_P()
+        {
+            // P to pause and resume
+            if (oldKeyState.IsKeyUp(Keys.P) && newKeyState.IsKeyDown(Keys.P))
+            {
+                if (game.gameState == MainGame.GameState.InGamePlay) { game.gameState = MainGame.GameState.InGamePause; }
+                else if (game.gameState == MainGame.GameState.InGamePause) { game.gameState = MainGame.GameState.InGamePlay; }
+            }
+        }
 
         private void densityControl()
         {
-            var mouseState = Mouse.GetState();
             Vector2 mousePosition = new Vector2(mouseState.Position.X, mouseState.Position.Y);
             mousePosition = Vector2.Transform(mousePosition, Matrix.Invert(camera.GetTransform()));
             if (mouseState.LeftButton == ButtonState.Pressed)
@@ -227,8 +250,6 @@ namespace Sailing_by_the_Stars
                     {
                         o.Mass *= 1.05f;
                     }
-
-
                 }
             }
             if (mouseState.RightButton == ButtonState.Pressed)
