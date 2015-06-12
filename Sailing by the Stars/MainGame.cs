@@ -18,6 +18,7 @@ namespace Sailing_by_the_Stars
     {
         GraphicsDeviceManager graphics;
         Graphic g;
+        Audio audio;
         UserInput userInput;
         Physics physics;
         internal Camera Camera;
@@ -70,9 +71,10 @@ namespace Sailing_by_the_Stars
             g = new Graphic(this);
             ReadGameFromFile(null);
             g.loadSprites(allGravObjects);
+            audio = new Audio(this);
 
             userInput = new UserInput(this);
-            physics = new Physics(allGravObjects);
+            physics = new Physics(allGravObjects, audio);
         }
 
 
@@ -194,7 +196,7 @@ namespace Sailing_by_the_Stars
         public void LoadGame(string path = @"C:\Users\Public\InitGame")
         {
             ReadGameFromFile(path);
-            physics = new Physics(allGravObjects);
+            physics = new Physics(allGravObjects, audio);
             userInput = new UserInput(this);
         }
 

@@ -89,7 +89,7 @@ namespace Sailing_by_the_Stars
             // Ship class overrides this method to take real damage.
         }
 
-        internal void CheckHitByLaser()
+        internal bool CheckHitByLaser()
         {
             foreach (Laser laser in Laser.lasers)
             {
@@ -97,10 +97,10 @@ namespace Sailing_by_the_Stars
                 {
                     this.DecreaseHealth(10);
                     laser.hitTarget();
-
-                    // play sound effect for hitting
+                    return true;
                 }
             }
+            return false;
         }
 
         internal void changeDesnity()

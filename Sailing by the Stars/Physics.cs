@@ -9,9 +9,11 @@ namespace Sailing_by_the_Stars
     class Physics
     {
         private Object[] objects;
-        public Physics(Object[] allGravObjects)
+        private Audio audio;
+        public Physics(Object[] allGravObjects, Audio audio)
         {
             this.objects = allGravObjects;
+            this.audio = audio;
         }
 
         internal void update(TimeSpan deltaTime)
@@ -40,7 +42,10 @@ namespace Sailing_by_the_Stars
 
                     if (o1 != o2)
                     {
-                        (o1).CheckHitByLaser();
+                        if ((o1).CheckHitByLaser())
+                        {
+                            //audio.playExplosionFX();
+                        }
 
                         Vector2 rVector = Vector2.Subtract(o2.Position, o1.Position);
                         float r = rVector.Length();
@@ -69,6 +74,7 @@ namespace Sailing_by_the_Stars
                                 else if (!(o2 is EnemyShip) && o2 is Ship && r < Laser.range) // o2 is player ship in range
                                 {
                                     ((EnemyShip)o1).shootLaser(o2);
+                                    audio.playLaserFX();
                                 }
 
 
