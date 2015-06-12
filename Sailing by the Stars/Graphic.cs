@@ -20,7 +20,6 @@ namespace Sailing_by_the_Stars
         public Texture2D hudSprite;
         public Texture2D healthBar;
         public Texture2D bar1;
-        public Texture2D bar2;
         public Texture2D laserSprite;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
         private MainGame game;
