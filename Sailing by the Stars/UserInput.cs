@@ -58,24 +58,25 @@ namespace Sailing_by_the_Stars
         }
         private void InGameKeyboardShortcuts()
         {
-            Shortcut_P();
-            Shortcut_Ctrl_S();
-            Shortcut_Ctrl_L();
-            Shortcut_Ctrl_N();
-            Shortcut_Ctrl_M();
-            Shortcut_Ctrl_H();
+            Shortcut_P_pause();
+            Shortcut_Ctrl_S_saveGame();
+            Shortcut_Ctrl_L_loadGame();
+            Shortcut_Ctrl_N_newGame();
+            Shortcut_Ctrl_M_toggleMenu();
+            Shortcut_Ctrl_H_toggleHUD();
+            Shortcut_Ctrl_F_focusOnPlayerShip();
         }
         private void MainMenuKeyboardShortcuts()
         {
-            Shortcut_Ctrl_L();
-            Shortcut_Ctrl_N();
-            Shortcut_Ctrl_M();
+            Shortcut_Ctrl_L_loadGame();
+            Shortcut_Ctrl_N_newGame();
+            Shortcut_Ctrl_M_toggleMenu();
         }
 
         private void GameOverKeyboardShortcuts()
         {
-            Shortcut_Ctrl_M();
-            Shortcut_Ctrl_N();
+            Shortcut_Ctrl_M_toggleMenu();
+            Shortcut_Ctrl_N_newGame();
         }
 
         private void clickToContinue()
@@ -84,7 +85,6 @@ namespace Sailing_by_the_Stars
             {
                 game.gameState = MainGame.GameState.MainMenu;
             }
-
         }
 
         private void cameraControl()
@@ -176,10 +176,17 @@ namespace Sailing_by_the_Stars
             {
                 camera.SetZoom(keyboardZoomSpeed);
             }
-
         }
 
-        private void Shortcut_Ctrl_H()
+        private void Shortcut_Ctrl_F_focusOnPlayerShip()
+        {
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.F) && oldKeyState.IsKeyUp(Keys.F))
+            {
+                camera.Position = -game.s.Position; // ship is strangely not at the center
+            }
+        }
+
+        private void Shortcut_Ctrl_H_toggleHUD()
         {
             // Ctrl + H to toggle HUD
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.H) && oldKeyState.IsKeyUp(Keys.H))
@@ -188,7 +195,7 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        private void Shortcut_Ctrl_M()
+        private void Shortcut_Ctrl_M_toggleMenu()
         {
             // Ctrl + M for main menu
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.M) && oldKeyState.IsKeyUp(Keys.M))
@@ -198,7 +205,7 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        private void Shortcut_Ctrl_N()
+        private void Shortcut_Ctrl_N_newGame()
         {
             // Ctrl + N for new game
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.N) && oldKeyState.IsKeyUp(Keys.N))
@@ -208,7 +215,7 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        private void Shortcut_Ctrl_L()
+        private void Shortcut_Ctrl_L_loadGame()
         {
             // Ctrl + L to load game
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.L) && oldKeyState.IsKeyUp(Keys.L))
@@ -218,7 +225,7 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        private void Shortcut_Ctrl_S()
+        private void Shortcut_Ctrl_S_saveGame()
         {
             // Ctrl + S to save game
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.S) && oldKeyState.IsKeyUp(Keys.S))
@@ -227,7 +234,7 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        private void Shortcut_P()
+        private void Shortcut_P_pause()
         {
             // P to pause and resume
             if (oldKeyState.IsKeyUp(Keys.P) && newKeyState.IsKeyDown(Keys.P))
