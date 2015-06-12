@@ -9,6 +9,8 @@ TODO:
 
 -Create new sprite for enemy ship
 
+-Destroy enemy ships upon zero health
+
 -Implement deep space lose condition
 
 -Implement explode lose condition
