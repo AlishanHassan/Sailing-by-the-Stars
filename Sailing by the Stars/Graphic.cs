@@ -31,19 +31,19 @@ namespace Sailing_by_the_Stars
             this.game = game;
             this.Content = game.Content;
             this.spriteBatch = new SpriteBatch(game.GraphicsDevice);
-            this.menuSprite = Content.Load<Texture2D>("mainmenu");
-            this.winSprite = Content.Load<Texture2D>("win");
-            this.lose1Sprite = Content.Load<Texture2D>("loseNoHP");
-            this.lose2Sprite = Content.Load<Texture2D>("loseDeepSpace");
-            this.titleSprite = Content.Load<Texture2D>("titlescreen");
-            this.arrow = Content.Load<Texture2D>("arrow");
+            this.menuSprite = Content.Load<Texture2D>("Texture/Screen/mainmenu");
+            this.winSprite = Content.Load<Texture2D>("Texture/Screen/win");
+            this.lose1Sprite = Content.Load<Texture2D>("Texture/Screen/loseNoHP");
+            this.lose2Sprite = Content.Load<Texture2D>("Texture/Screen/loseDeepSpace");
+            this.titleSprite = Content.Load<Texture2D>("Texture/Screen/titlescreen");
+            this.arrow = Content.Load<Texture2D>("Texture/Other/arrow");
             this.planetSprites = new Texture2D[10];
             this.shipSprites = new Texture2D[2];
-            this.finishLine = Content.Load<Texture2D>("finishline");
-            this.hudSprite = Content.Load<Texture2D>("hud");
-            this.healthBar = Content.Load<Texture2D>("healthbar");
-            this.bar1 = Content.Load<Texture2D>("bar1");
-            this.laserSprite = Content.Load<Texture2D>("laser");
+            this.finishLine = Content.Load<Texture2D>("Texture/Other/finishline");
+            this.hudSprite = Content.Load<Texture2D>("Texture/Other/hud");
+            this.healthBar = Content.Load<Texture2D>("Texture/Other/healthbar");
+            this.bar1 = Content.Load<Texture2D>("Texture/Other/bar1");
+            this.laserSprite = Content.Load<Texture2D>("Texture/Other/laser");
         }
 
         internal void loadSprites(Object[] allGravObjects)
@@ -54,14 +54,14 @@ namespace Sailing_by_the_Stars
                 {
                     if (planetSprites[o.Id] == null)
                     {
-                        planetSprites[o.Id] = Content.Load<Texture2D>("planet-" + o.Id);
+                        planetSprites[o.Id] = Content.Load<Texture2D>("Texture/Planet/planet-" + o.Id);
                     }
                 }
                 else if (o is Ship)
                 {
                     if (shipSprites[o.Id] == null)
                     {
-                        shipSprites[o.Id] = Content.Load<Texture2D>("ship-" + o.Id);
+                        shipSprites[o.Id] = Content.Load<Texture2D>("Texture/Ship/ship-" + o.Id);
                     }
                 }
             }
