@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace Sailing_by_the_Stars
 {
@@ -23,6 +24,11 @@ namespace Sailing_by_the_Stars
         public Texture2D healthBar;
         public Texture2D bar1;
         public Texture2D laserSprite;
+        public Texture2D hudDirNeedle;
+        public Texture2D hudVelNeedle;
+        public Texture2D message1;
+        public Texture2D message2;
+        public Texture2D message3;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
         private MainGame game;
 
@@ -37,13 +43,18 @@ namespace Sailing_by_the_Stars
             this.lose2Sprite = Content.Load<Texture2D>("Texture/Screen/loseDeepSpace");
             this.titleSprite = Content.Load<Texture2D>("Texture/Screen/titlescreen");
             this.arrow = Content.Load<Texture2D>("Texture/Other/arrow");
-            this.planetSprites = new Texture2D[10];
+            this.planetSprites = new Texture2D[15];
             this.shipSprites = new Texture2D[2];
             this.finishLine = Content.Load<Texture2D>("Texture/Other/finishline");
             this.hudSprite = Content.Load<Texture2D>("Texture/Other/hud");
             this.healthBar = Content.Load<Texture2D>("Texture/Other/healthbar");
             this.bar1 = Content.Load<Texture2D>("Texture/Other/bar1");
             this.laserSprite = Content.Load<Texture2D>("Texture/Other/laser");
+            this.hudDirNeedle = Content.Load<Texture2D>("Texture/Other/hudDirNeedle");
+            this.hudVelNeedle = Content.Load<Texture2D>("Texture/Other/hudVelNeedle");
+            this.message1 = Content.Load<Texture2D>("Texture/Other/message1");
+            this.message2 = Content.Load<Texture2D>("Texture/Other/message2");
+            this.message3 = Content.Load<Texture2D>("Texture/Other/message3");
         }
 
         internal void loadSprites(Object[] allGravObjects)
@@ -67,7 +78,7 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        internal void drawHUD()
+        internal void drawHUD(Ship s)
         {
             spriteBatch.Begin();
             //TODO: draw the HUD here
@@ -75,9 +86,29 @@ namespace Sailing_by_the_Stars
             //hud.Draw();
             Vector2 hudLocation = new Vector2(0, 630);
             spriteBatch.Draw(hudSprite, hudLocation, Color.White);
+            spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 1050, (int)hudLocation.Y + 36, 178 * game.s.health / 100, 38), getHPColor(game.s.health));
 
-            spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 370, (int)hudLocation.Y + 30, 178 * game.s.health / 100, 38), getHPColor(game.s.health));
 
+            //needles
+
+            Vector2 dirNeedleLocation = new Vector2((int)hudLocation.X + 950 , (int)hudLocation.Y + 49);
+
+            Vector2 dirOrigin = new Vector2(hudDirNeedle.Width / 2, hudDirNeedle.Height); //rotate with respect to lower point
+            Vector2 velOrigin = new Vector2(hudVelNeedle.Width / 2, hudVelNeedle.Height); //rotate with respect to lower point
+
+            Rectangle dirRectangle = new Rectangle(0, 0, hudDirNeedle.Width, hudDirNeedle.Height);
+            Rectangle velRectangle = new Rectangle(0, 0, hudVelNeedle.Width, hudVelNeedle.Height);
+
+            Debug.WriteLine(s.VelAngle);
+
+            spriteBatch.Draw(hudDirNeedle, dirNeedleLocation, dirRectangle, Color.White, s.VelAngle, dirOrigin, 1, SpriteEffects.None, 1);
+
+            //spriteBatch.Draw(laserSprite, location, sourceRectangle, laser.Color, laser.Angle, origin, 3f, SpriteEffects.None, 1);
+            //spriteBatch.Draw(hudVelNeedle, (int)hudLocation.X + 80, (int)hudLocation.Y + 80, velRectangle, Color.White, s.VelAngle, velOrigin, 1, SpriteEffects.None, 1);
+
+
+            //health bar
+            spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
             spriteBatch.End();
         }
 
