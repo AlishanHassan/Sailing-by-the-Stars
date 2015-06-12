@@ -223,6 +223,7 @@ namespace Sailing_by_the_Stars
             {
                 game.LoadGame(@"C:\Users\Public\InitGame");
                 game.gameState = MainGame.GameState.InGamePlay;
+                game.playAudio();
             }
         }
 
@@ -233,6 +234,7 @@ namespace Sailing_by_the_Stars
             {
                 game.LoadGame(@"C:\Users\Public\SavedGame");
                 game.gameState = MainGame.GameState.InGamePlay;
+                game.playAudio();
             }
         }
 

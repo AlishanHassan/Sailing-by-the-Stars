@@ -60,6 +60,7 @@ namespace Sailing_by_the_Stars
             Camera.WindowSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             hud = new HUD();
             base.Initialize();
+            
         }
 
         /// <summary>
@@ -72,7 +73,6 @@ namespace Sailing_by_the_Stars
             ReadGameFromFile(null);
             g.loadSprites(allGravObjects);
             audio = new Audio(this);
-
             userInput = new UserInput(this);
             physics = new Physics(allGravObjects, audio);
         }
@@ -86,6 +86,19 @@ namespace Sailing_by_the_Stars
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+        }
+
+
+        public void playAudio()
+        {
+            //Debug.WriteLine(" audio is being called");
+            //Debug.WriteLine(gameState);
+            if (gameState == GameState.InGamePlay)
+            {
+                audio.stopBGM();
+                audio.playGameBGM();
+                //Debug.WriteLine("gamestate audio is being called");
+            }
         }
 
         /// <summary>

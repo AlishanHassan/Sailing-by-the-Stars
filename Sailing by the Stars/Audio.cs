@@ -15,10 +15,25 @@ namespace Sailing_by_the_Stars
         public SoundEffect explosionFX;
         public SoundEffect menuBGM;
         public SoundEffect gameBGM;
+        private SoundEffectInstance gameBGMInstance;
+
 
         public Audio(MainGame game)
         {
-            laserFX = game.Content.Load<SoundEffect>("laserFX");
+            laserFX = game.Content.Load<SoundEffect>("laserFX.wav");
+            gameBGM = game.Content.Load<SoundEffect>("gameBGM.wav");
+            gameBGMInstance = gameBGM.CreateInstance();
+        }
+
+        internal void stopBGM()
+        {           
+            gameBGMInstance.Stop();
+        }
+
+        internal void playGameBGM()
+        {
+            gameBGMInstance.IsLooped = true;
+            gameBGMInstance.Play();
         }
 
         internal void playLaserFX()
