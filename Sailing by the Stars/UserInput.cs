@@ -47,13 +47,13 @@ namespace Sailing_by_the_Stars
                 MainMenuKeyboardShortcuts();
                 if (mouseState.X > 425 && mouseState.X < 775)
                 {
-                    if (mouseState.X > 325 && mouseState.Y < 375 && mouseState.LeftButton == ButtonState.Pressed)
+                    if (mouseState.Y > 325 && mouseState.Y < 375 && mouseState.LeftButton == ButtonState.Pressed)
                     {
                         game.LoadGame(@"C:\Users\Public\InitGame");
                         game.gameState = MainGame.GameState.InGamePlay;
                         game.playAudio();
                     }
-                    if (mouseState.X > 400 && mouseState.Y < 440 && mouseState.LeftButton == ButtonState.Pressed)
+                    if (mouseState.Y > 400 && mouseState.Y < 440 && mouseState.LeftButton == ButtonState.Pressed)
                     {
                         game.LoadGame(@"C:\Users\Public\SavedGame");
                         game.gameState = MainGame.GameState.InGamePlay;
