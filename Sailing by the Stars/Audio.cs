@@ -71,11 +71,18 @@ namespace Sailing_by_the_Stars
 
         internal void playLaserFX()
         {
+            laserFXInstance.IsLooped = false;
+            laserFXInstance.Play();
             //laserFX.Play(); // no audio hardware exception: OpenAl driver not installed
 
             /*To use the NullDevice for sound, run this line somewhere before initializing your Game:
              Environment.SetEnvironmentVariable("FNA_AUDIO_DISABLE_SOUND", "1");
             */
+        }
+
+        internal void stopLaserFX()
+        {
+            laserFXInstance.Stop();
         }
 
     }

@@ -11,6 +11,7 @@ namespace Sailing_by_the_Stars
         private Vector2 thrust;
         public int difficulty;
         public Planet nearestPlanet;
+        public Audio audio;
         public float distanceToNearestPlanetSq
         {
             get
@@ -28,6 +29,7 @@ namespace Sailing_by_the_Stars
         {
             this.thrust = Vector2.Zero;
             this.difficulty = difficulty;
+            
         }
 
         internal override void Move(TimeSpan deltaTime)
@@ -75,6 +77,7 @@ namespace Sailing_by_the_Stars
             laserCoolDown = laserGunCoolDownTime;
             Laser laser = new Laser(this.Position, o2.Position);
             Laser.lasers.Add(laser);
+            
         }
     }
 }

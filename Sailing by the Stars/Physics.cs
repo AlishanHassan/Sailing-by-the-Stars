@@ -74,7 +74,7 @@ namespace Sailing_by_the_Stars
                                 else if (!(o2 is EnemyShip) && o2 is Ship && r < Laser.range) // o2 is player ship in range
                                 {
                                     ((EnemyShip)o1).shootLaser(o2);
-                                    audio.playLaserFX();
+                                    
                                 }
 
 
