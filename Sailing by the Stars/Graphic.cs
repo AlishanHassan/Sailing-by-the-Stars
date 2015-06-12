@@ -91,9 +91,9 @@ namespace Sailing_by_the_Stars
 
             //needles
 
-            Vector2 dirNeedleLocation = new Vector2((int)hudLocation.X + 80 , (int)hudLocation.Y + 80);
+            Vector2 dirNeedleLocation = new Vector2((int)hudLocation.X + 950 , (int)hudLocation.Y + 49);
 
-            Vector2 dirOrigin = new Vector2(hudDirNeedle.Width / 2, hudDirNeedle.Height / 2); //rotate with respect to center point
+            Vector2 dirOrigin = new Vector2(hudDirNeedle.Width / 2, hudDirNeedle.Height); //rotate with respect to lower point
             Vector2 velOrigin = new Vector2(hudVelNeedle.Width / 2, hudVelNeedle.Height); //rotate with respect to lower point
 
             Rectangle dirRectangle = new Rectangle(0, 0, hudDirNeedle.Width, hudDirNeedle.Height);
@@ -101,9 +101,9 @@ namespace Sailing_by_the_Stars
 
             Debug.WriteLine(s.VelAngle);
 
-            spriteBatch.Draw(hudDirNeedle, ((int)hudLocation.X + 80 , (int)hudLocation.Y + 80, dirRectangle), Color.White, s.VelAngle, dirOrigin, 1, SpriteEffects.None, 1);
+            spriteBatch.Draw(hudDirNeedle, dirNeedleLocation, dirRectangle, Color.White, s.VelAngle, dirOrigin, 1, SpriteEffects.None, 1);
 
-
+            //spriteBatch.Draw(laserSprite, location, sourceRectangle, laser.Color, laser.Angle, origin, 3f, SpriteEffects.None, 1);
             //spriteBatch.Draw(hudVelNeedle, (int)hudLocation.X + 80, (int)hudLocation.Y + 80, velRectangle, Color.White, s.VelAngle, velOrigin, 1, SpriteEffects.None, 1);
 
 
