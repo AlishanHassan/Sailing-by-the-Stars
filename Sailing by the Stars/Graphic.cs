@@ -28,6 +28,7 @@ namespace Sailing_by_the_Stars
         public Texture2D message1;
         public Texture2D message2;
         public Texture2D message3;
+        public Texture2D whiteRectangle;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
         private MainGame game;
 
@@ -54,6 +55,7 @@ namespace Sailing_by_the_Stars
             this.message1 = Content.Load<Texture2D>("Texture/Other/message1");
             this.message2 = Content.Load<Texture2D>("Texture/Other/message2");
             this.message3 = Content.Load<Texture2D>("Texture/Other/message3");
+            this.whiteRectangle = new Texture2D(game.GraphicsDevice, 1, 1);
         }
 
         internal void loadSprites(Object[] allGravObjects)
@@ -200,7 +202,10 @@ namespace Sailing_by_the_Stars
             }
             spriteBatch.Begin();
             Color color = Color.White * (menuAlpha / 255f);
-            spriteBatch.Draw(menuSprite, new Vector2(0, 0), color);
+            spriteBatch.Draw(whiteRectangle, new Rectangle(10, 20, 80, 30),
+           Color.White);
+
+            //spriteBatch.Draw(menuSprite, new Vector2(0, 0), color);
             spriteBatch.End();
         }
 
