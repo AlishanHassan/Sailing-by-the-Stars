@@ -22,16 +22,12 @@ namespace Sailing_by_the_Stars
             return "1," + base.ToString();
         }
 
-        public Boolean checkIfWon(int line)
-        {
-            return Position.X > line;
-        }
-
         protected override void DecreaseHealth(int damage)
         {
             this.health -= damage;
         }
 
+       
     }
 
 }

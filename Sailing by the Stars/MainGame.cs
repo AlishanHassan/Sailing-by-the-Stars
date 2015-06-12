@@ -24,11 +24,11 @@ namespace Sailing_by_the_Stars
         internal Camera Camera;
         HUD hud;
         Boolean hudOn = true;
-        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause, GameWin };
+        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause, GameWin, GameLoseDeepSpace, GameLoseNoHP };
         internal GameState gameState;
         internal Object[] allGravObjects;
         internal Ship s;
-        int finishline = 48000;
+        int finishLine = 48000;
 
         public MainGame()
         {
@@ -60,7 +60,7 @@ namespace Sailing_by_the_Stars
             Camera.WindowSize = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             hud = new HUD();
             base.Initialize();
-            
+
         }
 
         /// <summary>
@@ -132,10 +132,18 @@ namespace Sailing_by_the_Stars
             // TODO: Add your update logic here
             userInput.update();
 
-            if (s.checkIfWon(finishline) == true)
+            if (s.Position.X > finishLine)
             {
                 gameState = GameState.GameWin;
                 LoadGame();
+            }
+            if (s.health <= 0)
+            {
+                gameState = GameState.GameLoseNoHP;
+            }
+            if (s.Position.X > 60000 || s.Position.X < -10000 || s.Position.Y < -30000 || s.Position.Y > 30000)
+            {
+                gameState = GameState.GameLoseDeepSpace;
             }
 
             if (gameState == GameState.InGamePlay)
@@ -147,6 +155,7 @@ namespace Sailing_by_the_Stars
                 physics.updateAcceleration();
             }
 
+            // fade effect for main menu
             if (oldGameState != GameState.MainMenu && gameState == GameState.MainMenu)
             {
                 g.setFadeInMenu();
@@ -155,6 +164,7 @@ namespace Sailing_by_the_Stars
             {
                 g.setFadeOutMenu();
             }
+
             // fade effect for win
             if (oldGameState != GameState.GameWin && gameState == GameState.GameWin)
             {
@@ -165,6 +175,23 @@ namespace Sailing_by_the_Stars
                 g.setFadeOutWin();
             }
 
+            // fade effect for lose
+            if (oldGameState != GameState.GameLoseNoHP && gameState == GameState.GameLoseNoHP)
+            {
+                g.setFadeInLoseNoHP();
+            }
+            else if (oldGameState == GameState.GameLoseNoHP && gameState != GameState.GameLoseNoHP)
+            {
+                g.setFadeOutLoseNoHP();
+            }
+            if (oldGameState != GameState.GameLoseDeepSpace && gameState == GameState.GameLoseDeepSpace)
+            {
+                g.setFadeInLoseDeepSpace();
+            }
+            else if (oldGameState == GameState.GameLoseDeepSpace && gameState != GameState.GameLoseDeepSpace)
+            {
+                g.setFadeOutLoseDeepSpace();
+            }
 
             oldGameState = gameState;
 
@@ -185,7 +212,7 @@ namespace Sailing_by_the_Stars
             if (gameState == GameState.InGamePlay || gameState == GameState.InGamePause)
             {
                 g.drawAllObj(allGravObjects);
-                g.drawFinishLine(gameTime.ElapsedGameTime, finishline);
+                g.drawFinishLine(gameTime.ElapsedGameTime, finishLine);
                 if (hudOn == true)
                 {
                     g.drawHUD(); //draw this last so it's on top of the objects
@@ -205,6 +232,15 @@ namespace Sailing_by_the_Stars
             {
                 g.drawTitleScreen();
             }
+            else if (gameState == GameState.GameLoseNoHP)
+            {
+                g.drawGameLoseNoHP(gameTime.ElapsedGameTime);
+            }
+            else if (gameState == GameState.GameLoseDeepSpace)
+            {
+                g.drawGameLoseDeepSpace(gameTime.ElapsedGameTime);
+            }
+
             base.Draw(gameTime);
         }
 
@@ -256,6 +292,8 @@ namespace Sailing_by_the_Stars
                 string p7 = "0,7,1000,1250,";
                 string p8 = "0,8,1000,1500,";
                 string p9 = "0,9,1000,1500,";
+                string p10 = "0,10,1000,1500,";
+                string p11 = "0,11,1000,1500,";
                 string es = "-1,1,100,10,";
                 lines = new string[] { cameraSetting, "1,0,100,10,-2000,-360,450,0", 
                 //Tutorial part
@@ -290,8 +328,8 @@ namespace Sailing_by_the_Stars
              //    p1+"47000,-18500,0,0", p1+"47000,-19500,0,0", p1+"47000,-20500,0,0", p1+"47000,-21500,0,0",
              //    //Coming from behind
              //    p3+"-4000,-360,400,0",p3+"-4800,-460,400,0",p3+"-5600,-260,400,0",
-                 //Frozen Tundra
-                 p7+"0,6500,0,0",p7+"0,-1000,0,0",
+                 //the passage
+                 p11+"0,-10000,0,0",p11+"0,10000,0,0",
                 //Enemy ships
                 es+"11000,-3600,-300,0", es+"12000,-8500,300,0",es+"12000,7000,250,0"
                 };
