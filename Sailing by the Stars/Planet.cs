@@ -27,9 +27,10 @@ namespace Sailing_by_the_Stars
             return "0," + base.ToString();
         }
 
-        protected override void DecreaseHealth(int damage)
+        protected override bool DecreaseHealth(int damage)
         {
-            //blank
+            // planets don't have health so far
+            return true;
         }
     }
 

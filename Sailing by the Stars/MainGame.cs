@@ -215,7 +215,7 @@ namespace Sailing_by_the_Stars
                 g.drawFinishLine(gameTime.ElapsedGameTime, finishLine);
                 if (hudOn == true)
                 {
-                    g.drawHUD(); //draw this last so it's on top of the objects
+                    g.drawHUD(s); //draw this last so it's on top of the objects
                 }
                 g.drawMainMenu(gameTime.ElapsedGameTime);
 

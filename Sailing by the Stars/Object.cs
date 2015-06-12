@@ -84,17 +84,24 @@ namespace Sailing_by_the_Stars
             o2.DecreaseHealth(20);
         }
 
-        protected virtual void DecreaseHealth(int damage)
+        protected virtual bool DecreaseHealth(int damage)
         {
             // Blank. 
             // Ship class overrides this method to take real damage.
+            return true; // true for alive and false for dead
+        }
+
+        public virtual bool IsDead()
+        {
+            return false;
         }
 
         internal bool CheckHitByLaser()
         {
             foreach (Laser laser in Laser.lasers)
             {
-                if (Physics.distanceSq(laser.Position, this.Position) < this.Radius * this.Radius - 100)
+                if (Physics.distanceSq(laser.HitBoxLocation1, this.Position) < this.Radius * this.Radius - 100 ||
+                    Physics.distanceSq(laser.HitBoxLocation2, this.Position) < this.Radius * this.Radius + 100)
                 {
                     this.DecreaseHealth(10);
                     laser.hitTarget();

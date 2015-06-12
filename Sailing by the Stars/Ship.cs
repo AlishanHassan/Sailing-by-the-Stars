@@ -22,12 +22,17 @@ namespace Sailing_by_the_Stars
             return "1," + base.ToString();
         }
 
-        protected override void DecreaseHealth(int damage)
+        protected override bool DecreaseHealth(int damage)
         {
             this.health -= damage;
+            return this.health > 0;
         }
 
-       
+        public override bool IsDead()
+        {
+            return this.health <= 0;
+        }
+
     }
 
 }

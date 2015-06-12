@@ -11,8 +11,24 @@ namespace Sailing_by_the_Stars
     {
         internal static float duration = 0.5f;
         internal static int range = 2000;
+        internal static int laserLength = 100;
+        internal static float laserScale = 3;
         private float timeLeft = duration; //seconds
         internal Vector2 Position;
+        internal Vector2 HitBoxLocation1
+        {
+            get
+            {
+                return Position;
+            }
+        }
+        internal Vector2 HitBoxLocation2
+        {
+            get
+            {
+                return Position + Direction * laserLength * laserScale;
+            }
+        }
         internal Vector2 Direction;
         internal float Angle;
         private Color color;
