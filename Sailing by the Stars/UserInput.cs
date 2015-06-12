@@ -136,6 +136,11 @@ namespace Sailing_by_the_Stars
             {               
                 camera.SetZoom(-mouseZoomSpeed);
             }
+            if (mainMouseState.MiddleButton == ButtonState.Pressed)
+            {
+                camera.Position = -game.s.Position; // ship is strangely not at the center
+                camera.DefaultZoom();
+            }
 
             prevMouseState = mainMouseState;         
 
