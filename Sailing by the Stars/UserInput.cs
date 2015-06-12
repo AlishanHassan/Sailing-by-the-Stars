@@ -94,12 +94,14 @@ namespace Sailing_by_the_Stars
         }
 
         private int mousePanSpeed = 30;
+        private float mouseZoomSpeed = 0.01f;
+        private MouseState prevMouseState;
         private void mouseCameraControl()
         {
             //basic camera control
             //might want to clean this up with its own class for the final build
 
-            var mainMouseState = Mouse.GetState();
+            MouseState mainMouseState = Mouse.GetState();
             //var mousePosition = new Point(mouseState.X, mouseState.Y);
             if (mainMouseState.X < 0 || mainMouseState.X > windowSize.X || mainMouseState.Y < 0 || mainMouseState.Y > windowSize.Y)
             {
@@ -126,13 +128,21 @@ namespace Sailing_by_the_Stars
                 Vector2 pan = new Vector2(0, mousePanSpeed);
                 camera.Move(pan);
             }
-
-            /*
-            if (mainMouseState.ScrollWheelValue > 0)
+            if (mainMouseState.ScrollWheelValue > prevMouseState.ScrollWheelValue)
             {
-                Camera.SetZoom(.01f);
+                camera.SetZoom(mouseZoomSpeed);
             }
-             */
+            if (mainMouseState.ScrollWheelValue < prevMouseState.ScrollWheelValue)
+            {               
+                camera.SetZoom(-mouseZoomSpeed);
+            }
+            if (mainMouseState.MiddleButton == ButtonState.Pressed)
+            {
+                camera.Position = -game.s.Position; // ship is strangely not at the center
+                camera.DefaultZoom();
+            }
+
+            prevMouseState = mainMouseState;         
 
             //Debug.WriteLine(mainMouseState.ScrollWheelValue);
         }
@@ -183,6 +193,7 @@ namespace Sailing_by_the_Stars
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.F) && oldKeyState.IsKeyUp(Keys.F))
             {
                 camera.Focus(game.s.Position);
+                camera.DefaultZoom();
             }
         }
 
