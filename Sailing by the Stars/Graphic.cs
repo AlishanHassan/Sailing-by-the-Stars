@@ -13,6 +13,8 @@ namespace Sailing_by_the_Stars
         public Texture2D arrow;
         public Texture2D menuSprite;
         public Texture2D winSprite;
+        public Texture2D lose1Sprite;
+        public Texture2D lose2Sprite;
         public Texture2D titleSprite;
         public Texture2D[] planetSprites;
         public Texture2D[] shipSprites;
@@ -31,6 +33,8 @@ namespace Sailing_by_the_Stars
             this.spriteBatch = new SpriteBatch(game.GraphicsDevice);
             this.menuSprite = Content.Load<Texture2D>("mainmenu");
             this.winSprite = Content.Load<Texture2D>("win");
+            this.lose1Sprite = Content.Load<Texture2D>("loseNoHP");
+            this.lose2Sprite = Content.Load<Texture2D>("loseDeepSpace");
             this.titleSprite = Content.Load<Texture2D>("titlescreen");
             this.arrow = Content.Load<Texture2D>("arrow");
             this.planetSprites = new Texture2D[10];
@@ -190,6 +194,39 @@ namespace Sailing_by_the_Stars
             spriteBatch.End();
         }
 
+        internal void drawTitleScreen()
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(titleSprite, new Vector2(0, 0));
+            spriteBatch.End();
+        }
+
+
+        int lineAlpha = 1;
+        int lineFadeIncrement = 12;
+        double lineFadeDelay = .035;
+        internal void drawFinishLine(TimeSpan elapsedTime, int linePosition)
+        {
+
+            lineFadeDelay -= elapsedTime.TotalSeconds;
+            if (lineFadeDelay <= 0)
+            {
+                lineFadeDelay = .035;
+                lineAlpha += lineFadeIncrement;
+                if (lineAlpha < 0 || lineAlpha > 255) { lineFadeIncrement *= -1; }
+            }
+
+            var screenScale = game.GetScreenScale();
+            var viewMatrix = game.Camera.GetTransform();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
+                                           null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
+            Color color = Color.White * (lineAlpha / 255f);
+            spriteBatch.Draw(finishLine, new Rectangle(linePosition - 150, -12000, 300, 24000), color);
+            spriteBatch.End();
+        }
+
+
+
         int winAlpha = 1;
         int winFadeIncrement = 6;
         double winFadeDelay = .035;
@@ -221,34 +258,65 @@ namespace Sailing_by_the_Stars
             spriteBatch.End();
         }
 
-        internal void drawTitleScreen()
+        int lose1Alpha = 1;
+        int lose1FadeIncrement = 6;
+        double lose1FadeDelay = .035;
+        internal void setFadeInLoseNoHP()
         {
+            lose1Alpha = 1;
+            lose1FadeIncrement = 6;
+        }
+        internal void setFadeOutLoseNoHP()
+        {
+            lose1FadeIncrement = -12;
+        }
+        internal void drawGameLoseNoHP(TimeSpan elapsedTime)
+        {
+            if (lose1Alpha < 0)
+            {
+                return;
+            }
+
+            lose1FadeDelay -= elapsedTime.TotalSeconds;
+            if (lose1FadeDelay <= 0)
+            {
+                lose1FadeDelay = .035;
+                lose1Alpha += lose1FadeIncrement;
+            }
             spriteBatch.Begin();
-            spriteBatch.Draw(titleSprite, new Vector2(0, 0));
+            Color color = Color.White * (lose1Alpha / 255f);
+            spriteBatch.Draw(lose1Sprite, new Vector2(0, 0), color);
             spriteBatch.End();
         }
 
-
-        int lineAlpha = 1;
-        int lineFadeIncrement = 12;
-        double lineFadeDelay = .035;
-        internal void drawFinishLine(TimeSpan elapsedTime, int linePosition)
+        int lose2Alpha = 1;
+        int lose2FadeIncrement = 6;
+        double lose2FadeDelay = .035;
+        internal void setFadeInLoseDeepSpace()
         {
-
-            lineFadeDelay -= elapsedTime.TotalSeconds;
-            if (lineFadeDelay <= 0)
+            lose2Alpha = 1;
+            lose2FadeIncrement = 6;
+        }
+        internal void setFadeOutLoseDeepSpace()
+        {
+            lose2FadeIncrement = -12;
+        }
+        internal void drawGameLoseDeepSpace(TimeSpan elapsedTime)
+        {
+            if (lose2Alpha < 0)
             {
-                lineFadeDelay = .035;
-                lineAlpha += lineFadeIncrement;
-                if (lineAlpha < 0 || lineAlpha > 255) { lineFadeIncrement *= -1; }
+                return;
             }
 
-            var screenScale = game.GetScreenScale();
-            var viewMatrix = game.Camera.GetTransform();
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied,
-                                           null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
-            Color color = Color.White * (lineAlpha / 255f);
-            spriteBatch.Draw(finishLine, new Rectangle(linePosition - 150, -12000, 300, 24000), color);
+            lose2FadeDelay -= elapsedTime.TotalSeconds;
+            if (lose2FadeDelay <= 0)
+            {
+                lose2FadeDelay = .035;
+                lose2Alpha += lose2FadeIncrement;
+            }
+            spriteBatch.Begin();
+            Color color = Color.White * (lose2Alpha / 255f);
+            spriteBatch.Draw(lose2Sprite, new Vector2(0, 0), color);
             spriteBatch.End();
         }
 
