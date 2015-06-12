@@ -28,6 +28,7 @@ namespace Sailing_by_the_Stars
         {
             this.thrust = Vector2.Zero;
             this.difficulty = difficulty;
+
         }
 
         internal override void Move(TimeSpan deltaTime)
@@ -66,15 +67,16 @@ namespace Sailing_by_the_Stars
 
         private static float laserGunCoolDownTime = 3;
         private float laserCoolDown = 0;
-        internal void shootLaser(Object o2)
+        internal bool shootLaser(Object o2)
         {
             if (laserCoolDown > 0) // still cooling down
             {
-                return;
+                return false;
             }
             laserCoolDown = laserGunCoolDownTime;
             Laser laser = new Laser(this.Position, o2.Position);
             Laser.lasers.Add(laser);
+            return true;
         }
     }
 }

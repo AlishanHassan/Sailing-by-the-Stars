@@ -58,16 +58,50 @@ namespace Sailing_by_the_Stars
             gameBGMInstance.IsLooped = true;
             gameBGMInstance.Play();
         }
+
+        internal void pauseGameBGM()
+        {
+            gameBGMInstance.Pause();
+        }
       
+        internal void resumeGameBGM()
+        {
+            gameBGMInstance.Resume();
+        }
 
         internal void playLaserFX()
         {
-            //laserFX.Play(); // no audio hardware exception: OpenAl driver not installed
-
-            /*To use the NullDevice for sound, run this line somewhere before initializing your Game:
-             Environment.SetEnvironmentVariable("FNA_AUDIO_DISABLE_SOUND", "1");
-            */
+            laserFXInstance.IsLooped = false;
+            laserFXInstance.Play();
         }
+        
+        internal void stopLaserFX()
+        {
+            laserFXInstance.Stop();
+        }
+
+        internal void playCollideFX()
+        {
+            collideFXInstance.IsLooped = false;
+            collideFXInstance.Play();
+        }
+
+        internal void stopCollideFX()
+        {
+            collideFXInstance.Stop();
+        }
+
+        internal void playExplosionFX()
+        {
+            explosionFXInstance.IsLooped = false;
+            explosionFXInstance.Play();
+        }
+
+        internal void stopExplosionFX()
+        {
+            explosionFXInstance.Stop();
+        }
+
 
     }
 }

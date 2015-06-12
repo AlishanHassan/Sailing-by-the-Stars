@@ -75,6 +75,7 @@ namespace Sailing_by_the_Stars
             audio = new Audio(this);
             userInput = new UserInput(this);
             physics = new Physics(allGravObjects, audio);
+            playAudio();
         }
 
 
@@ -99,6 +100,26 @@ namespace Sailing_by_the_Stars
                 audio.playGameBGM();
                 //Debug.WriteLine("gamestate audio is being called");
             }
+            if (gameState == GameState.TitleScreen)
+            {
+                audio.stopBGM();
+                audio.playMenuBGM();
+            }
+            if (gameState == GameState.MainMenu) //might need to account for a few more conditions, we don't want to call this if the menu is entered from InGamePlay
+            {
+                audio.stopBGM();
+                audio.playMenuBGM();
+            }
+        }
+
+        public void pauseGameBGM()
+        {
+            audio.pauseGameBGM();
+        }
+
+        public void resumeGameBGM()
+        {
+            audio.resumeGameBGM();
         }
 
         /// <summary>

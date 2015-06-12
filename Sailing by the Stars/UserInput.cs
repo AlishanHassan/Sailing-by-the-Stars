@@ -211,7 +211,8 @@ namespace Sailing_by_the_Stars
             // Ctrl + M for main menu
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.M) && oldKeyState.IsKeyUp(Keys.M))
             {
-                if (game.gameState != MainGame.GameState.MainMenu) { game.gameState = MainGame.GameState.MainMenu; }
+                if (game.gameState != MainGame.GameState.MainMenu) 
+                { game.gameState = MainGame.GameState.MainMenu; }
                 else if (game.gameState == MainGame.GameState.MainMenu) { game.gameState = MainGame.GameState.InGamePlay; }
             }
         }
@@ -252,8 +253,16 @@ namespace Sailing_by_the_Stars
             // P to pause and resume
             if (oldKeyState.IsKeyUp(Keys.P) && newKeyState.IsKeyDown(Keys.P))
             {
-                if (game.gameState == MainGame.GameState.InGamePlay) { game.gameState = MainGame.GameState.InGamePause; }
-                else if (game.gameState == MainGame.GameState.InGamePause) { game.gameState = MainGame.GameState.InGamePlay; }
+                if (game.gameState == MainGame.GameState.InGamePlay) 
+                { 
+                    game.gameState = MainGame.GameState.InGamePause;
+                    game.pauseGameBGM();
+                }
+                else if (game.gameState == MainGame.GameState.InGamePause) 
+                { 
+                    game.gameState = MainGame.GameState.InGamePlay;
+                    game.resumeGameBGM();
+                }
             }
         }
 
