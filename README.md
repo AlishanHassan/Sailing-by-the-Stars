@@ -26,3 +26,5 @@ TODO:
 -Add asteroids - effectively small planets with initial velocity (if time permits)
 
 -Add radar to HUD (if time permits, low priority)
+
+-Create another explosion sound effect for when laser hits ship (probably short and low pitch)
