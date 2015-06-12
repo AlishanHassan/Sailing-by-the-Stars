@@ -22,7 +22,7 @@ namespace Sailing_by_the_Stars
         {
             get
             {
-                float a = (1 - Math.Abs(1 - 2 * timeLeft / duration));
+                //float a = (1 - Math.Abs(1 - 2 * timeLeft / duration));
                 return this.color;
             }
         }
@@ -45,6 +45,11 @@ namespace Sailing_by_the_Stars
                 ls.Position += ls.Direction * (float)elapsedTime.TotalSeconds / duration * range;
                 if (lasers[i].timeLeft < 0) { lasers.RemoveAt(i); }
             }
+        }
+
+        public void hitTarget()
+        {
+            this.timeLeft = 0;
         }
 
 

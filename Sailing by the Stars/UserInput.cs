@@ -225,7 +225,6 @@ namespace Sailing_by_the_Stars
                     if (o.Mass < o.OriginalMass * 6 &&
                         (mousePosition.X - o.Position.X) * (mousePosition.X - o.Position.X) + (mousePosition.Y - o.Position.Y) * (mousePosition.Y - o.Position.Y) <= o.Radius * o.Radius)
                     {
-
                         o.Mass *= 1.05f;
                     }
 

@@ -64,7 +64,7 @@ namespace Sailing_by_the_Stars
             return "-" + base.ToString() + "," + difficulty;
         }
 
-        
+        private static float laserGunCoolDownTime = 3;
         private float laserCoolDown = 0;
         internal void shootLaser(Object o2)
         {
@@ -72,8 +72,8 @@ namespace Sailing_by_the_Stars
             {
                 return;
             }
-            laserCoolDown = 3;
-            Laser laser = new Laser(this.Position,o2.Position);
+            laserCoolDown = laserGunCoolDownTime;
+            Laser laser = new Laser(this.Position, o2.Position);
             Laser.lasers.Add(laser);
         }
     }

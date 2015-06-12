@@ -85,7 +85,22 @@ namespace Sailing_by_the_Stars
 
         protected virtual void DecreaseHealth(int damage)
         {
-            //blank
+            // Blank. 
+            // Ship class overrides this method to take real damage.
+        }
+
+        internal void CheckHitByLaser()
+        {
+            foreach (Laser laser in Laser.lasers)
+            {
+                if (Physics.distanceSq(laser.Position, this.Position) < this.Radius * this.Radius - 100)
+                {
+                    this.DecreaseHealth(10);
+                    laser.hitTarget();
+
+                    // play sound effect for hitting
+                }
+            }
         }
 
         internal void changeDesnity()

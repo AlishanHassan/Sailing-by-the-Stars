@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -41,6 +40,8 @@ namespace Sailing_by_the_Stars
 
                     if (o1 != o2)
                     {
+                        (o1).CheckHitByLaser();
+
                         Vector2 rVector = Vector2.Subtract(o2.Position, o1.Position);
                         float r = rVector.Length();
                         Vector2 rNormalized = rVector / r;
@@ -61,15 +62,11 @@ namespace Sailing_by_the_Stars
                                     ((EnemyShip)o1).creatThrust(diff / closeDistance * (-rVector));
                                 }
 
-                                if (o2 is Planet && rSquared < ((EnemyShip)o1).distanceToNearestPlanetSq)
+                                if (o2 is Planet && rSquared < ((EnemyShip)o1).distanceToNearestPlanetSq) // o2 is nearest planet
                                 {
                                     ((EnemyShip)o1).nearestPlanet = (Planet)o2;
                                 }
-                                else if (
-                                    !(o2 is EnemyShip) &&
-                                    o2 is Ship
-                                    && r < Laser.range
-                                    )
+                                else if (!(o2 is EnemyShip) && o2 is Ship && r < Laser.range) // o2 is player ship in range
                                 {
                                     ((EnemyShip)o1).shootLaser(o2);
                                 }
@@ -85,6 +82,10 @@ namespace Sailing_by_the_Stars
 
                 o1.Acceleration = netAcceleration;
             }
+        }
+        internal static float distanceSq(Vector2 pos1, Vector2 pos2)
+        {
+            return (pos1.X - pos2.X) * (pos1.X - pos2.X) + (pos1.Y - pos2.Y) * (pos1.Y - pos2.Y);
         }
 
     }
