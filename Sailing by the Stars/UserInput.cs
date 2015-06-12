@@ -182,7 +182,7 @@ namespace Sailing_by_the_Stars
         {
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.F) && oldKeyState.IsKeyUp(Keys.F))
             {
-                camera.Position = -game.s.Position; // ship is strangely not at the center
+                camera.Focus(game.s.Position);
             }
         }
 

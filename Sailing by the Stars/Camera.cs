@@ -62,6 +62,11 @@ namespace Sailing_by_the_Stars
             return WindowSize.X + "," + WindowSize.Y + "," + Origin.X + "," + Origin.Y + "," + Position.X + "," + Position.Y + "," + Rotation + "," + Zoom;
         }
 
+
+        internal void Focus(Vector2 pos)
+        {
+            this.Position = -pos - new Vector2(WindowSize.X / 2, WindowSize.Y / 2);
+        }
     }
 }
 
