@@ -53,7 +53,7 @@ namespace Sailing_by_the_Stars
             Position += Velocity * (float)deltaTime.TotalSeconds;
         }
 
-        internal static void CheckCollision(Object o1, Object o2)
+        internal static bool CheckCollision(Object o1, Object o2)
         {
             Vector2 r = Vector2.Subtract(o2.Position, o1.Position);
             if (r.Length() < o1.Radius + o2.Radius)
@@ -63,8 +63,9 @@ namespace Sailing_by_the_Stars
                 o2.Position = o2.PreviousPosition;
                 // bounce
                 Bounce(o1, o2);
+                return true;
             }
-
+            return false;
         }
 
         internal static void Bounce(Object o1, Object o2)

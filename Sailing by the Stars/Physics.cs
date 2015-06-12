@@ -56,7 +56,10 @@ namespace Sailing_by_the_Stars
                         {
                             Vector2 acc = 100000F * o2.Mass * rNormalized / (float)rSquared;
                             netAcceleration += acc;
-                            Object.CheckCollision(o1, o2);
+                            if (Object.CheckCollision(o1, o2))
+                            {
+                                audio.playCollideFX();
+                            }
 
                             if (o1 is EnemyShip)
                             {
