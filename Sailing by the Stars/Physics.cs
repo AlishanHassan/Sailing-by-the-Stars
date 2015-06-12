@@ -24,6 +24,10 @@ namespace Sailing_by_the_Stars
             // move
             foreach (Object o in objects)
             {
+                if (o.IsDead())
+                {
+                    continue;
+                }
                 o.Move(deltaTime);
             }
 
@@ -34,61 +38,79 @@ namespace Sailing_by_the_Stars
 
         internal void updateAcceleration()
         {
+
             foreach (Object o1 in objects)
             {
+                if (o1.IsDead()) // esp. the enemy ship is gone
+                {
+                    continue;
+                }
+
+                if ((o1).CheckHitByLaser())
+                {
+                    audio.playExplosionFX();
+                }
+
                 Vector2 netAcceleration = Vector2.Zero;
                 foreach (Object o2 in objects)
                 {
-
-                    if (o1 != o2)
+                    if (o2.IsDead()) // the enemy ship is gone
                     {
-                        if ((o1).CheckHitByLaser())
+                        continue;
+                    }
+                    if (o1 == o2) // same obj
+                    {
+                        continue;
+                    }
+
+                    // gravity force
+                    Vector2 rVector = Vector2.Subtract(o2.Position, o1.Position);
+                    float r = rVector.Length();
+                    Vector2 rNormalized = rVector / r;
+                    double rSquared = r * r;
+
+                    if (r < 25600) //  close to each other
+                    {
+                        Vector2 acc = 100000F * o2.Mass * rNormalized / (float)rSquared;
+                        netAcceleration += acc;
+                        if (Object.CheckCollision(o1, o2))
                         {
-                            audio.playExplosionFX();
+                            audio.playCollideFX();
                         }
 
-                        Vector2 rVector = Vector2.Subtract(o2.Position, o1.Position);
-                        float r = rVector.Length();
-                        Vector2 rNormalized = rVector / r;
-                        double rSquared = r * r;
-
-                        if (r < 25600) //  close to each other
+                        // AI for enemy ship
+                        if (o1 is EnemyShip)
                         {
-                            Vector2 acc = 100000F * o2.Mass * rNormalized / (float)rSquared;
-                            netAcceleration += acc;
-                            if (Object.CheckCollision(o1, o2))
+                            float surfaceDistance = r - o1.Radius - o2.Radius;
+                            float diff = closeDistance - surfaceDistance;
+
+                            // keep away from planets
+                            if (diff > 0)
                             {
-                                audio.playCollideFX();
+                                ((EnemyShip)o1).creatThrust(diff / closeDistance * (-rVector));
                             }
 
-                            if (o1 is EnemyShip)
+                            // go to the nearest planet
+                            if (o2 is Planet && rSquared < ((EnemyShip)o1).distanceToNearestPlanetSq) // o2 is nearest planet
                             {
-                                float surfaceDistance = r - o1.Radius - o2.Radius;
-                                float diff = closeDistance - surfaceDistance;
-                                if (diff > 0)
+                                ((EnemyShip)o1).nearestPlanet = (Planet)o2;
+                            }
+
+                            // attack the player ship
+                            else if (!(o2 is EnemyShip) && o2 is Ship && r < Laser.range) // o2 is player ship in range
+                            {
+                                if (((EnemyShip)o1).shootLaser(o2))
                                 {
-                                    ((EnemyShip)o1).creatThrust(diff / closeDistance * (-rVector));
+                                    audio.playLaserFX();
                                 }
-
-                                if (o2 is Planet && rSquared < ((EnemyShip)o1).distanceToNearestPlanetSq) // o2 is nearest planet
-                                {
-                                    ((EnemyShip)o1).nearestPlanet = (Planet)o2;
-                                }
-                                else if (!(o2 is EnemyShip) && o2 is Ship && r < Laser.range) // o2 is player ship in range
-                                {
-                                    if (((EnemyShip)o1).shootLaser(o2))
-                                    {
-                                        audio.playLaserFX();
-                                    }
-                                }
+                            }
 
 
-                            }// end if enemy ship
+                        }// end if enemy ship
 
-                        } //end if near
+                    } //end if near
 
 
-                    }
                 }// end foreach o2
 
                 o1.Acceleration = netAcceleration;

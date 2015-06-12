@@ -28,7 +28,7 @@ namespace Sailing_by_the_Stars
         {
             this.thrust = Vector2.Zero;
             this.difficulty = difficulty;
-
+            this.laserCoolDown = 0;
         }
 
         internal override void Move(TimeSpan deltaTime)
@@ -69,7 +69,7 @@ namespace Sailing_by_the_Stars
         private float laserCoolDown = 0;
         internal bool shootLaser(Object o2)
         {
-            if (laserCoolDown > 0) // still cooling down
+            if (this.laserCoolDown > 0) // still cooling down
             {
                 return false;
             }

@@ -89,6 +89,10 @@ namespace Sailing_by_the_Stars
                                            null, null, null, null, viewMatrix * Matrix.CreateScale(screenScale));
             foreach (Object o in allGravObjects)
             {
+                if (o.IsDead())
+                {
+                    continue;
+                }
                 if (o is Planet)
                 {
                     drawPlanet((Planet)o);
@@ -157,7 +161,7 @@ namespace Sailing_by_the_Stars
                 Vector2 location = laser.Position;
                 Rectangle sourceRectangle = new Rectangle(0, 0, laserSprite.Width, laserSprite.Height);
                 Vector2 origin = new Vector2(laserSprite.Width / 2, laserSprite.Height); //rotate with respect to the bottom-middle point
-                spriteBatch.Draw(laserSprite, location, sourceRectangle, laser.Color, laser.Angle, origin, 3f, SpriteEffects.None, 1);
+                spriteBatch.Draw(laserSprite, location, sourceRectangle, laser.Color, laser.Angle, origin, Laser.laserScale, SpriteEffects.None, 1);
             }
         }
 
