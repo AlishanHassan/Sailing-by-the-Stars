@@ -58,7 +58,16 @@ namespace Sailing_by_the_Stars
             gameBGMInstance.IsLooped = true;
             gameBGMInstance.Play();
         }
+
+        internal void pauseGameBGM()
+        {
+            gameBGMInstance.Pause();
+        }
       
+        internal void resumeGameBGM()
+        {
+            gameBGMInstance.Resume();
+        }
 
         internal void playLaserFX()
         {
