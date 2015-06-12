@@ -25,11 +25,11 @@ namespace Sailing_by_the_Stars
         public Audio(MainGame game)
         {
             //load sound
-            menuBGM = game.Content.Load<SoundEffect>("menuBGM.wav");
-            gameBGM = game.Content.Load<SoundEffect>("gameBGM.wav");   
-            laserFX = game.Content.Load<SoundEffect>("laserFX.wav");
-            collideFX = game.Content.Load<SoundEffect>("collideFX.wav");
-            explosionFX = game.Content.Load<SoundEffect>("explosionFX.wav");
+            menuBGM = game.Content.Load<SoundEffect>("Audio/menuBGM.wav");
+            gameBGM = game.Content.Load<SoundEffect>("Audio/gameBGM.wav");   
+            laserFX = game.Content.Load<SoundEffect>("Audio/laserFX.wav");
+            collideFX = game.Content.Load<SoundEffect>("Audio/collideFX.wav");
+            explosionFX = game.Content.Load<SoundEffect>("Audio/explosionFX.wav");
 
 
             //create instances

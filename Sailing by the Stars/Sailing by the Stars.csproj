@@ -103,103 +103,103 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\WindowsGL\Debug\Sailing by the Stars.vshost.exe" />
-    <Content Include="Content\arrow.png">
+    <Content Include="Content\Texture\Other\arrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\bar1.png">
+    <Content Include="Content\Texture\Other\bar1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\CollideFX.wav">
+    <Content Include="Content\Audio\CollideFX.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ExplosionFX.wav">
+    <Content Include="Content\Audio\ExplosionFX.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\finishline.png">
+    <Content Include="Content\Texture\Other\finishline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\gameBGM.wav">
+    <Content Include="Content\Audio\gameBGM.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\healthbar.png">
+    <Content Include="Content\Texture\Other\healthbar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\hud.png">
+    <Content Include="Content\Texture\Other\hud.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\laser.png">
+    <Content Include="Content\Texture\Other\laser.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\LaserFX.wav">
+    <Content Include="Content\Audio\LaserFX.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\loseDeepSpace.png">
+    <Content Include="Content\Texture\Screen\loseDeepSpace.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\loseNoHP.png">
+    <Content Include="Content\Texture\Screen\loseNoHP.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\mainmenu.png">
+    <Content Include="Content\Texture\Screen\mainmenu.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\menuBGM.wav">
+    <Content Include="Content\Audio\menuBGM.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-0.png">
+    <Content Include="Content\Texture\Planet\planet-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-10.png">
+    <Content Include="Content\Texture\Planet\planet-10.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-11.png">
+    <Content Include="Content\Texture\Planet\planet-11.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-12.png">
+    <Content Include="Content\Texture\Planet\planet-12.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-13.png">
+    <Content Include="Content\Texture\Planet\planet-13.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-14.png">
+    <Content Include="Content\Texture\Planet\planet-14.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-2.png">
+    <Content Include="Content\Texture\Planet\planet-2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-1.png">
+    <Content Include="Content\Texture\Planet\planet-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-3.png">
+    <Content Include="Content\Texture\Planet\planet-3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-4.png">
+    <Content Include="Content\Texture\Planet\planet-4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-5.png">
+    <Content Include="Content\Texture\Planet\planet-5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-6.png">
+    <Content Include="Content\Texture\Planet\planet-6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-7.png">
+    <Content Include="Content\Texture\Planet\planet-7.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-8.png">
+    <Content Include="Content\Texture\Planet\planet-8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\planet-9.png">
+    <Content Include="Content\Texture\Planet\planet-9.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ship-0.png">
+    <Content Include="Content\Texture\Ship\ship-0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\ship-1.png">
+    <Content Include="Content\Texture\Ship\ship-1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\titlescreen.png">
+    <Content Include="Content\Texture\Screen\titlescreen.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\win.png">
+    <Content Include="Content\Texture\Screen\win.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico">
