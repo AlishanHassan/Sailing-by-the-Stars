@@ -10,24 +10,47 @@ namespace Sailing_by_the_Stars
 {
     class Audio
     {
+        public SoundEffect menuBGM;
+        private SoundEffect gameBGM;
         private SoundEffect laserFX;
         public SoundEffect collideFX;
         public SoundEffect explosionFX;
-        public SoundEffect menuBGM;
-        public SoundEffect gameBGM;
-        private SoundEffectInstance gameBGMInstance;
 
+        private SoundEffectInstance menuBGMInstance;
+        private SoundEffectInstance gameBGMInstance;
+        private SoundEffectInstance laserFXInstance;
+        private SoundEffectInstance collideFXInstance;
+        private SoundEffectInstance explosionFXInstance;
 
         public Audio(MainGame game)
         {
+            //load sound
+            menuBGM = game.Content.Load<SoundEffect>("menuBGM.wav");
+            gameBGM = game.Content.Load<SoundEffect>("gameBGM.wav");   
             laserFX = game.Content.Load<SoundEffect>("laserFX.wav");
-            gameBGM = game.Content.Load<SoundEffect>("gameBGM.wav");
+            collideFX = game.Content.Load<SoundEffect>("collideFX.wav");
+            explosionFX = game.Content.Load<SoundEffect>("explosionFX.wav");
+
+
+            //create instances
+            menuBGMInstance = menuBGM.CreateInstance();
             gameBGMInstance = gameBGM.CreateInstance();
+            laserFXInstance = laserFX.CreateInstance();
+            collideFXInstance = collideFX.CreateInstance();
+            explosionFXInstance = explosionFX.CreateInstance();
+
         }
 
         internal void stopBGM()
         {           
             gameBGMInstance.Stop();
+            menuBGMInstance.Stop();
+        }
+
+        internal void playMenuBGM()
+        {
+            menuBGMInstance.IsLooped = true;
+            menuBGMInstance.Play();
         }
 
         internal void playGameBGM()
@@ -35,6 +58,7 @@ namespace Sailing_by_the_Stars
             gameBGMInstance.IsLooped = true;
             gameBGMInstance.Play();
         }
+      
 
         internal void playLaserFX()
         {
