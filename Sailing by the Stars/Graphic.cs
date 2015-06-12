@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace Sailing_by_the_Stars
 {
@@ -77,7 +78,7 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        internal void drawHUD()
+        internal void drawHUD(Ship s)
         {
             spriteBatch.Begin();
             //TODO: draw the HUD here
@@ -86,7 +87,27 @@ namespace Sailing_by_the_Stars
             Vector2 hudLocation = new Vector2(0, 630);
             spriteBatch.Draw(hudSprite, hudLocation, Color.White);
             spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 1050, (int)hudLocation.Y + 36, 178 * game.s.health / 100, 38), getHPColor(game.s.health));
-            
+
+
+            //needles
+
+            Vector2 dirNeedleLocation = new Vector2((int)hudLocation.X + 80 , (int)hudLocation.Y + 80);
+
+            Vector2 dirOrigin = new Vector2(hudDirNeedle.Width / 2, hudDirNeedle.Height / 2); //rotate with respect to center point
+            Vector2 velOrigin = new Vector2(hudVelNeedle.Width / 2, hudVelNeedle.Height); //rotate with respect to lower point
+
+            Rectangle dirRectangle = new Rectangle(0, 0, hudDirNeedle.Width, hudDirNeedle.Height);
+            Rectangle velRectangle = new Rectangle(0, 0, hudVelNeedle.Width, hudVelNeedle.Height);
+
+            Debug.WriteLine(s.VelAngle);
+
+            spriteBatch.Draw(hudDirNeedle, ((int)hudLocation.X + 80 , (int)hudLocation.Y + 80, dirRectangle), Color.White, s.VelAngle, dirOrigin, 1, SpriteEffects.None, 1);
+
+
+            //spriteBatch.Draw(hudVelNeedle, (int)hudLocation.X + 80, (int)hudLocation.Y + 80, velRectangle, Color.White, s.VelAngle, velOrigin, 1, SpriteEffects.None, 1);
+
+
+            //health bar
             spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
             spriteBatch.End();
         }
