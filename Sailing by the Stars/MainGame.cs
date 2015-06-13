@@ -141,7 +141,7 @@ namespace Sailing_by_the_Stars
             {
                 gameState = GameState.GameLoseNoHP;
             }
-            if (s.Position.X > 60000 || s.Position.X < -10000 || s.Position.Y < -30000 || s.Position.Y > 30000)
+            if (s.Position.X > 75000 || s.Position.X < -10000 || s.Position.Y < -30000 || s.Position.Y > 30000)
             {
                 gameState = GameState.GameLoseDeepSpace;
             }
