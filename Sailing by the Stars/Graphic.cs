@@ -31,6 +31,15 @@ namespace Sailing_by_the_Stars
         public Texture2D message1;
         public Texture2D message2;
         public Texture2D message3;
+        public Texture2D message4;
+        public Texture2D message5;
+        public Texture2D message6;
+        public Texture2D message7;
+        public Texture2D message8;
+        public Texture2D message9;
+        public Texture2D message10;
+        public Texture2D message11;
+        public Texture2D message12;
         private Microsoft.Xna.Framework.Content.ContentManager Content;
         private MainGame game;
 
@@ -59,6 +68,16 @@ namespace Sailing_by_the_Stars
             this.message1 = Content.Load<Texture2D>("Texture/Other/message1");
             this.message2 = Content.Load<Texture2D>("Texture/Other/message2");
             this.message3 = Content.Load<Texture2D>("Texture/Other/message3");
+            this.message4 = Content.Load<Texture2D>("Texture/Other/message4");
+            this.message5 = Content.Load<Texture2D>("Texture/Other/message5");
+            this.message6 = Content.Load<Texture2D>("Texture/Other/message6");
+            this.message7 = Content.Load<Texture2D>("Texture/Other/message7");
+            this.message8 = Content.Load<Texture2D>("Texture/Other/message8");
+            this.message9 = Content.Load<Texture2D>("Texture/Other/message9");
+            this.message10 = Content.Load<Texture2D>("Texture/Other/message10");
+            this.message11 = Content.Load<Texture2D>("Texture/Other/message11");
+            this.message12 = Content.Load<Texture2D>("Texture/Other/message12");
+
         }
 
         internal void loadSprites(Object[] allGravObjects)
@@ -117,9 +136,31 @@ namespace Sailing_by_the_Stars
             //spriteBatch.Draw(hudVelNeedle, (int)hudLocation.X + 80, (int)hudLocation.Y + 80, velRectangle, Color.White, s.VelAngle, velOrigin, 1, SpriteEffects.None, 1);
 
 
-            //health bar
-            spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+            //communications bar
+            drawCommunicationsWindow(s, hudLocation);
+
+
+
+            //Debug.WriteLine(s.Position.X);
+            //spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
             spriteBatch.End();
+        }
+
+        internal void drawCommunicationsWindow(Ship s, Vector2 hudPos)
+        {
+
+            var rand = new Random(); //might be 
+            int randomMessage = rand.Next(12) + 1; 
+
+            Vector2 hudLocation = hudPos;
+            float check = s.Position.X;
+
+            if(1000 < check && check < 3000) 
+            {
+
+                spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+            }
+
         }
 
         internal void drawAllObj(Object[] allGravObjects)
