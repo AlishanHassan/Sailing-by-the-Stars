@@ -32,6 +32,11 @@ namespace Sailing_by_the_Stars
         {
             return this.health <= 0;
         }
+        public void setInfinite()
+        {
+            this.health = int.MaxValue;
+            Console.WriteLine("HI");
+        }
 
     }
 

@@ -29,6 +29,7 @@ namespace Sailing_by_the_Stars
         internal Object[] allGravObjects;
         internal Ship s;
         int finishLine = 74000;
+        public bool cheatCode = false;
 
         public MainGame()
         {
@@ -379,6 +380,10 @@ namespace Sailing_by_the_Stars
                 else if (line[0] == 1) // Ship
                 {
                     s = new Ship(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
+                    if (cheatCode == true)
+                    {
+                        s.setInfinite();
+                    }
                     allGravObjects[i - 1] = s;
                     allGravObjects[i - 1].Id = (int)(line[1]);
                 }

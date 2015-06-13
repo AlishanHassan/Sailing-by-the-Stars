@@ -18,6 +18,8 @@ namespace Sailing_by_the_Stars
         private KeyboardState oldKeyState;
         private MouseState mouseState;
         private MouseState oldMouseState;
+        private Boolean cheatCode = false;
+        private int num = 0;
 
         public UserInput(MainGame game)
         {
@@ -62,12 +64,61 @@ namespace Sailing_by_the_Stars
                     }
 
                 }
-                Console.WriteLine(mouseState.X);
-                Console.WriteLine(mouseState.Y);
+                if (cheatCode == false && num == 0 && newKeyState.IsKeyDown(Keys.Up))
+                {
+                    num += 1;
+                }
+                if (num == 1 && newKeyState.IsKeyDown(Keys.Up))
+                {
+                    num += 1;
+                }
+                if (num == 2 && newKeyState.IsKeyDown(Keys.Down))
+                {
+                    num += 1;
+                }
+                if (num == 3 && newKeyState.IsKeyDown(Keys.Down))
+                {
+                    num += 1;
+                }
+                if (num == 4 && newKeyState.IsKeyDown(Keys.Left))
+                {
+                    num += 1;
+                }
+                if (num == 5 && newKeyState.IsKeyDown(Keys.Right))
+                {
+                    num += 1;
+                }
+                if (num == 6 && newKeyState.IsKeyDown(Keys.Left))
+                {
+                    num += 1;
+                }
+                if (num == 7 && newKeyState.IsKeyDown(Keys.Right))
+                {
+                    num += 1;
+                }
+                if (num == 8 && newKeyState.IsKeyDown(Keys.B))
+                {
+                    num += 1;
+                }
+                if (num == 9 && newKeyState.IsKeyDown(Keys.A))
+                {
+                    num += 1;
+                }
+                if (num == 10 && newKeyState.IsKeyDown(Keys.Enter))
+                {
+                    num += 1;
+                    cheatCode = true;
+                }
+                if (cheatCode == true)
+                {
+                    game.cheatCode = true;
+                }
+
+
             }
             else if (game.gameState == MainGame.GameState.GameWin || game.gameState == MainGame.GameState.GameLoseNoHP || game.gameState == MainGame.GameState.GameLoseDeepSpace)
             {
-                GameOverKeyboardShortcuts();
+                clickToContinue();
             }
             else if (game.gameState == MainGame.GameState.TitleScreen)
             {
@@ -81,6 +132,7 @@ namespace Sailing_by_the_Stars
             {
                 clickToContinue();
             }
+
             oldKeyState = newKeyState;
             oldMouseState = mouseState;
         }
@@ -108,7 +160,16 @@ namespace Sailing_by_the_Stars
         }
         private void clickToContinue()
         {
-            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed))
+            Console.WriteLine(mouseState.X);
+            Console.WriteLine(windowSize.X);
+            Console.WriteLine(mouseState.Y);
+            Console.WriteLine(windowSize.Y);
+            Console.WriteLine(mouseState.LeftButton);
+            Console.WriteLine(oldMouseState.LeftButton);
+            Console.WriteLine("-----------------------");
+
+
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed ))
             {
                 game.gameState = MainGame.GameState.MainMenu;
             }
