@@ -158,7 +158,7 @@ namespace Sailing_by_the_Stars
             // play audio when entering the game
             if (oldGameState != GameState.InGamePlay && gameState == GameState.InGamePlay)
             {
-                audio.playGameBGM();
+                this.playAudio();
             }
 
             // fade effect for main menu
