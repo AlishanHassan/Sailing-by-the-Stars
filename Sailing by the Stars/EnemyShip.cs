@@ -9,7 +9,7 @@ namespace Sailing_by_the_Stars
     class EnemyShip : Ship
     {
         private Vector2 thrust;
-        public int difficulty;
+        //public int difficulty;
         public Planet nearestPlanet;
         public float distanceToNearestPlanetSq
         {
@@ -23,11 +23,11 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        public EnemyShip(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null, int difficulty = 1)
+        public EnemyShip(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null, float laserCoolDown = 3)
             : base(m, r, pos, vel)
         {
             this.thrust = Vector2.Zero;
-            this.difficulty = difficulty;
+            //this.difficulty = difficulty;
             this.laserCoolDown = 0;
         }
 
@@ -62,7 +62,7 @@ namespace Sailing_by_the_Stars
 
         public override string ToString()
         {
-            return "-" + base.ToString() + "," + difficulty;
+            return "-" + base.ToString() + "," + laserCoolDown;
         }
 
         private static float laserGunCoolDownTime = 3;

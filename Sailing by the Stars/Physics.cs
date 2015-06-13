@@ -48,7 +48,7 @@ namespace Sailing_by_the_Stars
 
                 if ((o1).CheckHitByLaser())
                 {
-                    audio.playExplosionFX();
+                    audio.playHitExplosionFX();
                 }
 
                 Vector2 netAcceleration = Vector2.Zero;
