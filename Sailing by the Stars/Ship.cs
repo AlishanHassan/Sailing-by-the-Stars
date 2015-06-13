@@ -9,6 +9,8 @@ namespace Sailing_by_the_Stars
 {
     class Ship : Object
     {
+        public int health;
+        /*
         private int health;
         public int Health
         {
@@ -21,23 +23,24 @@ namespace Sailing_by_the_Stars
                 health = value;
             }
         }
+         * */
 
         public Ship(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null, int health = 100)
             : base(m, r, pos, vel)
         {
-            this.Health = health;
+            this.health = health;
             this.justDie = false;
         }
 
         public override string ToString()
         {
-            return "1," + base.ToString() + "," + Health;
+            return "1," + base.ToString() + "," + health;
         }
 
         protected override bool DecreaseHealth(int damage)
         {
-            this.Health -= damage;
-            if (this.Health <= 0 && this.Health + damage > 0)
+            this.health -= damage;
+            if (this.health <= 0 && this.health + damage > 0)
             {
                 justDie = true;
             }
@@ -45,13 +48,13 @@ namespace Sailing_by_the_Stars
             {
                 justDie = false;
             }
-            return this.Health > 0;
+            return this.health > 0;
         }
 
         private bool justDie;
         public override bool IsDead()
         {
-            return this.Health <= 0;
+            return this.health <= 0;
         }
         public override bool explode()
         {
@@ -65,7 +68,7 @@ namespace Sailing_by_the_Stars
 
         public void setInfinite()
         {
-            this.Health = int.MaxValue;
+            this.health = int.MaxValue;
         }
 
     }

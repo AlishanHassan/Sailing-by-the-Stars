@@ -99,6 +99,7 @@ namespace Sailing_by_the_Stars
 
         private void CheatCode()
         {
+            
             if (cheatCode == false && num == 0 && newKeyState.IsKeyDown(Keys.Up))
             {
                 num += 1;
@@ -146,6 +147,7 @@ namespace Sailing_by_the_Stars
             }
             if (cheatCode == true)
             {
+                Debug.WriteLine("cheat code is on");
                 game.cheatCode = true;
                 cheatCode = false;
             }

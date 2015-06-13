@@ -102,11 +102,12 @@ namespace Sailing_by_the_Stars
                 int randomMessage = rand.Next(12) + 1;
                 randomMessages[i] = randomMessage;
             }
+            /*
             for (int i = 0; i < 12; i++)
             {
                 Debug.WriteLine(randomMessages[i]);
             }
-
+            */
             
         }
 
@@ -157,7 +158,7 @@ namespace Sailing_by_the_Stars
             {
                 gameState = GameState.GameWin;
             }
-            if (s.Health <= 0)
+            if (s.health <= 0)
             {
                 gameState = GameState.GameLoseNoHP;
             }
@@ -412,6 +413,7 @@ namespace Sailing_by_the_Stars
                     s = new Ship(line[2], line[3], new Vector2(line[4], line[5]), new Vector2(line[6], line[7]));
                     if (cheatCode == true)
                     {
+                        Debug.WriteLine("ship's cheat is true");
                         s.setInfinite();
                         cheatCode = false;
                     }
