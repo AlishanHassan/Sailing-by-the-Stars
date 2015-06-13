@@ -159,7 +159,7 @@ namespace Sailing_by_the_Stars
             {
                 int messageCount = game.randomMessages[0];
                 whichMessage = "message" + messageCount;
-                spriteBatch.Draw(whichMessage, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
             }
             else if (3000 < check && check < 6000)
             {
