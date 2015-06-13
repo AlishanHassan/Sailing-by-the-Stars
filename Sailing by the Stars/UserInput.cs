@@ -169,29 +169,29 @@ namespace Sailing_by_the_Stars
         }
         private void clickToContinue()
         {
-            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed))
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Released && oldMouseState.LeftButton == ButtonState.Pressed))
             {
                 game.gameState = MainGame.GameState.MainMenu;
             }
         }
         private void clickIfWinLose()
         {
-            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed ))
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Released && oldMouseState.LeftButton == ButtonState.Pressed))
             {
                 game.LoadGame(@"C:\Users\Public\InitGame");
-                game.gameState = MainGame.GameState.MainMenu;
+                game.gameState = MainGame.GameState.TitleScreen;
             }
         }
         private void clickToContinueStory()
         {
-            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed ))
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Released && oldMouseState.LeftButton == ButtonState.Pressed))
             {
                 game.gameState = MainGame.GameState.Story;
             }
         }
         private void clickToContinueControls()
         {
-            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed))
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Released && oldMouseState.LeftButton == ButtonState.Pressed))
             {
                 game.gameState = MainGame.GameState.Controls;
             }
