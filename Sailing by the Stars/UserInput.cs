@@ -119,7 +119,7 @@ namespace Sailing_by_the_Stars
             }
             else if (game.gameState == MainGame.GameState.GameWin || game.gameState == MainGame.GameState.GameLoseNoHP || game.gameState == MainGame.GameState.GameLoseDeepSpace)
             {
-                clickToContinue();
+                GameOverKeyboardShortcuts();
             }
             else if (game.gameState == MainGame.GameState.TitleScreen)
             {
