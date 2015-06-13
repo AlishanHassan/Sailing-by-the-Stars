@@ -112,6 +112,7 @@ namespace Sailing_by_the_Stars
                 if (cheatCode == true)
                 {
                     game.cheatCode = true;
+                    cheatCode = false;
                 }
 
 

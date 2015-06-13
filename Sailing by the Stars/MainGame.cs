@@ -383,6 +383,7 @@ namespace Sailing_by_the_Stars
                     if (cheatCode == true)
                     {
                         s.setInfinite();
+                        cheatCode = false;
                     }
                     allGravObjects[i - 1] = s;
                     allGravObjects[i - 1].Id = (int)(line[1]);
