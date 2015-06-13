@@ -111,22 +111,9 @@ namespace Sailing_by_the_Stars
             return false;
         }
 
-        internal void changeDesnity()
-        {
-
+        public virtual bool explode(){
+            return false;
         }
-
-
-
-        //internal void Update(Vector2 centerOfMass, float M, TimeSpan deltaTime)
-        //{
-        //    Vector2 centerOfMassOfOtherObj = (centerOfMass * M - this.Mass * this.Position) / (M - this.Mass);
-        //    Vector2 r = Vector2.Subtract(centerOfMassOfOtherObj, this.Position);
-        //    this.Acceleration = 1000F * (M - this.Mass) * Vector2.Normalize(r) / r.LengthSquared();
-
-        //    this.Move(deltaTime);
-        //}
-
         public override string ToString()
         {
             return this.Id + "," + this.Mass + "," + this.Radius + "," + this.Position.X + "," + this.Position.Y + "," + this.Velocity.X + "," + this.Velocity.Y;

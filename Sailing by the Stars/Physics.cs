@@ -41,14 +41,20 @@ namespace Sailing_by_the_Stars
 
             foreach (Object o1 in objects)
             {
-                if (o1.IsDead()) // esp. the enemy ship is gone
-                {
-                    continue;
-                }
 
                 if ((o1).CheckHitByLaser())
                 {
                     audio.playHitExplosionFX();
+                }
+
+                if ((o1).explode())
+                {
+                    audio.playExplosionFX();
+                }
+
+                if (o1.IsDead()) // esp. the enemy ship is gone
+                {
+                    continue;
                 }
 
                 Vector2 netAcceleration = Vector2.Zero;

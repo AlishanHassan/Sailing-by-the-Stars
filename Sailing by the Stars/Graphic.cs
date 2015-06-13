@@ -107,7 +107,6 @@ namespace Sailing_by_the_Stars
 
 
             float velocity = s.Velocity.Length();
-            Debug.WriteLine(velocity);
             float velGaugeAngle = velocity/333 - 3; //this doesn't have a limit, but that would just add a cool effect when the ship goes wild
 
 

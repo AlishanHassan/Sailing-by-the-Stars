@@ -254,7 +254,6 @@ namespace Sailing_by_the_Stars
 
             prevMouseState = mainMouseState;
 
-            //Debug.WriteLine(mainMouseState.ScrollWheelValue);
         }
 
         //Keyboard camera control, both arrow keys and WASD for panning; +/- and Q/E for zoom
