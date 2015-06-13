@@ -10,17 +10,19 @@ namespace Sailing_by_the_Stars
 {
     class Audio
     {
-        public SoundEffect menuBGM;
+        private SoundEffect menuBGM;
         private SoundEffect gameBGM;
         private SoundEffect laserFX;
-        public SoundEffect collideFX;
-        public SoundEffect explosionFX;
+        private SoundEffect collideFX;
+        private SoundEffect explosionFX;
+        private SoundEffect hitExplosionFX;
 
         private SoundEffectInstance menuBGMInstance;
         private SoundEffectInstance gameBGMInstance;
         private SoundEffectInstance laserFXInstance;
         private SoundEffectInstance collideFXInstance;
         private SoundEffectInstance explosionFXInstance;
+        private SoundEffectInstance hitExplosionFXInstance;
 
         public Audio(MainGame game)
         {
@@ -30,6 +32,7 @@ namespace Sailing_by_the_Stars
             laserFX = game.Content.Load<SoundEffect>("Audio/laserFX.wav");
             collideFX = game.Content.Load<SoundEffect>("Audio/collideFX.wav");
             explosionFX = game.Content.Load<SoundEffect>("Audio/explosionFX.wav");
+            hitExplosionFX = game.Content.Load<SoundEffect>("Audio/hitExplosionFX.wav");
 
 
             //create instances
@@ -38,6 +41,7 @@ namespace Sailing_by_the_Stars
             laserFXInstance = laserFX.CreateInstance();
             collideFXInstance = collideFX.CreateInstance();
             explosionFXInstance = explosionFX.CreateInstance();
+            hitExplosionFXInstance = hitExplosionFX.CreateInstance();
 
         }
 
@@ -89,6 +93,17 @@ namespace Sailing_by_the_Stars
         internal void stopCollideFX()
         {
             collideFXInstance.Stop();
+        }
+
+        internal void playHitExplosionFX()
+        {
+            hitExplosionFXInstance.IsLooped = false;
+            hitExplosionFXInstance.Play();
+        }
+
+        internal void stopHitExplosionFX()
+        {
+            hitExplosionFXInstance.Stop();
         }
 
         internal void playExplosionFX()
