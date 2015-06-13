@@ -80,8 +80,8 @@ namespace Sailing_by_the_Stars
             Vector2 v2f = v2 - 2 * m1 / (m1 + m2) * Vector2.Dot(v2 - v1, x2 - x1) / (x2 - x1).LengthSquared() * (x2 - x1);
             o1.Velocity = v1f * .9f;
             o2.Velocity = v2f * .9f;
-            o1.DecreaseHealth(20);
-            o2.DecreaseHealth(20);
+            o1.DecreaseHealth(18);
+            o2.DecreaseHealth(18);
         }
 
         protected virtual bool DecreaseHealth(int damage)
@@ -111,7 +111,8 @@ namespace Sailing_by_the_Stars
             return false;
         }
 
-        public virtual bool explode(){
+        public virtual bool explode()
+        {
             return false;
         }
         public override string ToString()

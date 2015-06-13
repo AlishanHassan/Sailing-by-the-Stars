@@ -137,7 +137,7 @@ namespace Sailing_by_the_Stars
             {
                 gameState = GameState.GameWin;
             }
-            if (s.health <= 0)
+            if (s.Health <= 0)
             {
                 gameState = GameState.GameLoseNoHP;
             }
@@ -153,6 +153,12 @@ namespace Sailing_by_the_Stars
             else if (gameState == GameState.InGamePause)
             {
                 physics.updateAcceleration();
+            }
+
+            // play audio when entering the game
+            if (oldGameState != GameState.InGamePlay && gameState == GameState.InGamePlay)
+            {
+                audio.playGameBGM();
             }
 
             // fade effect for main menu

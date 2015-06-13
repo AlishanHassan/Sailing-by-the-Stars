@@ -109,7 +109,7 @@ namespace Sailing_by_the_Stars
             //hud.Draw();
             Vector2 hudLocation = new Vector2(0, 630);
             spriteBatch.Draw(hudSprite, hudLocation, Color.White);
-            spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 1050, (int)hudLocation.Y + 36, 178 * game.s.health / 100, 38), getHPColor(game.s.health));
+            spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 1050, (int)hudLocation.Y + 36, 178 * game.s.Health / 100, 38), getHPColor(game.s.Health));
 
 
             //needles
@@ -207,8 +207,8 @@ namespace Sailing_by_the_Stars
             spriteBatch.Draw(sprite, location, sourceRectangle, Color.White, s.VelAngle, origin, 1, SpriteEffects.None, 1);
 
             // health bar
-            Rectangle rec1 = new Rectangle((int)s.Position.X - 80, (int)s.Position.Y - 120, 160 * s.health / 100, 20);
-            spriteBatch.Draw(bar1, rec1, getHPColor(s.health));
+            Rectangle rec1 = new Rectangle((int)s.Position.X - 80, (int)s.Position.Y - 120, 160 * s.Health / 100, 20);
+            spriteBatch.Draw(bar1, rec1, getHPColor(s.Health));
         }
 
         private Color getHPColor(int hp)

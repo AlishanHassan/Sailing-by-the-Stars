@@ -28,7 +28,7 @@ namespace Sailing_by_the_Stars
         {
             //load sound
             menuBGM = game.Content.Load<SoundEffect>("Audio/menuBGM.wav");
-            gameBGM = game.Content.Load<SoundEffect>("Audio/gameBGM.wav");   
+            gameBGM = game.Content.Load<SoundEffect>("Audio/gameBGM.wav");
             laserFX = game.Content.Load<SoundEffect>("Audio/laserFX.wav");
             collideFX = game.Content.Load<SoundEffect>("Audio/collideFX.wav");
             explosionFX = game.Content.Load<SoundEffect>("Audio/explosionFX.wav");
@@ -46,7 +46,7 @@ namespace Sailing_by_the_Stars
         }
 
         internal void stopBGM()
-        {           
+        {
             gameBGMInstance.Stop();
             menuBGMInstance.Stop();
         }
@@ -67,7 +67,7 @@ namespace Sailing_by_the_Stars
         {
             gameBGMInstance.Pause();
         }
-      
+
         internal void resumeGameBGM()
         {
             gameBGMInstance.Resume();
@@ -78,7 +78,7 @@ namespace Sailing_by_the_Stars
             laserFXInstance.IsLooped = false;
             laserFXInstance.Play();
         }
-        
+
         internal void stopLaserFX()
         {
             laserFXInstance.Stop();

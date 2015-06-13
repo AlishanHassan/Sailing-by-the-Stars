@@ -69,7 +69,8 @@ namespace Sailing_by_the_Stars
                 Shortcut_Ctrl_C_toggleControlsPaused();
                 clickToContinuePause();
             }
-            else if (game.gameState == MainGame.GameState.GameWin || game.gameState == MainGame.GameState.GameLoseNoHP || game.gameState == MainGame.GameState.GameLoseDeepSpace){
+            else if (game.gameState == MainGame.GameState.GameWin || game.gameState == MainGame.GameState.GameLoseNoHP || game.gameState == MainGame.GameState.GameLoseDeepSpace)
+            {
                 GameOverKeyboardShortcuts();
                 clickIfWinLose();
             }
@@ -86,13 +87,11 @@ namespace Sailing_by_the_Stars
                 {
                     game.LoadGame(@"C:\Users\Public\InitGame");
                     game.gameState = MainGame.GameState.InGamePlay;
-                    game.playAudio();
                 }
                 if (mouseState.Y > 400 && mouseState.Y < 440 && mouseState.LeftButton == ButtonState.Pressed)
                 {
                     game.LoadGame(@"C:\Users\Public\SavedGame");
                     game.gameState = MainGame.GameState.InGamePlay;
-                    game.playAudio();
                 }
 
             }
@@ -334,8 +333,7 @@ namespace Sailing_by_the_Stars
             // Ctrl + M for main menu
             if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.M) && oldKeyState.IsKeyUp(Keys.M))
             {
-                if (game.gameState != MainGame.GameState.MainMenu)
-                { game.gameState = MainGame.GameState.MainMenu; }
+                if (game.gameState != MainGame.GameState.MainMenu) { game.gameState = MainGame.GameState.MainMenu; }
                 else if (game.gameState == MainGame.GameState.MainMenu) { game.gameState = MainGame.GameState.InGamePlay; }
             }
         }
@@ -366,7 +364,6 @@ namespace Sailing_by_the_Stars
             {
                 game.LoadGame(@"C:\Users\Public\InitGame");
                 game.gameState = MainGame.GameState.InGamePlay;
-                game.playAudio();
             }
         }
 
@@ -377,7 +374,6 @@ namespace Sailing_by_the_Stars
             {
                 game.LoadGame(@"C:\Users\Public\SavedGame");
                 game.gameState = MainGame.GameState.InGamePlay;
-                game.playAudio();
             }
         }
 
