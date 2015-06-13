@@ -42,6 +42,7 @@ namespace Sailing_by_the_Stars
             else if (game.gameState == MainGame.GameState.InGamePause)
             {
                 InGameKeyboardShortcuts();
+                Shortcut_Ctrl_C_toggleControlsPaused();
                 cameraControl();
                 densityControl();
             }
@@ -62,6 +63,11 @@ namespace Sailing_by_the_Stars
             else if (game.gameState == MainGame.GameState.Controls)
             {
                 clickToContinue();
+            }
+            else if (game.gameState == MainGame.GameState.ControlsPause)
+            {
+                Shortcut_Ctrl_C_toggleControlsPaused();
+                clickToContinuePause();
             }
             else if (game.gameState == MainGame.GameState.GameWin || game.gameState == MainGame.GameState.GameLoseNoHP || game.gameState == MainGame.GameState.GameLoseDeepSpace){
                 GameOverKeyboardShortcuts();
@@ -160,6 +166,7 @@ namespace Sailing_by_the_Stars
             Shortcut_Ctrl_L_loadGame();
             Shortcut_Ctrl_N_newGame();
             Shortcut_Ctrl_M_toggleMenu();
+            Shortcut_Ctrl_C_toggleControls();
         }
 
         private void GameOverKeyboardShortcuts()
@@ -172,6 +179,13 @@ namespace Sailing_by_the_Stars
             if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Released && oldMouseState.LeftButton == ButtonState.Pressed))
             {
                 game.gameState = MainGame.GameState.MainMenu;
+            }
+        }
+        private void clickToContinuePause()
+        {
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Released && oldMouseState.LeftButton == ButtonState.Pressed))
+            {
+                game.gameState = MainGame.GameState.InGamePause;
             }
         }
         private void clickIfWinLose()
@@ -323,6 +337,25 @@ namespace Sailing_by_the_Stars
                 if (game.gameState != MainGame.GameState.MainMenu)
                 { game.gameState = MainGame.GameState.MainMenu; }
                 else if (game.gameState == MainGame.GameState.MainMenu) { game.gameState = MainGame.GameState.InGamePlay; }
+            }
+        }
+        private void Shortcut_Ctrl_C_toggleControls()
+        {
+            // Ctrl + C for contorls
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.C) && oldKeyState.IsKeyUp(Keys.C))
+            {
+                if (game.gameState != MainGame.GameState.Controls)
+                { game.gameState = MainGame.GameState.Controls; }
+            }
+        }
+        private void Shortcut_Ctrl_C_toggleControlsPaused()
+        {
+            // Ctrl + C for contorls
+            if ((newKeyState.IsKeyDown(Keys.LeftControl) || newKeyState.IsKeyDown(Keys.RightControl)) && newKeyState.IsKeyDown(Keys.C) && oldKeyState.IsKeyUp(Keys.C))
+            {
+                if (game.gameState != MainGame.GameState.ControlsPause)
+                { game.gameState = MainGame.GameState.ControlsPause; }
+                else if (game.gameState == MainGame.GameState.ControlsPause) { game.gameState = MainGame.GameState.InGamePause; }
             }
         }
 
