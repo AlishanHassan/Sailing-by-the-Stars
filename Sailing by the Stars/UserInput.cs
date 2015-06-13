@@ -117,10 +117,6 @@ namespace Sailing_by_the_Stars
 
 
             }
-            else if (game.gameState == MainGame.GameState.GameWin || game.gameState == MainGame.GameState.GameLoseNoHP || game.gameState == MainGame.GameState.GameLoseDeepSpace)
-            {
-                clickToContinue();
-            }
             else if (game.gameState == MainGame.GameState.TitleScreen)
             {
                 clickToContinueStory();
@@ -132,6 +128,9 @@ namespace Sailing_by_the_Stars
             else if (game.gameState == MainGame.GameState.Controls)
             {
                 clickToContinue();
+            }
+            else if (game.gameState == MainGame.GameState.GameWin || game.gameState == MainGame.GameState.GameLoseNoHP || game.gameState == MainGame.GameState.GameLoseDeepSpace){
+                clickIfWinLose();
             }
 
             oldKeyState = newKeyState;
@@ -161,17 +160,16 @@ namespace Sailing_by_the_Stars
         }
         private void clickToContinue()
         {
-            Console.WriteLine(mouseState.X);
-            Console.WriteLine(windowSize.X);
-            Console.WriteLine(mouseState.Y);
-            Console.WriteLine(windowSize.Y);
-            Console.WriteLine(mouseState.LeftButton);
-            Console.WriteLine(oldMouseState.LeftButton);
-            Console.WriteLine("-----------------------");
-
-
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed))
+            {
+                game.gameState = MainGame.GameState.MainMenu;
+            }
+        }
+        private void clickIfWinLose()
+        {
             if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed ))
             {
+                game.LoadGame(@"C:\Users\Public\InitGame");
                 game.gameState = MainGame.GameState.MainMenu;
             }
         }
