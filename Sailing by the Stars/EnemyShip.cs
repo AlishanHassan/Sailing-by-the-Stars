@@ -9,7 +9,6 @@ namespace Sailing_by_the_Stars
     class EnemyShip : Ship
     {
         private Vector2 thrust;
-        //public int difficulty;
         public Planet nearestPlanet;
         public float distanceToNearestPlanetSq
         {
@@ -23,12 +22,11 @@ namespace Sailing_by_the_Stars
             }
         }
 
-        public EnemyShip(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null, float laserCoolDown = 3)
-            : base(m, r, pos, vel)
+        public EnemyShip(float m = 100, float r = 100, Vector2? pos = null, Vector2? vel = null, int health = 100, float laserCoolDown = 0)
+            : base(m, r, pos, vel, health)
         {
             this.thrust = Vector2.Zero;
-            //this.difficulty = difficulty;
-            this.laserCoolDown = 0;
+            this.laserCoolDown = laserCoolDown;
         }
 
         internal override void Move(TimeSpan deltaTime)
