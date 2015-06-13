@@ -136,7 +136,6 @@ namespace Sailing_by_the_Stars
             if (s.Position.X > finishLine)
             {
                 gameState = GameState.GameWin;
-                LoadGame();
             }
             if (s.health <= 0)
             {
