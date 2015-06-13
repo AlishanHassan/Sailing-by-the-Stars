@@ -24,7 +24,7 @@ namespace Sailing_by_the_Stars
         internal Camera Camera;
         HUD hud;
         Boolean hudOn = true;
-        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause, GameWin, GameLoseDeepSpace, GameLoseNoHP };
+        public enum GameState { TitleScreen, MainMenu, InGamePlay, InGamePause, GameWin, GameLoseDeepSpace, GameLoseNoHP, Story, Controls };
         internal GameState gameState;
         internal Object[] allGravObjects;
         internal Ship s;
@@ -239,6 +239,14 @@ namespace Sailing_by_the_Stars
             else if (gameState == GameState.GameLoseDeepSpace)
             {
                 g.drawGameLoseDeepSpace(gameTime.ElapsedGameTime);
+            }
+            else if (gameState == GameState.Story)
+            {
+                g.drawStory();
+            }
+            else if (gameState == GameState.Controls)
+            {
+                g.drawControls();
             }
 
             base.Draw(gameTime);

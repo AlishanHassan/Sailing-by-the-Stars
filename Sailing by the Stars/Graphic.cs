@@ -17,6 +17,8 @@ namespace Sailing_by_the_Stars
         public Texture2D lose1Sprite;
         public Texture2D lose2Sprite;
         public Texture2D titleSprite;
+        public Texture2D storySprite;
+        public Texture2D controlsSprite;
         public Texture2D[] planetSprites;
         public Texture2D[] shipSprites;
         public Texture2D finishLine;
@@ -42,6 +44,8 @@ namespace Sailing_by_the_Stars
             this.lose1Sprite = Content.Load<Texture2D>("Texture/Screen/loseNoHP");
             this.lose2Sprite = Content.Load<Texture2D>("Texture/Screen/loseDeepSpace");
             this.titleSprite = Content.Load<Texture2D>("Texture/Screen/titlescreen");
+            this.controlsSprite = Content.Load<Texture2D>("Texture/Screen/controlsScreen");
+            this.storySprite = Content.Load<Texture2D>("Texture/Screen/storyScreen");
             this.arrow = Content.Load<Texture2D>("Texture/Other/arrow");
             this.planetSprites = new Texture2D[15];
             this.shipSprites = new Texture2D[2];
@@ -233,6 +237,18 @@ namespace Sailing_by_the_Stars
         {
             spriteBatch.Begin();
             spriteBatch.Draw(titleSprite, new Vector2(0, 0));
+            spriteBatch.End();
+        }
+        internal void drawControls()
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(controlsSprite, new Vector2(0, 0));
+            spriteBatch.End();
+        }
+        internal void drawStory()
+        {
+            spriteBatch.Begin();
+            spriteBatch.Draw(storySprite, new Vector2(0, 0));
             spriteBatch.End();
         }
 

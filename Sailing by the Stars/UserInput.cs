@@ -70,6 +70,14 @@ namespace Sailing_by_the_Stars
             }
             else if (game.gameState == MainGame.GameState.TitleScreen)
             {
+                clickToContinueStory();
+            }
+            else if (game.gameState == MainGame.GameState.Story)
+            {
+                clickToContinueControls();
+            }
+            else if (game.gameState == MainGame.GameState.Controls)
+            {
                 clickToContinue();
             }
             oldKeyState = newKeyState;
@@ -96,12 +104,25 @@ namespace Sailing_by_the_Stars
             Shortcut_Ctrl_M_toggleMenu();
             Shortcut_Ctrl_N_newGame();
         }
-
         private void clickToContinue()
         {
             if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed || mouseState.RightButton == ButtonState.Pressed))
             {
                 game.gameState = MainGame.GameState.MainMenu;
+            }
+        }
+        private void clickToContinueStory()
+        {
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed || mouseState.RightButton == ButtonState.Pressed))
+            {
+                game.gameState = MainGame.GameState.Story;
+            }
+        }
+        private void clickToContinueControls()
+        {
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed || mouseState.RightButton == ButtonState.Pressed))
+            {
+                game.gameState = MainGame.GameState.Controls;
             }
         }
 
