@@ -30,6 +30,7 @@ namespace Sailing_by_the_Stars
         internal Ship s;
         int finishLine = 74000;
         public bool cheatCode = false;
+        public int[] randomMessages = new int[12];
 
         public MainGame()
         {
@@ -77,6 +78,7 @@ namespace Sailing_by_the_Stars
             userInput = new UserInput(this);
             physics = new Physics(allGravObjects, audio);
             playAudio();
+            randomMessage();
         }
 
 
@@ -88,6 +90,24 @@ namespace Sailing_by_the_Stars
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+        }
+
+
+        public void randomMessage()
+        {
+            var rand = new Random(); 
+            for (int i = 0; i < 12; i++)
+            {
+                
+                int randomMessage = rand.Next(12) + 1;
+                randomMessages[i] = randomMessage;
+            }
+            for (int i = 0; i < 12; i++)
+            {
+                Debug.WriteLine(randomMessages[i]);
+            }
+
+            
         }
 
 

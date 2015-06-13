@@ -149,16 +149,21 @@ namespace Sailing_by_the_Stars
         internal void drawCommunicationsWindow(Ship s, Vector2 hudPos)
         {
 
-            var rand = new Random(); //might be 
-            int randomMessage = rand.Next(12) + 1; 
+            
+            String whichMessage;
 
             Vector2 hudLocation = hudPos;
             float check = s.Position.X;
 
-            if(1000 < check && check < 3000) 
+            if (0 < check && check < 3000)
             {
-
-                spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                int messageCount = game.randomMessages[0];
+                whichMessage = "message" + messageCount;
+                spriteBatch.Draw(whichMessage, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+            }
+            else if (3000 < check && check < 6000)
+            {
+                spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
             }
 
         }
