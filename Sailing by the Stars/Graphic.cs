@@ -109,12 +109,13 @@ namespace Sailing_by_the_Stars
             //hud.Draw();
             Vector2 hudLocation = new Vector2(0, 630);
             spriteBatch.Draw(hudSprite, hudLocation, Color.White);
-            spriteBatch.Draw(bar1, new Rectangle((int)hudLocation.X + 1050, (int)hudLocation.Y + 36, 178 * game.s.Health / 100, 38), getHPColor(game.s.Health));
+            spriteBatch.Draw(healthBar, new Rectangle((int)hudLocation.X + 1050, (int)hudLocation.Y + 36, 178, 38), Color.White);
+            spriteBatch.Draw(healthBar, new Rectangle((int)hudLocation.X + 1050, (int)hudLocation.Y + 36, 178 * game.s.Health / 100, 38), getHPColor(game.s.Health));
 
 
             //needles
 
-            Vector2 dirNeedleLocation = new Vector2((int)hudLocation.X + 950 , (int)hudLocation.Y + 49);
+            Vector2 dirNeedleLocation = new Vector2((int)hudLocation.X + 950, (int)hudLocation.Y + 49);
             Vector2 velNeedleLocation = new Vector2((int)hudLocation.X + 820, (int)hudLocation.Y + 49);
 
             Vector2 dirOrigin = new Vector2(hudDirNeedle.Width / 2, hudDirNeedle.Height); //rotate with respect to lower point
@@ -126,7 +127,7 @@ namespace Sailing_by_the_Stars
 
 
             float velocity = s.Velocity.Length();
-            float velGaugeAngle = velocity/333 - 3; //this doesn't have a limit, but that would just add a cool effect when the ship goes wild
+            float velGaugeAngle = velocity / 333 - 3; //this doesn't have a limit, but that would just add a cool effect when the ship goes wild
 
 
             spriteBatch.Draw(hudDirNeedle, dirNeedleLocation, dirRectangle, Color.White, s.VelAngle, dirOrigin, 1, SpriteEffects.None, 1);
@@ -148,7 +149,13 @@ namespace Sailing_by_the_Stars
 
         internal void drawCommunicationsWindow(Ship s, Vector2 hudPos)
         {
+<<<<<<< HEAD
            
+=======
+
+
+            String whichMessage;
+>>>>>>> origin/master
 
             Vector2 hudLocation = hudPos;
             float check = s.Position.X;
