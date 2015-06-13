@@ -17,6 +17,7 @@ namespace Sailing_by_the_Stars
         private KeyboardState newKeyState;
         private KeyboardState oldKeyState;
         private MouseState mouseState;
+        private MouseState oldMouseState;
 
         public UserInput(MainGame game)
         {
@@ -81,6 +82,7 @@ namespace Sailing_by_the_Stars
                 clickToContinue();
             }
             oldKeyState = newKeyState;
+            oldMouseState = mouseState;
         }
         private void InGameKeyboardShortcuts()
         {
@@ -106,21 +108,21 @@ namespace Sailing_by_the_Stars
         }
         private void clickToContinue()
         {
-            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed || mouseState.RightButton == ButtonState.Pressed))
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed))
             {
                 game.gameState = MainGame.GameState.MainMenu;
             }
         }
         private void clickToContinueStory()
         {
-            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed || mouseState.RightButton == ButtonState.Pressed))
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed ))
             {
                 game.gameState = MainGame.GameState.Story;
             }
         }
         private void clickToContinueControls()
         {
-            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed || mouseState.RightButton == ButtonState.Pressed))
+            if (mouseState.X > 0 && mouseState.X < windowSize.X && mouseState.Y > 0 && mouseState.Y < windowSize.Y && (mouseState.LeftButton == ButtonState.Pressed && oldMouseState.LeftButton != ButtonState.Pressed))
             {
                 game.gameState = MainGame.GameState.Controls;
             }
