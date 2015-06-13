@@ -96,6 +96,7 @@ namespace Sailing_by_the_Stars
             //needles
 
             Vector2 dirNeedleLocation = new Vector2((int)hudLocation.X + 950 , (int)hudLocation.Y + 49);
+            Vector2 velNeedleLocation = new Vector2((int)hudLocation.X + 820, (int)hudLocation.Y + 49);
 
             Vector2 dirOrigin = new Vector2(hudDirNeedle.Width / 2, hudDirNeedle.Height); //rotate with respect to lower point
             Vector2 velOrigin = new Vector2(hudVelNeedle.Width / 2, hudVelNeedle.Height); //rotate with respect to lower point
@@ -103,9 +104,15 @@ namespace Sailing_by_the_Stars
             Rectangle dirRectangle = new Rectangle(0, 0, hudDirNeedle.Width, hudDirNeedle.Height);
             Rectangle velRectangle = new Rectangle(0, 0, hudVelNeedle.Width, hudVelNeedle.Height);
 
-            Debug.WriteLine(s.VelAngle);
+
+
+            float velocity = s.Velocity.Length();
+            Debug.WriteLine(velocity);
+            float velGaugeAngle = velocity/333 - 3; //this doesn't have a limit, but that would just add a cool effect when the ship goes wild
+
 
             spriteBatch.Draw(hudDirNeedle, dirNeedleLocation, dirRectangle, Color.White, s.VelAngle, dirOrigin, 1, SpriteEffects.None, 1);
+            spriteBatch.Draw(hudVelNeedle, velNeedleLocation, velRectangle, Color.White, velGaugeAngle, velOrigin, 1, SpriteEffects.None, 1);
 
             //spriteBatch.Draw(laserSprite, location, sourceRectangle, laser.Color, laser.Angle, origin, 3f, SpriteEffects.None, 1);
             //spriteBatch.Draw(hudVelNeedle, (int)hudLocation.X + 80, (int)hudLocation.Y + 80, velRectangle, Color.White, s.VelAngle, velOrigin, 1, SpriteEffects.None, 1);
