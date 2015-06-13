@@ -30,7 +30,7 @@ namespace Sailing_by_the_Stars
         internal Ship s;
         int finishLine = 74000;
         public bool cheatCode = false;
-        public int[] randomMessages = new int[12];
+        public int[] randomMessages = new int[14];
 
         public MainGame()
         {

@@ -201,7 +201,7 @@ namespace Sailing_by_the_Stars
             }
             else if (3000 < check && check < 6000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[1];
                 switch (messageCount)
                 {
                     case 1:
@@ -246,7 +246,7 @@ namespace Sailing_by_the_Stars
             }
             else if (6000 < check && check < 9000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[2];
                 switch (messageCount)
                 {
                     case 1:
@@ -291,7 +291,7 @@ namespace Sailing_by_the_Stars
             }
             else if (9000 < check && check < 12000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[3];
                 switch (messageCount)
                 {
                     case 1:
@@ -336,7 +336,7 @@ namespace Sailing_by_the_Stars
             }
             else if (12000 < check && check < 15000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[4];
                 switch (messageCount)
                 {
                     case 1:
@@ -381,7 +381,7 @@ namespace Sailing_by_the_Stars
             }
             else if (15000 < check && check < 18000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[5];
                 switch (messageCount)
                 {
                     case 1:
@@ -426,7 +426,7 @@ namespace Sailing_by_the_Stars
             }
             else if (18000 < check && check < 21000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[6];
                 switch (messageCount)
                 {
                     case 1:
@@ -471,7 +471,7 @@ namespace Sailing_by_the_Stars
             }
             else if (21000 < check && check < 24000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[7];
                 switch (messageCount)
                 {
                     case 1:
@@ -516,7 +516,7 @@ namespace Sailing_by_the_Stars
             }
             else if (24000 < check && check < 27000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[8];
                 switch (messageCount)
                 {
                     case 1:
@@ -561,7 +561,7 @@ namespace Sailing_by_the_Stars
             }
             else if (27000 < check && check < 30000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[9];
                 switch (messageCount)
                 {
                     case 1:
@@ -606,7 +606,7 @@ namespace Sailing_by_the_Stars
             }
             else if (30000 < check && check < 33000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[10];
                 switch (messageCount)
                 {
                     case 1:
@@ -651,7 +651,7 @@ namespace Sailing_by_the_Stars
             }
             else if (33000 < check && check < 36000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[11];
                 switch (messageCount)
                 {
                     case 1:
@@ -696,7 +696,7 @@ namespace Sailing_by_the_Stars
             }
             else if (36000 < check && check < 39000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[12];
                 switch (messageCount)
                 {
                     case 1:
@@ -741,7 +741,7 @@ namespace Sailing_by_the_Stars
             }
             else if (39000 < check && check < 42000)
             {
-                int messageCount = game.randomMessages[0];
+                int messageCount = game.randomMessages[13];
                 switch (messageCount)
                 {
                     case 1:
