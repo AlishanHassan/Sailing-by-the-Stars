@@ -148,24 +148,642 @@ namespace Sailing_by_the_Stars
 
         internal void drawCommunicationsWindow(Ship s, Vector2 hudPos)
         {
-
-            
-            String whichMessage;
+           
 
             Vector2 hudLocation = hudPos;
             float check = s.Position.X;
 
             if (0 < check && check < 3000)
             {
-                int messageCount = game.randomMessages[0];
-                whichMessage = "message" + messageCount;
-                spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                int messageCount = game.randomMessages[0];                
+                switch(messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+
             }
             else if (3000 < check && check < 6000)
             {
-                spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
             }
-
+            else if (6000 < check && check < 9000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (9000 < check && check < 12000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (12000 < check && check < 15000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (15000 < check && check < 18000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (18000 < check && check < 21000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (21000 < check && check < 24000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (24000 < check && check < 27000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (27000 < check && check < 30000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (30000 < check && check < 33000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (33000 < check && check < 36000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (36000 < check && check < 39000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (39000 < check && check < 42000)
+            {
+                int messageCount = game.randomMessages[0];
+                switch (messageCount)
+                {
+                    case 1:
+                        spriteBatch.Draw(message1, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 2:
+                        spriteBatch.Draw(message2, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 3:
+                        spriteBatch.Draw(message3, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 4:
+                        spriteBatch.Draw(message4, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 5:
+                        spriteBatch.Draw(message5, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 6:
+                        spriteBatch.Draw(message6, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 7:
+                        spriteBatch.Draw(message7, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 8:
+                        spriteBatch.Draw(message8, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 9:
+                        spriteBatch.Draw(message9, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 10:
+                        spriteBatch.Draw(message10, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 11:
+                        spriteBatch.Draw(message11, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    case 12:
+                        spriteBatch.Draw(message12, new Rectangle((int)hudLocation.X + 41, (int)hudLocation.Y + 20, 510, 55), Color.White);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         internal void drawAllObj(Object[] allGravObjects)
