@@ -13,5 +13,3 @@ TODO:
 
 -Add radar to HUD (if time permits, low priority)
 
--Able to go from main menu and in-game to controls screen
-
