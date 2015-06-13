@@ -149,13 +149,6 @@ namespace Sailing_by_the_Stars
 
         internal void drawCommunicationsWindow(Ship s, Vector2 hudPos)
         {
-<<<<<<< HEAD
-           
-=======
-
-
-            String whichMessage;
->>>>>>> origin/master
 
             Vector2 hudLocation = hudPos;
             float check = s.Position.X;
